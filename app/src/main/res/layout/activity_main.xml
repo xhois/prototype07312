@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    app:layoutDescription="@xml/activity_main_scene"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/tabFrame"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:itemIconSize="24dp"
+                app:itemIconTint="@drawable/menu_selector_color"
+                app:itemTextColor="@drawable/menu_selector_color"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/menu_bottom" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/mainFrame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/tabFrame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/layout_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="left|center_vertical"
+                            android:padding="6dp"
+                            app:srcCompat="@drawable/ic_title" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="280dp"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginBottom="21dp"
+                                android:gravity="bottom|left"
+                                android:text="Mobile Fence"
+                                android:textColor="@android:color/primary_text_light_nodisable"
+                                android:textSize="23sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="12dp"
+                                android:fontFamily="sans-serif"
+                                android:gravity="top|left"
+                                android:text="Parental Control"
+                                android:textSize="11sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageButton
+                            android:id="@+id/buttonMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackground"
+                            app:srcCompat="@drawable/ic_baseline_menu_24"
+                            tools:ignore="SpeakableTextPresentCheck" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            app:srcCompat="@drawable/ic_support" />
+
+                        <TextView
+                            android:id="@+id/textSupport"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:paddingStart="5dp"
+                            android:textColor="?android:attr/textColorPrimaryNoDisable"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            tools:text="고객지원 : 02-2135-6877 (또는 채팅 상담)" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FBFAFA"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/imageView3"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="20dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/ic_character" />
+
+                            <Spinner
+                                android:id="@+id/spinner_user"
+                                android:layout_width="90dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="10dp"
+                                android:background="@drawable/convert_spinner_arrow"
+
+                                android:minHeight="35dp"
+                                android:popupBackground="@drawable/convert_spinner_arrow"
+                                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                                app:layout_constraintTop_toTopOf="@id/imageView3"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/button_modi"
+                                android:layout_width="60dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="5dp"
+                                android:background="@drawable/custom_button"
+                                android:drawableRight="@drawable/layerlist_custom_button"
+                                android:foregroundGravity="bottom"
+                                android:includeFontPadding="false"
+                                android:insetLeft="0dp"
+                                android:insetTop="0dp"
+                                android:insetRight="0dp"
+                                android:insetBottom="0dp"
+                                android:minWidth="0dp"
+                                android:minHeight="0dp"
+                                android:outlineProvider="none"
+                                android:paddingLeft="7dp"
+                                android:paddingTop="0dp"
+                                android:paddingRight="7dp"
+                                android:paddingBottom="0dp"
+                                android:text="수정"
+                                android:textColor="@color/black"
+                                android:textSize="13sp"
+                                app:iconGravity="end"
+                                app:layout_constraintBottom_toBottomOf="@id/spinner_user"
+                                app:layout_constraintStart_toEndOf="@+id/spinner_user"
+                                tools:ignore="TouchTargetSizeCheck" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/button_child_add"
+                                android:layout_width="90dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="5dp"
+                                android:background="@drawable/custom_button"
+                                android:drawableRight="@drawable/layerlist_custom_button_child_add"
+                                android:foregroundGravity="bottom"
+                                android:includeFontPadding="false"
+                                android:insetLeft="0dp"
+                                android:insetTop="0dp"
+                                android:insetRight="0dp"
+                                android:insetBottom="0dp"
+                                android:minWidth="0dp"
+                                android:minHeight="0dp"
+                                android:outlineProvider="none"
+                                android:paddingLeft="7dp"
+                                android:paddingTop="0dp"
+                                android:paddingRight="7dp"
+                                android:paddingBottom="0dp"
+                                android:text="자녀 추가"
+                                android:textColor="@color/black"
+                                android:textSize="13sp"
+                                app:iconGravity="end"
+                                app:layout_constraintBottom_toBottomOf="@id/button_modi"
+                                app:layout_constraintStart_toEndOf="@id/button_modi"
+                                tools:ignore="TouchTargetSizeCheck" />
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:drawableLeft="@drawable/ic_status_device"
+                                android:text=" 기기상태"
+                                android:textColor="@color/textColor"
+                                app:drawableTint="@android:color/holo_green_dark"
+                                app:layout_constraintStart_toStartOf="@id/spinner_user"
+                                app:layout_constraintTop_toBottomOf="@+id/spinner_user" />
+
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:text="(1/1개 동작 중)"
+                                android:textColor="@color/black"
+                                app:layout_constraintBottom_toBottomOf="@id/textView3"
+                                app:layout_constraintStart_toEndOf="@+id/textView3" />
+
+                            <TextView
+                                android:id="@+id/textView4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="최근 위치확인: 11월 15일 오전 7:35"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toStartOf="@id/textView3"
+                                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                            <TextView
+                                android:id="@+id/textView5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                                android:text=" 마지막 파악된 위치보기"
+                                android:textColor="@color/textColor"
+                                app:drawableTint="@android:color/darker_gray"
+                                app:layout_constraintStart_toStartOf="@id/textView3"
+                                app:layout_constraintTop_toBottomOf="@id/textView4" />
+
+                            <TextView
+                                android:id="@+id/textView6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:drawableLeft="@drawable/ic_help"
+                                android:text=" 이용 중 궁금한 것이 있으세요? 해답이 여기 있습니다."
+                                android:textColor="@color/textColor"
+                                android:textStyle="bold"
+                                app:drawableTint="@android:color/holo_green_dark"
+                                app:layout_constraintStart_toStartOf="@id/imageView3"
+                                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                            <View
+                                android:id="@+id/divider"
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:background="?android:attr/listDivider"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                            <TextView
+                                android:id="@+id/textView_noti_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="15dp"
+                                android:drawableLeft="@drawable/ic_noti"
+                                android:text=" 공지 [2021.10.28] - &quot;위젯 추가 차단&quot; 기능 추가"
+                                android:textColor="@color/black"
+                                android:textStyle="normal"
+                                app:drawableTint="@android:color/holo_green_dark"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                            <TextView
+                                android:id="@+id/textView_noti_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:drawableLeft="@drawable/ic_noti"
+                                android:text=" 공지 [2021.8.31] - &quot;외부 키보드 차단&quot; 기능 추가"
+                                android:textColor="@color/black"
+                                android:textStyle="normal"
+                                app:drawableTint="@android:color/holo_green_dark"
+                                app:layout_constraintStart_toStartOf="@id/textView_noti_1"
+                                app:layout_constraintTop_toBottomOf="@+id/textView_noti_1" />
+
+                            <TextView
+                                android:id="@+id/textView_noti_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:drawableLeft="@drawable/ic_noti"
+                                android:text=" 공지 [2021.7.12] - &quot;유해 키워드 차단&quot; 기능 추가"
+                                android:textColor="@color/black"
+                                android:textStyle="normal"
+                                app:drawableTint="@android:color/holo_green_dark"
+                                app:layout_constraintStart_toStartOf="@id/textView_noti_1"
+                                app:layout_constraintTop_toBottomOf="@id/textView_noti_2" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/button_setting_rull"
+                                android:layout_width="110dp"
+                                android:layout_height="35dp"
+                                android:background="@drawable/custom_button2"
+                                android:drawableLeft="@drawable/ic_baseline_settings_24"
+                                android:foregroundGravity="bottom"
+                                android:includeFontPadding="false"
+                                android:insetLeft="0dp"
+                                android:insetTop="0dp"
+                                android:insetRight="0dp"
+                                android:insetBottom="0dp"
+                                android:minWidth="0dp"
+                                android:minHeight="0dp"
+                                android:outlineProvider="none"
+                                android:paddingLeft="15dp"
+                                android:paddingTop="0dp"
+                                android:paddingRight="15dp"
+                                android:paddingBottom="0dp"
+                                android:text="규칙 설정"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                app:iconGravity="end"
+                                app:layout_constraintEnd_toEndOf="@id/include_1"
+                                app:layout_constraintTop_toTopOf="@+id/include_1"
+                                tools:ignore="TouchTargetSizeCheck" />
+
+                            <include
+                                android:id="@+id/include_1"
+                                layout="@layout/activity_summary"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginEnd="10dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView_noti_3" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="30dp">
+
+                            <TextView
+                                android:id="@+id/textView_copyright"
+                                android:layout_width="0dp"
+                                android:layout_height="170dp"
+                                android:layout_marginTop="0dp"
+                                android:background="@color/gray2"
+                                android:paddingStart="20dp"
+                                android:paddingTop="10dp"
+                                android:textSize="13sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="T2014-2021 Ⓒ Mobile Fence, Inc. All rights reserved.\n
+    고객 센터 : 02-2135-6877 (평일 오전 9시 ~ 오후 6시)\n
+    광고/제휴 : partner@mobilefence.com\n
+    팔로우하여 최신 소식과 할인 코드를 놓치지 마세요 : " />
+
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="60dp"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="55dp"
+                                android:layout_marginEnd="32dp"
+                                app:layout_constraintEnd_toEndOf="@+id/textView_copyright"
+                                app:layout_constraintTop_toTopOf="@+id/textView_copyright"
+                                app:srcCompat="@drawable/image_follow" />
+
+                            <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="4dp"
+                                android:text="언어"
+                                android:textSize="13sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/spinner_Language"
+                                app:layout_constraintEnd_toStartOf="@id/spinner_Language" />
+
+                            <Spinner
+                                android:id="@+id/spinner_Language"
+                                android:layout_width="130dp"
+                                android:layout_height="25dp"
+
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginBottom="7dp"
+                                android:background="@drawable/convert_spinner_arrow3"
+                                android:popupBackground="@drawable/convert_spinner_arrow3"
+                                app:layout_constraintBottom_toBottomOf="@+id/textView_copyright"
+                                app:layout_constraintEnd_toEndOf="@+id/textView_copyright"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/layout_menu_mask"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.0"
+            android:background="@color/black"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/layout_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray2"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="#A9C070"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="35dp"
+                        android:text="안녕하세요. xhois1 님!"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="4dp"
+                        android:text="xhois1@gmail.com"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/button_logout"
+                        android:layout_width="150dp"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/custom_button5"
+                        android:text="로그아웃"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="italic|bold"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView_menu_family"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="패밀리 (2)"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView_menu_smartDevice"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="스마트기기 (1)"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView_menu_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="설정"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView_menu_Payment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="결제 내역  "
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/layerlist_custom_tablayout_frame"
+                        android:backgroundTint="@color/textColor"
+                        android:padding="5dp"
+                        android:text="평가판 이용 중"
+                        android:textColor="@color/white"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView_menu_baseOfKnowledge"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="지식 베이스"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView_menu_help"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="도움말"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView_menu_support"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="사용자 지원"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView_menu_customerCenter"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="고객센터 02-2135-6877"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView_menu_evaluation"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="평가/리뷰하기"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView_menu_notice"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="공지사항"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView_menu_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="최신소식"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_menu_close"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/imageButton_menu_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@android:color/transparent"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    app:srcCompat="@drawable/ic_baseline_close_24"
+                    app:tint="@color/white"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_search_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:background="@color/black"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/back_item2"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="궁금하신 사용방법이나 기능을 검색해 보세요."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="예) 위치, 무력화방지, 모든앱차단"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView16" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/back_item3"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView17">
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|left"
+                android:background="@drawable/custom_button6"
+                android:minHeight="48dp"
+                android:paddingTop="5dp"
+                app:srcCompat="@drawable/ic_baseline_search_24"
+                app:tint="@color/gray3"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pagerIndicator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp"
+                app:srcCompat="@drawable/bg_indicator_inactive" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp"
+                app:srcCompat="@drawable/bg_indicator_inactive" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp"
+                app:srcCompat="@drawable/bg_indicator_inactive" />
+
+        </LinearLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager_search"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:layout_constraintBottom_toTopOf="@id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pagerIndicator" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/layerlist_search_cancel"
+            android:clickable="true"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_search_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_button7"
+                android:text="취소"
+                android:textColor="@color/gray3"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_setting"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <app.softpower.prototype07312.CustomScrollView
+            android:id="@+id/scrollViewSetting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/viewSettingFirst"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:background="@android:color/transparent"
+                    android:scrollbars="none" />
+
+                <LinearLayout
+                    android:id="@+id/layoutSettingSecond"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/back_item2"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="50dp"
+                        android:layout_height="5dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/back_item4_r2"
+                        android:elevation="-1dp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp">
+
+                        <TextView
+                            android:id="@+id/textView23"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:drawableLeft="@drawable/ic_baseline_settings_applications_24"
+                            android:gravity="center_vertical"
+                            android:text=" 장치 설정"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:drawableTint="@android:color/holo_green_dark"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="아래 기능들은 이 장치(SM-A315N)에만 적용됩니다."
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+                        <ImageButton
+                            android:id="@+id/imageButtonSettingClose"
+                            android:layout_width="50dp"
+                            android:layout_height="0dp"
+                            android:background="@drawable/custom_button8_r0"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_baseline_close_24"
+                            app:tint="@color/gray3"
+                            tools:ignore="SpeakableTextPresentCheck" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/gray3" />
+
+                    <app.softpower.prototype07312.CustomNestedScrollView
+                        android:id="@+id/scrollViewSetting2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="scrollView">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <include
+                                layout="@layout/include_setting"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="20dp" />
+                        </LinearLayout>
+                    </app.softpower.prototype07312.CustomNestedScrollView>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/buttonSettingClose"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/custom_button3_r20"
+                        android:stateListAnimator="@null"
+                        android:text="닫기"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </app.softpower.prototype07312.CustomScrollView>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

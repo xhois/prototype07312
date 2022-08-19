@@ -1,0 +1,418 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">prototype07312</string>
+    <string name="title_text" translatable="true">
+        <![CDATA[
+        <p><big><b>Mobile Fence</b></big><br>
+            <small>Parental Control</small></p>
+            ]]>
+    </string>
+    <string-array name="tips">
+        <item>모바일펜스 설치 및 가입은 어떻게 하나요?</item>
+        <item>자녀의 기기는 어떻게 추가하나요?(설치방법)</item>
+        <item>모바일펜스는 무료 서비스 인가요?</item>
+        <item>자녀 앱 차단 및 사용시간 설정은 실시간으로 적용 되나요?</item>
+        <item>안드로이드만 지원하나요?</item>
+        <item>자녀 휴대폰에 설치된 앱을 차단할 수 있나요?</item>
+        <item>자녀 기기에 설치된 어플이 보이지 않나요?</item>
+        <item>웹사이트 방문 이력을 확인할 수 있나요?</item>
+        <item>웹사이트 접근도 제한할 수 있나요?</item>
+        <item>하루에 스마트폰을 3시간만 사용하게 일일 사용시간을 설정할 수 있나요?</item>
+        <item>한 주간의 스마트폰 사용시간 계획을 설정할 수 있나요?</item>
+        <item>페이스북과 같은 소셜 SNS에 많은 시간을 허비합니다. 방법이 있나요?</item>
+        <item>특정 어플은 항상 허용할 수 있나요?</item>
+        <item>자녀의 정확한 위치를 파악할 수 있나요?</item>
+        <item>위치를 실시간으로 파악할 수 있나요?</item>
+        <item>아이가 학교/학원에 잘 도착했는지 확인할 수 있나요?</item>
+        <item>문자메시지 모니터링, 전화 발신, 수신을 제한할 수 있나요?</item>
+        <item>스마트폰을 분실했습니다. 원격에서 데이터를 삭제할 수 있나요?</item>
+        <item>부모의 기기가 차단되나요?</item>
+        <item>SMS 내용은 어떻게 볼 수 있나요?</item>
+        <item>부모 스마트폰에도 계속 모바일펜스 설치해두어야 하나요?</item>
+        <item>유튜브(YouTube)도 모니터링이 가능한가요?</item>
+        <item>고객센터</item>
+        <item>자녀,부모 계정을 각각 만들고 장치연결 했을 때 해결 방법</item>
+        <item>로그인 시 이메일, 비밀번호 기억하기 기능해제</item>
+        <item>엄마,아빠 기기에서 동시에 자녀 관리</item>
+        <item>회원 탈퇴 방법</item>
+        <item>컴퓨터 인터넷 브라우저에 저장된 비밀번호 정보 삭제 방법</item>
+        <item>카톡 내 인터넷 차단 기능 동작하지 않을때</item>
+        <item>모바일펜스 서비스 켜기</item>
+        <item>제한 조건 우선순위 설명</item>
+        <item>규칙이 실시간으로 기기에 동기화 안됨</item>
+        <item>기기의 화면 PIN으로 잠금</item>
+        <item>앱 개별 사용시간 설정 방법</item>
+        <item>제한 시간대인데 앱이 차단되진 않는 경우</item>
+        <item>무음/진동 켜기 끄기</item>
+        <item>프로필 표시 순서 변경</item>
+        <item>웹사이트 차단 안 되는 경우</item>
+        <item>규칙 설정에서 설치된 앱이 보이지 않을 때</item>
+        <item>DEVICE_UNREGISTERED 에러 메시지</item>
+        <item>모바일펜스 서비스 끄기</item>
+        <item>동일연령 평균 그래프 안 나올 때</item>
+        <item>유튜브 유해차단(컨텐츠 필터링) 설정 방법</item>
+        <item>2대 이상의 기기가 한 프로필에 연결된 경우 사용시간</item>
+        <item>기기 정보 삭제 방법</item>
+        <item>스마트기기 교체 시 모바일펜스 이용</item>
+        <item>\&apos;일일사용시간, 게임시간\&apos;이 초과되어 사용</item>
+        <item>자녀의 규칙이 임의로 변경될 때 확인사항</item>
+        <item>이미 연결된 기기의 프로필 변경 가능 여부</item>
+        <item>네이버 사전을 통한 인터넷 우회 사용 차단</item>
+        <item>규칙 동일하게 복사하여 프로필 생성</item>
+        <item>비밀번호 변경</item>
+        <item>비밀번호 초기화</item>
+        <item>환경설정 차단</item>
+        <item>특정 웹사이트 허용</item>
+        <item>원격에서 모바일펜스 삭제 명령 전송 방법</item>
+        <item>보호자 기기는 관리대상에서 제외-부모기기 서비스 끄기</item>
+        <item>국제전화 차단 설정 방법</item>
+        <item>기기 명령\n(실시간위치,진동켜기끄기,화면잠금,공장초기화)</item>
+        <item>모든 앱 한번에 차단 기능</item>
+        <item>카카오톡 내부 인터넷 차단 설정법</item>
+        <item>EBS 앱을 통한 인터넷 우회 사용 차단</item>
+        <item>유튜브 완전 차단</item>
+        <item>멀티어카운트(Multi Account) 이중화 앱 차단</item>
+        <item>타임라인 로그 삭제</item>
+        <item>전화/문자 항상 허용 방법</item>
+        <item>문자(SMS) 특정 문자열 차단 방법</item>
+        <item>Play스토어 앱 다운로드 연령 제한 방법</item>
+        <item>알림바가 내려오지 않을때</item>
+        <item>카메라 동작하지 않을때</item>
+        <item>타임라인 로그 보관 기간</item>
+        <item>메시지 앱에서 웹 링크를 누르면 \&quot;크롬 외 브라우저 차단\&quot;으로 차단될 때</item>
+        <item>부모 기기에서 자녀 기기 동기화</item>
+        <item>이중화 앱 (멀티어카운트,듀얼앱) 사용 차단</item>
+        <item>\&quot;인터넷 미연결 시 앱 전체차단\&quot; 예외 대상</item>
+        <item>기기의 모바일 데이터를 켜진 채로 유지</item>
+        <item>Play스토어 내 인스턴트 앱(사용해보기) 차단</item>
+        <item>VPN(해외서버 우회) 차단</item>
+        <item>타임라인 로그가 보이지 않음</item>
+        <item>\&quot;이용 성향\&quot; 통계</item>
+        <item>멀티태스킹(플로팅) 앱 사용차단</item>
+        <item>접근성 복구</item>
+        <item>Play스토어 결제 차단</item>
+        <item>크롬 외 브라우저 차단</item>
+        <item>런처 설치 차단</item>
+        <item>남은 일일/게임시간 알림</item>
+        <item>온라인 학습 사이트만 접속 허용</item>
+        <item>게임 차단, 시간제한 방법</item>
+        <item>자녀프로필 수정 (이름 변경, 표시순서 변경, 프로필삭제)</item>
+        <item>앱 설치 차단</item>
+        <item>이용 시간 통계</item>
+        <item>자녀 타임라인에 \&quot;로그인 됨\&quot; 로그</item>
+        <item>\&quot;항상 허용\&quot; 설정된 앱의 특성</item>
+        <item>최근에 설치된 앱 확인</item>
+        <item>위치 조회 주기 변경</item>
+        <item>\&quot;실행 차단, 실행 허용, 항상 허용\&quot; 기능 설명</item>
+        <item>삼성 메시지 앱 내 챗봇 기능 차단</item>
+        <item>크롬(Chrome)을 통해 동영상 팝업으로 시청 차단</item>
+        <item>와이파이, 데이터 차단 기능</item>
+        <item>크롬 설정 차단</item>
+        <item>보너스 타임</item>
+        <item>남은시간 알림 끄기</item>
+        <item>메시지 설정 차단</item>
+        <item>Samsung Daily(삼성데일리) 차단</item>
+        <item>사용시간 소진 알림</item>
+        <item>동기화가 안 됨</item>
+        <item>카카오톡 오픈채팅 차단</item>
+        <item>\&quot;보안 폴더\&quot; 완전 제거</item>
+        <item>앱 차단 사유별 해제 방법</item>
+        <item>현재 사용 중인 앱, 남은 사용시간 조회</item>
+        <item>CaptivePotalLogin 제한</item>
+        <item>외부 키보드 설치 차단</item>
+        <item>구글 원격 기기초기화 페이지 차단</item>
+        <item>위젯 추가 차단</item>
+        <item>\&quot;허가시간대 항상허용\&quot; 설정된 앱의 특성</item>
+        <item>주기적인 위치 조회 끄기</item>
+        <item>숨겨진 앱 확인</item>
+        <item>학원/기업의 경우 기기연결 모범사례</item>
+        <item>기기 이름 변경 방법</item>
+        <item>백그라운드 음악 재생 시간 집계</item>
+        <item>\&quot;전화 설정 차단\&quot; 기능-특정번호차단</item>
+        <item>사용시간 설정이 누를 수 없게 되어 있음</item>
+        <item>\&quot;허가시간대 항상허용\&quot; 기능을 누를 수 없음</item>
+        <item>GalaxyStore 인스턴트 게임 차단</item>
+        <item>채팅 상담 내용을 이메일 전송</item>
+        <item>해제된 권한 복구</item>
+        <item>카카오톡 차단 후 앱 실행해야지만 대화가 들어옴</item>
+        <item>특정 URL 차단</item>
+        <item>빅스비 차단 방법</item>
+        <item>카톡 문자모아보기 설정 차단</item>
+        <item>크롬 바로가기 차단</item>
+        <item>MDM 에이전트 활성화 안 되는 경우 해결방법</item>
+        <item>모든 앱을 차단하고 특정 앱만 허용하거나 원할 때 이용 시간 부여</item>
+        <item>알림 방해금지 시간대 설정</item>
+        <item>배터리 관리 앱 접근성 해제 방법</item>
+        <item>슬립모드 설명 및 해제 기능</item>
+        <item>웹 사이트에서 특정 페이지 차단</item>
+        <item>앱 자동 업데이트가 되지 않음</item>
+        <item>모바일펜스 지원되는 기기 / 안드로이드 버전</item>
+        <item>해외에서 이용 시 시차 계산</item>
+        <item>사용 이력이 실시간으로 확인이 안됨</item>
+        <item>유튜브에서 시청한 동영상 목록 모니터링</item>
+        <item>MDM 비활성화 방법</item>
+        <item>듀얼 메신저 차단</item>
+        <item>부모기기에서 수신할 알림 설정</item>
+        <item>인터넷 미연결 시 전체차단 됨</item>
+        <item>LG Addon 삭제 방법</item>
+        <item>파파고 앱이 차단됨</item>
+        <item>알림바 차단 안될때</item>
+        <item>장치 연결 시 라이선스 초과 팝업 보일때</item>
+        <item>자녀 위치 알림에서 \&quot;지도에서 보기\&quot; 클릭 시 위치가 지도에 나오지 않을 때</item>
+        <item>카톡, WhatsApp, 페이스북 메신저 내용 모니터링</item>
+        <item>유심이 꼽힌 기기임에도 전화번호가 보이지 않는 경우</item>
+        <item>안전모드 진입 시도가 탐지됨</item>
+        <item>\&quot;보행 중 사용 차단\&quot; 기능이 정상 작동하지 않는 경우</item>
+        <item>전화번호, 통신사 변경 시</item>
+        <item>크롬 \&quot;시크릿 탭\&quot;에서의 모니터링</item>
+        <item>모바일펜스 알림 끄는 방법</item>
+        <item>부모 기기에서 모바일펜스 알림이 오지 않을 때 확인사항</item>
+        <item>해외에서 사용 가능 여부</item>
+        <item>뮤직 어플 제어</item>
+        <item>평가판 만료 6일전</item>
+        <item>장치연결 단계에서 권한 설정 중 설정 내 특정 버튼 클릭 안될 때</item>
+        <item>공장초기화 차단</item>
+        <item>안전모드 차단</item>
+        <item>모바일펜스 삭제 방법</item>
+        <item>와이파이, 블루투스 설정 방법</item>
+        <item>MDM 활성화 방법</item>
+        <item>모바일펜ㅅ 최신 버전으로 업데이트 방법</item>
+        <item>접근성 복구 방법(환경설정 이용)</item>
+        <item>출처를 알 수 없는 앱 허용 방법-영구적 허용</item>
+        <item>바이러스로 보고됨</item>
+        <item>화면 캡쳐가 안 되는 경우</item>
+        <item>로그인 시 관리 권한이 없다는 메시지</item>
+        <item>모바일펜스 재설치 방법</item>
+        <item>밤에 휴대폰 사용 안 했는데 사용시간이 집계됨</item>
+        <item>\&quot;MobileFence가 아직 구동 중에 있습니다.\&quot;</item>
+        <item>\&quot;설정 보안 메뉴 진입\&quot; 차단 로그</item>
+        <item>SKT 잼(ZEM) 삭제 방법</item>
+        <item>T전화 기본 앱에서 해제</item>
+        <item>시계 앱 사용시간</item>
+        <item>모바일펜스 삭제 방법(v3.x)</item>
+        <item>가족 결제 수단 추가</item>
+        <item>\&quot;SMS\&quot;오 \&quot;메시지\&quot;의 차이점</item>
+        <item>크롬 실험실 기능 차단</item>
+        <item>구글 디스커버 기능 끄기</item>
+        <item>Play스토어 앱 최신버전으로 업데이트</item>
+        <item>위치 파악 주기가 아닌데 위치 알림이 계속 들어옴</item>
+        <item>크롬 앱의 디스커버 기능 끄기</item>
+        <item>삼성 패스(Samsung Pass) 자동 로그인 해제</item>
+        <item>배터리 소모가 많은 경우</item>
+        <item>출처를 알 수 없는 앱 허용 방법</item>
+        <item>샤오미 듀얼앱 해제</item>
+        <item>삼성 메시지 앱내 채팅 기능 끄기</item>
+        <item>자동시간 해제 사유로 모든 앱이 차단될 때</item>
+        <item>화면 PIN 또는 패턴 제거</item>
+        <item>모바일펜스 자동 업데이트 설정 방법</item>
+        <item>페이스북 메신저 챗헤드(ChatHead) 차단</item>
+        <item>브라우저 앱이 아닌데 인터넷 검색 기능을 제공하는 경우-인앱 브라우징</item>
+        <item>모바일펜스의 데이터 소모율</item>
+        <item>삼성 절전대상에서 모바일펜스 제외</item>
+        <item>전화 다이얼 위젯 추가 방법-부모님께 전화하기 문제 있는 경우</item>
+        <item>키보드앱에서 인앱 브라우징 제공하는 경우</item>
+        <item>LG 펌웨어 업데이트 방법</item>
+        <item>삼성 기기 펌웨어 업데이트 방법</item>
+        <item>LG 절전대상에서 MF 제외 또는 절전기능끄기</item>
+        <item>구글 패밀리링크(Family Link) 삭제 방법</item>
+        <item>구글 Play service 업데이트 방법</item>
+        <item>동영상이 팝업으로 표시되고 제어가 안 되는 경우</item>
+        <item>와이파이 매니저 설치 방법</item>
+        <item>유튜브 프리미엄 버전에서 팝업으로 동영상시청 차단</item>
+        <item>블루투스 이어폰 연결 방법</item>
+        <item>\&quot;천지인 키보드\&quot;에서 쉼표(,) 입력이 되지 않을 때</item>
+        <item>\&quot;보안폴더\&quot;에서 앱을 사용</item>
+        <item>장치연결 접근성 켜기 단계에서 모바일펜스가 보이지 않는 경우</item>
+        <item>Play 스토어에서 앱이 설치되지 않을 때</item>
+        <item>삼성 \&quot;키즈홈\&quot;이 동작하지 않음</item>
+        <item>보안폴더 기능 숨기기</item>
+        <item>소프트웨어(펌웨어) 업데이트가 차단됨</item>
+        <item>LG기기에서 MDM 활성화 시 \&quot;허용되지 않는 작업\&quot; 오류</item>
+        <item>카카오톡 팝업에서 답장하기 기능 끄기 방법</item>
+        <item>삼성 기기의 \&quot;긴급모드\&quot;</item>
+        <item>디바이스 케어(기기 최적화) 위젯 생성 방법</item>
+        <item>배경화면(테마) 다운로드 에러</item>
+        <item>슬립(Sleep) 모드란?</item>
+        <item>모바일 핫스팟 차단</item>
+        <item>네이버 브라우저를 기본 브라우저에서 해제하는 방법</item>
+        <item>지문 잠금 해제 시 무력화 경고 팝업 창</item>
+        <item>LG 기기 전화 수신 시 팝업기능 해제</item>
+        <item>MDM 에이전트 미지원 삼성 기기</item>
+        <item>WizLock 비활성화</item>
+        <item>삼성 노트 인앱 브라우징 차단</item>
+        <item>갤럭시 워치에 모바일펜스 앱 설치</item>
+        <item>\&quot;카톡 내 인터넷 검색 차단\&quot; 시 QR 체크인 사용</item>
+        <item>블루투스 연결 차단</item>
+        <item>패밀리링크 \&quot;출처를 알 수 없는 소스\&quot; 허용 방법</item>
+        <item>배경화면 설정 방법</item>
+        <item>삼성 기기 초기화 방법</item>
+        <item>크롬(Chrome)을 기본 브라우저로 설정</item>
+        <item>GPS 켜려고 할 때 \&quot;허용되지 않는 작업\&quot; 에러 메시지</item>
+        <item>모바일 핫스팟 이용</item>
+        <item>특정 전화번호 차단에서 제외(부모 전화번호 등록 방법)</item>
+        <item>문자(SMS) 특정번호 차단</item>
+        <item>문자(SMS), 전화 이력이 안 보임</item>
+        <item>문자 내용에 이상한 태그들이 보임</item>
+        <item>전화 특정번호 차단</item>
+        <item>제한시간대 전화 끊기-백그라운드 통화 종료</item>
+        <item>특정 전화번호 차단 안될 때 체크 사항</item>
+        <item>메시지 앱에서 인터넷 브라우징 및 동영상 시청 차단</item>
+        <item>메시지(SMS) 도착 시 답장하기 기능 해제</item>
+        <item>\&quot;긴급/안전 안내 문자\&quot; 알림 해제 방법</item>
+        <item>전화 수신 시 팝업 안나오게 설정 방법</item>
+        <item>전화 수신차단 안 되는 경우-전화 자동으로 받기 해제</item>
+        <item>지도에서 신도시 주소 안 나옴</item>
+        <item>정확한 위치 파악을 위한 설정-높은 정확도</item>
+        <item>검색된 위치가 대부분 정확도가 200미터를 넘을 때</item>
+        <item>기기가 전혀 엉뚱한 위치에 있을 때-모의 위치 앱</item>
+        <item>실시간 위치 파악 안될 때 확인 사항</item>
+        <item>GPS 활성화 강제 기능 설명</item>
+        <item>위치가 이사하기 전 주소로 조회될 때(위치 데이터/캐시 삭제 방법)</item>
+        <item>자녀모드에서 와이파이, 디스플레이 설정 진입 메뉴 숨기기</item>
+        <item>아일랜드(Island) / 쉘터(shelter) 앱 삭제 방법</item>
+        <item>LG MDM 애드온 설치 중 파싱 에러</item>
+        <item>\&quot;알림 접근 허용\&quot; 권한</item>
+        <item>설정 진입 시 \&quot;다른앱 위에 그리기\&quot; 권한 자동으로 꺼짐/켜짐</item>
+        <item>모바일펜스 이용권 요금 결제 및 업그레이드</item>
+        <item>카카오페이 현금영수증 등록 방법</item>
+        <item>모바일펜스 결제 방법</item>
+        <item>Play스토어 인앱 결제/환불 내역 확인</item>
+    </string-array>
+    <string-array name="function">
+        <item>활동 요약 &gt; 이용시간 통계</item>
+        <item>활동 요약 &gt; 이용성향 통계 &gt; 항상허용/통화시간 제외</item>
+        <item>활동 요약 &gt; 이용성향 통계 &gt; 실시간 남은시간 확인</item>
+        <item>활동 요약 &gt; 이용성향 통계 &gt; 실시간 사용 중인 앱 확인</item>
+        <item>활동 요약 &gt; 많이 사용한 앱</item>
+        <item>활동 요약 &gt; 많이 사용한 웹 사이트</item>
+        <item>활동 요약 &gt; 최근 통화 문자</item>
+        <item>활동 타임라인</item>
+        <item>규칙설정 &gt; 어플 &gt; 어플 검색</item>
+        <item>규칙설정 &gt; 어플 &gt; 모든 앱 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 게임 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 브라우저 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; Play스토어 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 환경설정 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 시스템UI 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 알림바 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 카메라 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 블루투스 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 보행 중 사용차단</item>
+        <item>규칙설정 &gt; 어플 &gt; GPS 활성화 강제</item>
+        <item>규칙설정 &gt; 어플 &gt; 인터넷 미연결 시 앱 전체차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 런처 설치 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 키보드 설치 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; VPN 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 카톡 내 인터넷검색 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 카톡 내 오픈 채팅 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 채팅 앱 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 백그라운드 뮤직 시간 집계</item>
+        <item>규칙설정 &gt; 어플 &gt; 데이팅 앱 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; Play스토어 결제 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 유튜브 설정 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 전화 설정 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 메시지 설정 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; Play스토어 설정 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 위젯 추가 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 크롬 설정 차단</item>
+        <item>규칙설정 &gt; 어플 &gt; 구글 검색설정 차단</item>
+        <item>규칙설정 &gt; 사용시간 &gt; 제한시간대 설정</item>
+        <item>규칙설정 &gt; 사용시간 &gt; 제한할 기능 &gt; 전체 차단</item>
+        <item>규칙설정 &gt; 사용시간 &gt; 제한할 기능 &gt; 게임 제한</item>
+        <item>규칙설정 &gt; 사용시간 &gt; 제한할 기능 &gt; 오락성 어플 제한</item>
+        <item>규칙설정 &gt; 사용시간 &gt; 제한할 기능 &gt; 소셜 제한</item>
+        <item>규칙설정 &gt; 사용시간 &gt; 제한할 기능 &gt; 인터넷검색 제한</item>
+        <item>규칙설정 &gt; 사용시간 &gt; 일일 기기 사용시간 &gt; 시간 설정</item>
+        <item>규칙설정 &gt; 사용시간 &gt; 일일 기기 사용시간 &gt; 보너스 타임</item>
+        <item>규칙설정 &gt; 사용시간 &gt; 일일 게임 이용 시간 &gt; 시간 설정</item>
+        <item>규칙설정 &gt; 사용시간 &gt; 일일 게임 이용 시간 &gt; 보너스 타임</item>
+        <item>규칙설정 &gt; 웹 &gt; 웹사이트 모니터링 기능 활성화</item>
+        <item>규칙설정 &gt; 웹 &gt; 웹사이트 제한 활성화</item>
+        <item>규칙설정 &gt; 웹 &gt; 웹 카테고리 제한</item>
+        <item>규칙설정 &gt; 웹 &gt; 웹사이트 제한/허용 &gt; 제한/허용할 사이트 추가</item>
+        <item>규칙설정 &gt; 웹 &gt; 웹사이트 제한/허용 &gt; 모든 웹사이트 차단</item>
+        <item>규칙설정 &gt; 웹 &gt; 웹사이트 제한/허용 &gt; 크롬 외 브라우저 차단(권장)</item>
+        <item>규칙설정 &gt; 웹 &gt; 키워드 차단 &gt; 키워드 차단</item>
+        <item>규칙설정 &gt; 웹 &gt; 키워드 차단 &gt; 유해 키워드 차단</item>
+        <item>규칙설정 &gt; 전화/문자 &gt; 문자(SMS) 모니터링 &gt; 문자 모니터링 기능</item>
+        <item>규칙설정 &gt; 전화/문자 &gt; 문자(SMS) 모니터링 &gt; 관찰할 위험 문자열</item>
+        <item>규칙설정 &gt; 전화/문자 &gt; 전화기능 &gt; 수/발신 기록 모니터링</item>
+        <item>규칙설정 &gt; 전화/문자 &gt; 전화기능 &gt; 전화 발신 전체차단</item>
+        <item>규칙설정 &gt; 전화/문자 &gt; 전화기능 &gt; 전화 수신 전체차단</item>
+        <item>규칙설정 &gt; 전화/문자 &gt; 전화기능 &gt; 발신자 표시제한 수신차단</item>
+        <item>규칙설정 &gt; 전화/문자 &gt; 전화기능 &gt; 연락처에 없는 번호 차단</item>
+        <item>규칙설정 &gt; 전화/문자 &gt; 전화기능 &gt; 특정 번호 전화 수신/발신 차단</item>
+        <item>규칙설정 &gt; 위치 &gt; GPS 추적 활성화</item>
+        <item>규칙설정 &gt; 위치 &gt; 위치갱신 주기</item>
+        <item>규칙설정 &gt; 위치 &gt; 알림 위치 (지역 주시)</item>
+        <item>프로필 &gt; 이름 변경</item>
+        <item>프로필 &gt; 사진 등록</item>
+        <item>프로필 &gt; 표시순서 변경</item>
+        <item>프로필 &gt; 자녀 삭제</item>
+        <item>프로필 &gt; 자녀 추가</item>
+        <item>스마트기기 &gt; 기기명령 &gt; 위치 검색</item>
+        <item>스마트기기 &gt; 기기명령 &gt; 화면 잠금</item>
+        <item>스마트기기 &gt; 기기명령 &gt; 화면잠금 해제</item>
+        <item>스마트기기 &gt; 기기명령 &gt; 무음</item>
+        <item>스마트기기 &gt; 기기명령 &gt; 진동 켜기</item>
+        <item>스마트기기 &gt; 기기명령 &gt; 진동/무음 끄기</item>
+        <item>스마트기기 &gt; 기기명령 &gt; 공장초기화</item>
+        <item>스마트기기 &gt; 동기화</item>
+        <item>스마트기기 &gt; 서비스 켜기/끄기</item>
+        <item>스마트기기 &gt; 기기 정보 삭제</item>
+        <item>스마트기기 &gt; 기기 상태 정보</item>
+        <item>설정 &gt; 비밀번호 변경</item>
+        <item>설정 &gt; 현지 시간 변경</item>
+        <item>설정 &gt; 수신할 알림</item>
+        <item>설정 &gt; 자녀모드 기능</item>
+        <item>설정 &gt; 관찰항목 공개</item>
+        <item>설정 &gt; 앱 개별 사용시간 사용여부</item>
+        <item>설정 &gt; 부모 전화번호</item>
+    </string-array>
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:paddingBottom="20dp"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView_a_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="무력화 방지"
+            android:textStyle="bold"
+            android:textColor="@color/green2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_b_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="무력화방지는 적용할 자녀의 기기에서 직접 활성화해야 합니다. 부모 기기에서도 설정해볼 수는 있으나 원격으로 자녀기기에 적용되는 것은 아닙니다."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_a_1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textView_a_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MDM 에이전트 | "
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_c_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="꺼짐"
+            android:textColor="@color/red"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView_a_2"
+            app:layout_constraintStart_toEndOf="@+id/textView_a_2" />
+
+        <TextView
+            android:id="@+id/textView_b_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:text="MDM 사용 권한을 활성화하면, 기기에 보안이 강화되어 모바일펜스 무력화를 방지하는데 도움이 됩니다."
+            app:layout_constraintEnd_toStartOf="@+id/button_a_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_a_2" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_a_2"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:background="@drawable/custom_button3_r15_black_1dp"
+            android:stateListAnimator="@null"
+            android:text="켜기"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textView_a_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="안전모드 차단 | "
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_c_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="꺼짐"
+            android:textColor="@color/red"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView_a_3"
+            app:layout_constraintStart_toEndOf="@+id/textView_a_3" />
+
+        <TextView
+            android:id="@+id/textView_b_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:text="모바일펜스 무력화 방지를 위해 기기를 안전모드로 부팅하지 못하도록 합니다."
+            app:layout_constraintEnd_toStartOf="@+id/button_a_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_a_3" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_a_3"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:background="@drawable/custom_button3_r15_black_1dp"
+            android:stateListAnimator="@null"
+            android:text="켜기"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textView_a_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="공장초기화 차단"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_b_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:text="아이가 기기를 포멧하여 공장출고 상태로 되돌리지 못하도록 차단합니다. 이 기능은 매우 강력하오니 실제 자녀가 공장초기화를 통해서 모바일펜스 삭제한 경험이 있는 경우만 사용하세요."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/switch_a_4"
+            app:layout_constraintTop_toBottomOf="@+id/textView_a_4" />
+
+        <Switch
+            android:id="@+id/switch_a_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/gray3" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/textView_a_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="권한"
+            android:textStyle="bold"
+            android:textColor="@color/green2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textView_a_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사용정보 접근 | "
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_c_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="꺼짐"
+            android:textColor="@color/red"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView_a_6"
+            app:layout_constraintStart_toEndOf="@+id/textView_a_6" />
+
+        <TextView
+            android:id="@+id/textView_b_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:text="어떤 앱을 사용하는지 모니터링 하기 위해서 &quot;사용정보 접근 허용&quot; 권한이 필요합니다. 아래 &quot;설정으로 이동&quot; 버튼을 누른 후 모바일펜스 찾아서 권한을 허용해 주세요."
+            app:layout_constraintEnd_toStartOf="@+id/button_a_6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_a_6" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_a_6"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:background="@drawable/custom_button3_r15_black_1dp"
+            android:stateListAnimator="@null"
+            android:text="켜기"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textView_a_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="접근성 | "
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_c_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="꺼짐"
+            android:textColor="@color/red"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView_a_7"
+            app:layout_constraintStart_toEndOf="@+id/textView_a_7" />
+
+        <TextView
+            android:id="@+id/textView_b_7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:text="어떤 앱을 사용하는지 모니터링 하기 위해서 &quot;사용정보 접근 허용&quot; 권한이 필요합니다. 아래 &quot;설정으로 이동&quot; 버튼을 누른 후 모바일펜스 찾아서 권한을 허용해 주세요.\n\n[주의!!] &quot;모바일펜스 바로가기&quot;는 켜면 안 됩니다."
+            app:layout_constraintEnd_toStartOf="@+id/button_a_7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_a_7" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_a_7"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:background="@drawable/custom_button3_r15_black_1dp"
+            android:stateListAnimator="@null"
+            android:text="켜기"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textView_a_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다른앱 위에 그리기 | "
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_c_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="꺼짐"
+            android:textColor="@color/red"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView_a_8"
+            app:layout_constraintStart_toEndOf="@+id/textView_a_8" />
+
+        <TextView
+            android:id="@+id/textView_b_8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:text="사용을 제한할 앱 위에 차단 화면을 띄울 수 있도록 &quot;다른 앱 위에 표시되는 앱&quot; 권한이 필요합니다."
+            app:layout_constraintEnd_toStartOf="@+id/button_a_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_a_8" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_a_8"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:background="@drawable/custom_button3_r15_black_1dp"
+            android:stateListAnimator="@null"
+            android:text="켜기"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textView_a_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="앱 세부 권한 | "
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_c_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="꺼짐"
+            android:textColor="@color/red"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView_a_9"
+            app:layout_constraintStart_toEndOf="@+id/textView_a_9" />
+
+        <TextView
+            android:id="@+id/textView_b_9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:text="&quot;설정으로 이동&quot; 후, &quot;권한&quot; 메뉴안의 모든 권한들을 허용 또는 항상허용 상태로 전환해 주세요."
+            app:layout_constraintEnd_toStartOf="@+id/button_a_9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_a_9" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_a_9"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:background="@drawable/custom_button3_r15_black_1dp"
+            android:stateListAnimator="@null"
+            android:text="켜기"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/gray3" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/textView_a_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="알림"
+            android:textStyle="bold"
+            android:textColor="@color/green2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textView_a_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="방해금지 시간대 설정"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_b_11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:text="소리/진동 알림을 받지 않을 시간을 설정합니다."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/switch_a_11"
+            app:layout_constraintTop_toBottomOf="@+id/textView_a_11" />
+
+        <Switch
+            android:id="@+id/switch_a_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/gray3" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/textView_a_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="어플"
+            android:textStyle="bold"
+            android:textColor="@color/green2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textView_a_13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모바일펜스 동작 | "
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_c_13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="꺼짐"
+            android:textColor="@color/red"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView_a_13"
+            app:layout_constraintStart_toEndOf="@+id/textView_a_13" />
+
+        <TextView
+            android:id="@+id/textView_b_13"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:text="이 기기에서 모바일펜스가 동작하지 않도록 서비스를 끄거나 켭니다. 부모 기기에서 모바일펜스 서비스가 꺼져 있어도 자녀 기기 관리에는 전혀 문제가 없습니다."
+            app:layout_constraintEnd_toStartOf="@+id/button_a_13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_a_13" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_a_13"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:background="@drawable/custom_button3_r15_black_1dp"
+            android:stateListAnimator="@null"
+            android:text="켜기"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textView_a_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="앱 삭제"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_b_14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:text="이 기기에서 모바일펜스 앱을 삭제합니다."
+            app:layout_constraintEnd_toStartOf="@+id/button_a_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_a_14" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_a_14"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:background="@drawable/custom_button3_r15_black_1dp"
+            android:stateListAnimator="@null"
+            android:text="앱 제거"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        >
+
+        <TextView
+            android:id="@+id/textView_a_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="앱 버전"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_b_15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:text="v4.7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_a_15" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
