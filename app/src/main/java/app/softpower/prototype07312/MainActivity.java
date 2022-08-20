@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -335,6 +336,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(binding.scrollViewSetting, "scrollY", 0, 600).setDuration(500);
+
+
         binding.scrollViewSetting2.setOnScrollStoppedListener(new CustomNestedScrollView.OnScrollStoppedListener() {
             @Override
             public void onScrollStopped() {
@@ -346,7 +350,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.layoutSettingSecond.getLocationOnScreen(loc);
                 final int y = loc[1] - topOffset;
 
-                Log.i("cis4", "onScrollStopped_2 y= " + String.valueOf(y));
+                Log.i("cis4", "onScrollStopped_2 y= " + String.valueOf(y) + ", " + binding.layoutSettingSecond.getTop());
+
+                objectAnimator.start();
             }
         });
 
@@ -396,6 +402,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+
         binding.scrollViewSetting.setOnScrollStoppedListener(new CustomScrollView.OnScrollStoppedListener() {
             @Override
             public void onScrollStopped() {
@@ -407,7 +414,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.layoutSettingSecond.getLocationOnScreen(loc);
                 final int y = loc[1] - topOffset;
 
-                Log.i("cis4", "onScrollStopped y= " + String.valueOf(y));
+                Log.i("cis4", "onScrollStopped y= " + String.valueOf(y) + ", " + binding.layoutSettingSecond.getTop());
+
+                objectAnimator.start();
+            }
+        });
+
+
+        binding.scrollViewSetting.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                Log.i("cis", "getViewTreeObserver  onScrollChanged");
+//                binding.scrollViewSetting.smoothScrollBy(0, 1);
             }
         });
 
