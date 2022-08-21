@@ -334,6 +334,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.i("cis", String.valueOf(event));
                     return gestureDetector.onTouchEvent(event);
                 }
+
                 return false;
             }
         });
