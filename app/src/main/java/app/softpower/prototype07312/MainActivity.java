@@ -358,7 +358,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 Log.i("cis4", "onScrollStopped_2 y= " + String.valueOf(y) + ", " + binding.layoutSettingSecond.getTop());
 
-                objectAnimator.start();
+//                objectAnimator.start();
             }
         });
 
@@ -424,7 +424,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 Log.i("cis4", "onScrollStopped y= " + String.valueOf(y) + ", " + binding.layoutSettingSecond.getTop());
 
-                objectAnimator.start();
+//                objectAnimator.start();
             }
         });
 
