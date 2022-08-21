@@ -335,6 +335,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return gestureDetector.onTouchEvent(event);
                 }
 
+
                 return false;
             }
         });
