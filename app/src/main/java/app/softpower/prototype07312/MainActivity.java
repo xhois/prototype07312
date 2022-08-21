@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isSearchPageOpen = false;
     boolean isSettingPageOpen = false;
 
+    int scrollOldY;
+
     GestureDetector gestureDetector; // 무슨 제스쳐를 했는지 감지
 
     @SuppressLint("ClickableViewAccessibility")
@@ -336,7 +338,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(binding.scrollViewSetting, "scrollY", 0, 600).setDuration(500);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(binding.scrollViewSetting, "scrollY",100).setDuration(500);
 
 
         binding.scrollViewSetting2.setOnScrollStoppedListener(new CustomNestedScrollView.OnScrollStoppedListener() {
@@ -349,6 +351,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int[] loc = new int[2];
                 binding.layoutSettingSecond.getLocationOnScreen(loc);
                 final int y = loc[1] - topOffset;
+
+                scrollOldY = y;
 
                 Log.i("cis4", "onScrollStopped_2 y= " + String.valueOf(y) + ", " + binding.layoutSettingSecond.getTop());
 
@@ -413,6 +417,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int[] loc = new int[2];
                 binding.layoutSettingSecond.getLocationOnScreen(loc);
                 final int y = loc[1] - topOffset;
+
+                scrollOldY = y;
 
                 Log.i("cis4", "onScrollStopped y= " + String.valueOf(y) + ", " + binding.layoutSettingSecond.getTop());
 
