@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isSearchPageOpen = false;
     boolean isSettingPageOpen = false;
 
-    int scrollOldY;
+    boolean isScrollViewSettingTop = true;
 
     GestureDetector gestureDetector; // 무슨 제스쳐를 했는지 감지
 
@@ -323,119 +323,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         binding.bottomNavigationView.setOnItemSelectedListener(this);
 
-        binding.scrollViewSetting2.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    binding.scrollViewSetting2.startScrollerTask();
-                }
-
-                if (binding.scrollViewSetting.canScrollVertically(1)) {
-                    Log.i("cis", String.valueOf(event));
-                    return gestureDetector.onTouchEvent(event);
-                }
-
-
-                return false;
-            }
-        });
-
-        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(binding.scrollViewSetting, "scrollY",100).setDuration(500);
-
-
-        binding.scrollViewSetting2.setOnScrollStoppedListener(new CustomNestedScrollView.OnScrollStoppedListener() {
-            @Override
-            public void onScrollStopped() {
-                DisplayMetrics dm = new DisplayMetrics();
-                getWindowManager().getDefaultDisplay().getMetrics(dm);
-                int topOffset = dm.heightPixels - binding.layoutRoot.getMeasuredHeight();
-
-                int[] loc = new int[2];
-                binding.layoutSettingSecond.getLocationOnScreen(loc);
-                final int y = loc[1] - topOffset;
-
-                scrollOldY = y;
-
-                Log.i("cis4", "onScrollStopped_2 y= " + String.valueOf(y) + ", " + binding.layoutSettingSecond.getTop());
-
-//                objectAnimator.start();
-            }
-        });
-
-        gestureDetector = new GestureDetector(this, new GestureDetector.OnGestureListener() {
-            @Override
-            public boolean onDown(MotionEvent e) {
-                Log.i("cis", "onDown");
-                return true;
-            }
-
-            @Override
-            public void onShowPress(MotionEvent e) {
-                Log.i("cis", "onShowPress");
-            }
-
-            @Override
-            public boolean onSingleTapUp(MotionEvent e) {
-                Log.i("cis", "onSingleTapUp");
-                return true;
-            }
-
-            @Override
-            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                Log.i("cis", "onScroll");
-                return false;
-            }
-
-            @Override
-            public void onLongPress(MotionEvent e) {
-                Log.i("cis", "onLongPress");
-            }
-
-            @Override
-            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-                Log.i("cis", "onFling");
-                return false;
-            }
-        });
-
-        binding.scrollViewSetting.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    binding.scrollViewSetting.startScrollerTask();
-                }
-                return false;
-            }
-        });
-
-
-        binding.scrollViewSetting.setOnScrollStoppedListener(new CustomScrollView.OnScrollStoppedListener() {
-            @Override
-            public void onScrollStopped() {
-                DisplayMetrics dm = new DisplayMetrics();
-                getWindowManager().getDefaultDisplay().getMetrics(dm);
-                int topOffset = dm.heightPixels - binding.layoutRoot.getMeasuredHeight();
-
-                int[] loc = new int[2];
-                binding.layoutSettingSecond.getLocationOnScreen(loc);
-                final int y = loc[1] - topOffset;
-
-                scrollOldY = y;
-
-                Log.i("cis4", "onScrollStopped y= " + String.valueOf(y) + ", " + binding.layoutSettingSecond.getTop());
-
-//                objectAnimator.start();
-            }
-        });
-
-
-        binding.scrollViewSetting.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-                Log.i("cis", "getViewTreeObserver  onScrollChanged");
-//                binding.scrollViewSetting.smoothScrollBy(0, 1);
-            }
-        });
 
 
         setInit(); // 검색화면 ViewPager2
