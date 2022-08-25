@@ -323,6 +323,83 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         binding.bottomNavigationView.setOnItemSelectedListener(this);
 
+//        binding.scrollViewSetting.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+//            @Override
+//            public void onScrollChanged() {
+//                Log.i("cis", String.valueOf(binding.scrollViewSetting.getScrollY()));
+//                if (binding.scrollViewSetting.getScrollY() == 1979){
+//                    isScrollViewSettingTop = true;
+//                } else {
+//                    isScrollViewSettingTop = false;
+//                }
+//            }
+//        });
+
+
+//        binding.scrollViewSetting.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+//            @Override
+//            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                if (binding.scrollViewSetting.getScrollY() == 1979){
+//                    isScrollViewSettingTop = true;
+//                } else {
+//                    isScrollViewSettingTop = false;
+//                }
+//            }
+//        });
+
+//        binding.scrollViewSetting2.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                return gestureDetector.onTouchEvent(event);
+//            }
+//        });
+
+//        gestureDetector = new GestureDetector(this, new GestureDetector.OnGestureListener() {
+//            @Override
+//            public boolean onDown(MotionEvent e) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onShowPress(MotionEvent e) {
+//
+//            }
+//
+//            @Override
+//            public boolean onSingleTapUp(MotionEvent e) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onLongPress(MotionEvent e) {
+//
+//            }
+//
+//            @Override
+//            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+//                return false;
+//            }
+//        });
+
+//        gestureDetector = new GestureDetector(this, new OnSwipeListener(){
+//            @Override
+//            public boolean onSwipe(Direction direction){
+//                Log.i("cis", String.valueOf(direction));
+//
+//                if (!isScrollViewSettingTop){
+//                    if (direction == Direction.up) {
+//                        return true;
+//                    }
+//                }
+//                return false;
+//            }
+//        });
+
 
 
         setInit(); // 검색화면 ViewPager2
