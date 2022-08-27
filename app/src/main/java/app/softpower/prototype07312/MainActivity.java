@@ -343,6 +343,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // viewPager2.registerOnPageChangeCallback 리스너 등록하면서
         // 메소드 오버라이드(onPageScrolled, onPageSelected, onPageScrollStateChanged
         // 끝
+
     }
 
     private void stopScroll(){
