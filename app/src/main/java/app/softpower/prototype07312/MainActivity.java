@@ -1,58 +1,37 @@
 package app.softpower.prototype07312;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.ActionMenuItem;
-import androidx.core.content.ContextCompat;
-import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
-
-import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
-import android.text.Html;
+import android.os.Handler;
 import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
-import android.text.style.ImageSpan;
 import android.text.style.StyleSpan;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.google.android.material.navigation.NavigationBarView;
-
-import java.time.LocalDate;
 
 import app.softpower.prototype07312.databinding.ActivityMainBinding;
 
@@ -66,10 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isMenuPageOpen = false;
     boolean isSearchPageOpen = false;
     boolean isSettingPageOpen = false;
-
-    boolean isScrollViewSettingTop = true;
-
-    GestureDetector gestureDetector; // 무슨 제스쳐를 했는지 감지
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -323,84 +298,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         binding.bottomNavigationView.setOnItemSelectedListener(this);
 
-//        binding.scrollViewSetting.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-//            @Override
-//            public void onScrollChanged() {
-//                Log.i("cis", String.valueOf(binding.scrollViewSetting.getScrollY()));
-//                if (binding.scrollViewSetting.getScrollY() == 1979){
-//                    isScrollViewSettingTop = true;
-//                } else {
-//                    isScrollViewSettingTop = false;
-//                }
-//            }
-//        });
+        binding.scrollViewSetting2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getActionMasked() == MotionEvent.ACTION_UP){
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            stopScroll();
+                        }
+                    }, 200);
+                }
+                return false;
+            }
+        });
 
-
-//        binding.scrollViewSetting.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-//            @Override
-//            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//                if (binding.scrollViewSetting.getScrollY() == 1979){
-//                    isScrollViewSettingTop = true;
-//                } else {
-//                    isScrollViewSettingTop = false;
-//                }
-//            }
-//        });
-
-//        binding.scrollViewSetting2.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                return gestureDetector.onTouchEvent(event);
-//            }
-//        });
-
-//        gestureDetector = new GestureDetector(this, new GestureDetector.OnGestureListener() {
-//            @Override
-//            public boolean onDown(MotionEvent e) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onShowPress(MotionEvent e) {
-//
-//            }
-//
-//            @Override
-//            public boolean onSingleTapUp(MotionEvent e) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onLongPress(MotionEvent e) {
-//
-//            }
-//
-//            @Override
-//            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-//                return false;
-//            }
-//        });
-
-//        gestureDetector = new GestureDetector(this, new OnSwipeListener(){
-//            @Override
-//            public boolean onSwipe(Direction direction){
-//                Log.i("cis", String.valueOf(direction));
-//
-//                if (!isScrollViewSettingTop){
-//                    if (direction == Direction.up) {
-//                        return true;
-//                    }
-//                }
-//                return false;
-//            }
-//        });
-
-
+        binding.scrollViewSetting.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getActionMasked() == MotionEvent.ACTION_UP){
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            stopScroll();
+                        }
+                    }, 200);
+                }
+                return false;
+            }
+        });
 
         setInit(); // 검색화면 ViewPager2
         // 뷰페이저2 사용 순서
@@ -415,6 +343,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // viewPager2.registerOnPageChangeCallback 리스너 등록하면서
         // 메소드 오버라이드(onPageScrolled, onPageSelected, onPageScrollStateChanged
         // 끝
+    }
+
+    private void stopScroll(){
+        int y = binding.scrollViewSetting.getScrollY();
+        if (y < 700) {
+            binding.scrollViewSetting.smoothScrollTo(0, 0);
+            onClick(binding.buttonSettingClose);
+        } else if (y < 1690) {
+            binding.scrollViewSetting.smoothScrollTo(0, 1400);
+        } else {
+            binding.scrollViewSetting.smoothScrollTo(0, 1979);
+        }
     }
 
     @Override
