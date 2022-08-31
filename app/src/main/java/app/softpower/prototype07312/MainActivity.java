@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isMenuPageOpen = false;
     boolean isSearchPageOpen = false;
     boolean isSettingPageOpen = false;
+    boolean isNotiPageOpen = false;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -296,9 +297,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.buttonSearchCancel.setOnClickListener(this);
         binding.includeLayoutSetting.buttonSettingClose.setOnClickListener(this);
         binding.includeLayoutSetting.imageButtonSettingClose.setOnClickListener(this);
+        binding.includeLayoutNoti.buttonNotiClose.setOnClickListener(this);
 
         binding.bottomNavigationView.setOnItemSelectedListener(this);
 
+        // 장치설정 화면, 스크롤 했을때 중간에서 멈춤
         binding.includeLayoutSetting.scrollViewSetting2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -307,9 +310,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            stopScroll();
+                            stopScroll(v);
                         }
-                    }, 200);
+                    }, 100);
                 }
                 return false;
             }
@@ -323,9 +326,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            stopScroll();
+                            stopScroll(v);
                         }
-                    }, 200);
+                    }, 100);
+                }
+                return false;
+            }
+        });
+
+        // 알림 화면, 스크롤 했을때 중간에서 멈춤
+        binding.includeLayoutNoti.scrollViewNoti2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getActionMasked() == MotionEvent.ACTION_UP){
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            stopScroll(v);
+                        }
+                    }, 100);
+                }
+                return false;
+            }
+        });
+
+        binding.includeLayoutNoti.scrollViewNoti.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getActionMasked() == MotionEvent.ACTION_UP){
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            stopScroll(v);
+                        }
+                    }, 100);
                 }
                 return false;
             }
@@ -347,15 +383,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void stopScroll(){
-        int y = binding.includeLayoutSetting.scrollViewSetting.getScrollY();
-        if (y < 700) {
-            binding.includeLayoutSetting.scrollViewSetting.smoothScrollTo(0, 0);
-            onClick(binding.includeLayoutSetting.buttonSettingClose);
-        } else if (y < 1690) {
-            binding.includeLayoutSetting.scrollViewSetting.smoothScrollTo(0, 1400);
-        } else {
-            binding.includeLayoutSetting.scrollViewSetting.smoothScrollTo(0, 1979);
+    private void stopScroll(View v){
+        if (v.getId() == R.id.scrollViewSetting || v.getId() == R.id.scrollViewSetting2) {
+            int y = binding.includeLayoutSetting.scrollViewSetting.getScrollY();
+            if (y < 700) {
+                binding.includeLayoutSetting.scrollViewSetting.smoothScrollTo(0, 0);
+                onClick(binding.includeLayoutSetting.buttonSettingClose);
+            } else if (y < 1690) {
+                binding.includeLayoutSetting.scrollViewSetting.smoothScrollTo(0, 1400);
+            } else {
+                binding.includeLayoutSetting.scrollViewSetting.smoothScrollTo(0, 1979);
+            }
+        }
+        if (v.getId() == R.id.scrollViewNoti || v.getId() == R.id.scrollViewNoti2) {
+            int y = binding.includeLayoutNoti.scrollViewNoti.getScrollY();
+            if (y < 700) {
+                binding.includeLayoutNoti.scrollViewNoti.smoothScrollTo(0, 0);
+                onClick(binding.includeLayoutNoti.buttonNotiClose);
+            } else if (y < 1690) {
+                binding.includeLayoutNoti.scrollViewNoti.smoothScrollTo(0, 1400);
+            } else {
+                binding.includeLayoutNoti.scrollViewNoti.smoothScrollTo(0, 1979);
+            }
         }
     }
 
@@ -447,6 +496,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId() == R.id.imageButtonSettingClose) {                          // 장치 설정 화면 닫기 (X 버튼)
             onClick(binding.includeLayoutSetting.buttonSettingClose);
         }
+        if (view.getId() == R.id.buttonNotiClose) {                             // 알림 화면 닫기 (닫기 버튼)
+            int layoutRootHeight = binding.layoutRoot.getHeight();
+            if (isNotiPageOpen) {
+                Log.i("cis", "isNotiPageOpen true");
+                binding.includeLayoutNoti.layoutNoti.animate().yBy(layoutRootHeight).setDuration(500);
+                binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
+                binding.includeLayoutNoti.layoutNoti.setClickable(false);
+                binding.layoutSearchMask.setClickable(false);
+                isNotiPageOpen = false;
+
+            } else {
+                Log.i("cis", "isNotiPageOpen false");
+                binding.includeLayoutNoti.layoutNoti.setTranslationY((float) layoutRootHeight);
+                binding.layoutSearchMask.setAlpha(0.0f);
+                binding.layoutSearchMask.setVisibility(View.VISIBLE);
+                binding.includeLayoutNoti.layoutNoti.setVisibility(View.VISIBLE);
+
+                binding.includeLayoutNoti.layoutNoti.animate().yBy(-layoutRootHeight).setDuration(500);
+                binding.includeLayoutNoti.scrollViewNoti.fullScroll(ScrollView.FOCUS_DOWN);
+                binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
+                binding.includeLayoutNoti.layoutNoti.setClickable(true);
+                binding.layoutSearchMask.setClickable(true);
+                isNotiPageOpen = true;
+            }
+        }
     }
 
     @Override
@@ -461,6 +535,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (isSettingPageOpen) {
             onClick(binding.includeLayoutSetting.buttonSettingClose);
+            return;
+        }
+        if (isNotiPageOpen) {
+            onClick(binding.includeLayoutNoti.buttonNotiClose);
             return;
         }
 
@@ -482,6 +560,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 onClick(binding.includeLayoutSetting.buttonSettingClose);
                 return true;
             case R.id.tab5_notice:
+                onClick(binding.includeLayoutNoti.buttonNotiClose);
                 return true;
         }
         return true;
@@ -494,6 +573,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int settingViewHeight = binding.includeLayoutSetting.layoutSetting.getMeasuredHeight();
         ViewGroup.LayoutParams params;
 
+        // 장치설정 화면
         params = binding.includeLayoutSetting.viewSettingFirst.getLayoutParams();
         params.height = settingViewHeight;
         binding.includeLayoutSetting.viewSettingFirst.setLayoutParams(params);
@@ -501,6 +581,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         params = binding.includeLayoutSetting.layoutSettingSecond.getLayoutParams();
         params.height = settingViewHeight;
         binding.includeLayoutSetting.layoutSettingSecond.setLayoutParams(params);
+
+        // 알림 화면
+        params = binding.includeLayoutNoti.viewNotiFirst.getLayoutParams();
+        params.height = settingViewHeight;
+        binding.includeLayoutNoti.viewNotiFirst.setLayoutParams(params);
+
+        params = binding.includeLayoutNoti.layoutNotiSecond.getLayoutParams();
+        params.height = settingViewHeight;
+        binding.includeLayoutNoti.layoutNotiSecond.setLayoutParams(params);
     }
 
     private void setInit() {  // 뷰페이저2 실행 메서드
