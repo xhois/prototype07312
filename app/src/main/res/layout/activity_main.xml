@@ -167,9 +167,9 @@
                                 android:layout_height="35dp"
                                 android:layout_marginStart="10dp"
                                 android:background="@drawable/convert_spinner_arrow"
-
+                                android:spinnerMode="dialog"
                                 android:minHeight="35dp"
-                                android:popupBackground="@drawable/convert_spinner_arrow"
+
                                 app:layout_constraintStart_toEndOf="@+id/imageView3"
                                 app:layout_constraintTop_toTopOf="@id/imageView3"
                                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />

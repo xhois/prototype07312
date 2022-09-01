@@ -67,11 +67,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Spinner spinnerUser = binding.spinnerUser;
         String[] itemsSpinnerUser = {"xhois1", "xhois2", "xhois3"};
+        spinnerUser.setPrompt("관리할 사용자 전환");
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 //                this, android.R.layout.simple_spinner_item, itemsSpinnerUser);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, R.layout.spinner_item, itemsSpinnerUser);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+//                this, R.layout.spinner_item, itemsSpinnerUser);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_selectable_list_item, itemsSpinnerUser);
         spinnerUser.setAdapter(adapter);
 
         Spinner spinnerUser2 = binding.include1.spinnerUser2;
