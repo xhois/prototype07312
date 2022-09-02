@@ -1,6 +1,7 @@
 package app.softpower.prototype07312;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -19,7 +20,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isSettingPageOpen = false;
     boolean isNotiPageOpen = false;
 
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,16 +70,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ///////////////////////////spinner
 
-        Spinner spinnerUser = binding.spinnerUser;
-        String[] itemsSpinnerUser = {"xhois1", "xhois2", "xhois3"};
-        spinnerUser.setPrompt("관리할 사용자 전환");
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-//                this, android.R.layout.simple_spinner_item, itemsSpinnerUser);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-//                this, R.layout.spinner_item, itemsSpinnerUser);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_selectable_list_item, itemsSpinnerUser);
-        spinnerUser.setAdapter(adapter);
+//        Spinner spinnerUser = binding.spinnerUser;
+//        String[] itemsSpinnerUser = {"xhois1", "xhois2", "xhois3"};
+//        spinnerUser.setPrompt("관리할 사용자 전환");
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_selectable_list_item, itemsSpinnerUser);
+//        spinnerUser.setAdapter(adapter);
 
         Spinner spinnerUser2 = binding.include1.spinnerUser2;
         String[] itemsSpinnerUser2 = {" 11월15일,2021-11월15일,2021", " 11월14일,2021-11월14일,2021", " 11월13일,2021-11월13일,2021"};
@@ -300,6 +300,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.includeLayoutSetting.buttonSettingClose.setOnClickListener(this);
         binding.includeLayoutSetting.imageButtonSettingClose.setOnClickListener(this);
         binding.includeLayoutNoti.buttonNotiClose.setOnClickListener(this);
+        binding.spinnerUser.setOnClickListener(this);
 
         binding.bottomNavigationView.setOnItemSelectedListener(this);
 
@@ -307,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.includeLayoutSetting.scrollViewSetting2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getActionMasked() == MotionEvent.ACTION_UP){
+                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
                     Handler mHandler = new Handler();
                     mHandler.postDelayed(new Runnable() {
                         @Override
@@ -323,7 +324,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.includeLayoutSetting.scrollViewSetting.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getActionMasked() == MotionEvent.ACTION_UP){
+                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
                     Handler mHandler = new Handler();
                     mHandler.postDelayed(new Runnable() {
                         @Override
@@ -340,7 +341,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.includeLayoutNoti.scrollViewNoti2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getActionMasked() == MotionEvent.ACTION_UP){
+                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
                     Handler mHandler = new Handler();
                     mHandler.postDelayed(new Runnable() {
                         @Override
@@ -356,7 +357,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.includeLayoutNoti.scrollViewNoti.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getActionMasked() == MotionEvent.ACTION_UP){
+                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
                     Handler mHandler = new Handler();
                     mHandler.postDelayed(new Runnable() {
                         @Override
@@ -385,7 +386,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void stopScroll(View v){
+    private void stopScroll(View v) {
         if (v.getId() == R.id.scrollViewSetting || v.getId() == R.id.scrollViewSetting2) {
             int y = binding.includeLayoutSetting.scrollViewSetting.getScrollY();
             if (y < 700) {
@@ -522,6 +523,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.layoutSearchMask.setClickable(true);
                 isNotiPageOpen = true;
             }
+        }
+        if (view.getId() == R.id.spinner_user) {  // 관리 대상 변경
+            Dialog dialog01;
+            dialog01 = new Dialog(MainActivity.this);
+            dialog01.setContentView(R.layout.custom_dialog_user_change);
+            dialog01.show();
+
+//            RadioGroup rg = dialog01.findViewById(R.id.radioGroup);
+            RadioButton rb = dialog01.findViewById(R.id.radioButton);
+            RadioButton rb2 = dialog01.findViewById(R.id.radioButton2);
+            RadioButton rb3 = dialog01.findViewById(R.id.radioButton3);
+
+            Button noBtn = dialog01.findViewById(R.id.buttonDialogClose);
+            noBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog01.dismiss();
+
+                    if (rb.isChecked()) binding.spinnerUser.setText(rb.getText());
+                    if (rb2.isChecked()) binding.spinnerUser.setText(rb2.getText());
+                    if (rb3.isChecked()) binding.spinnerUser.setText(rb3.getText());
+                }
+            });
+
         }
     }
 
