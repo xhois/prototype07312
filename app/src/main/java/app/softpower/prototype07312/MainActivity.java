@@ -38,6 +38,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import app.softpower.prototype07312.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationBarView.OnItemSelectedListener {
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isSearchPageOpen = false;
     boolean isSettingPageOpen = false;
     boolean isNotiPageOpen = false;
+    boolean isAvatarChecked = false;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -117,6 +121,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this, R.layout.spinner_item2, itemsSpinnerUser2_2);
         adapter2_2.setDropDownViewResource(R.layout.spinner_item2);
         spinnerUser2_2.setAdapter(adapter2_2);
+
+        // 자녀추가 레이아웃*****************************************************************************************************************
+        ArrayList<String> years = new ArrayList<String>();
+        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = 2000; i <= thisYear; i++) {
+            years.add(Integer.toString(i));
+        }
+        ArrayAdapter<String> adapterAddChild = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, years);
+        binding.includeLayoutAppendChild.spinner.setAdapter(adapterAddChild);
 
 
         ///////////////////////////spinner
@@ -370,6 +383,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        binding.includeLayoutAppendChild.radioGroupAvatar1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId != -1 && isAvatarChecked) {
+                    isAvatarChecked = false;
+                    binding.includeLayoutAppendChild.radioGroupAvatar2.clearCheck();
+                }
+                isAvatarChecked = true;
+            }
+        });
+
+        binding.includeLayoutAppendChild.radioGroupAvatar2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId != -1 && isAvatarChecked) {
+                    isAvatarChecked = false;
+                    binding.includeLayoutAppendChild.radioGroupAvatar1.clearCheck();
+                }
+                isAvatarChecked = true;
+            }
+        });
+
         setInit(); // 검색화면 ViewPager2
         // 뷰페이저2 사용 순서
         // xml layout 에 ViewPager2 등록
@@ -546,6 +581,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (rb3.isChecked()) binding.spinnerUser.setText(rb3.getText());
                 }
             });
+
+        }
+        if (view.getId() == R.id.button_child_add) {  // 자녀 추가 버튼
 
         }
     }
