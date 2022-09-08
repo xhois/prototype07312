@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    android:id="@+id/layout_appendChild"
+    android:id="@+id/layoutAppendChild"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_item2"
@@ -66,7 +66,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="600dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/textView22"
@@ -114,8 +114,41 @@
                     app:layout_constraintStart_toStartOf="@+id/textView22"
                     app:layout_constraintTop_toTopOf="@+id/textView22" />
 
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="표시순서"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView22"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroupAvatar2" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="규칙 가져오기"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView22"
+                    app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="기 등록된 프로필의 규칙설정을 그대로 가져와서 이 프로필에 적용합니다."
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/spinner3"
+                    app:layout_constraintStart_toStartOf="@+id/spinner3"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/editTextName"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="100dp"
@@ -128,6 +161,19 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
+                <EditText
+                    android:id="@+id/editTextName2"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/ic_edittext2"
+                    android:hint="휴대폰 번호 (예 : 0101234567)"
+                    android:includeFontPadding="false"
+                    android:paddingStart="10dp"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextName"
+                    app:layout_constraintStart_toStartOf="@+id/textView22"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
                 <Spinner
                     android:id="@+id/spinner"
                     android:layout_width="0dp"
@@ -136,8 +182,33 @@
                     android:background="@drawable/convert_spinner_arrow2_gray"
                     android:contentDescription="@string/app_name"
                     app:layout_constraintBottom_toBottomOf="@+id/textView24"
-                    app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-                    app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextName"
+                    app:layout_constraintStart_toStartOf="@+id/editTextName"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="0dp"
+                    android:layout_height="33dp"
+                    android:layout_marginBottom="-5dp"
+                    android:background="@drawable/convert_spinner_arrow2_gray"
+                    android:contentDescription="@string/app_name"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView27"
+                    app:layout_constraintEnd_toEndOf="@+id/spinner"
+                    app:layout_constraintStart_toStartOf="@+id/spinner"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <Spinner
+                    android:id="@+id/spinner3"
+                    android:layout_width="0dp"
+                    android:layout_height="33dp"
+                    android:layout_marginBottom="-5dp"
+                    android:background="@drawable/convert_spinner_arrow2_gray"
+                    android:contentDescription="@string/app_name"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView28"
+                    app:layout_constraintEnd_toEndOf="@+id/spinner"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/spinner"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <RadioGroup
@@ -263,20 +334,59 @@
 
                 </RadioGroup>
 
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:buttonTint="@color/green"
+                    android:text="앱 설치 링크를 자녀기기에 문자로 전송하겠습니다."
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView22"
+                    app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonAppendChildClose"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/custom_button3_r20"
-        android:stateListAnimator="@null"
-        android:text="닫기"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonAppendChildDelete"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button3_r20"
+            android:stateListAnimator="@null"
+            android:text="삭제"
+            android:visibility="invisible"
+            tools:ignore="TouchTargetSizeCheck" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonAppendChildSave"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button3_r20"
+            android:stateListAnimator="@null"
+            android:text="저장"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
 
 </LinearLayout>

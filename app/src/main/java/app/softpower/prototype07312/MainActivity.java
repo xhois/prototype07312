@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isSettingPageOpen = false;
     boolean isNotiPageOpen = false;
     boolean isAvatarChecked = false;
+    boolean isAppendChild = false;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -130,6 +131,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         ArrayAdapter<String> adapterAddChild = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, years);
         binding.includeLayoutAppendChild.spinner.setAdapter(adapterAddChild);
+
+        Spinner spinnerChild2 = binding.includeLayoutAppendChild.spinner2;
+        String[] itemsSpinnerChild2 = {"1", "2", "3"};
+        ArrayAdapter<String> adapterChild2 = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_dropdown_item, itemsSpinnerChild2);
+        spinnerChild2.setAdapter(adapterChild2);
+
+        Spinner spinnerChild3 = binding.includeLayoutAppendChild.spinner3;
+        String[] itemsSpinnerChild3 = {"최성준", "최연이", "정화일"};
+        ArrayAdapter<String> adapterChild3 = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_dropdown_item, itemsSpinnerChild3);
+        spinnerChild3.setAdapter(adapterChild3);
 
 
         ///////////////////////////spinner
@@ -314,6 +327,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.includeLayoutSetting.imageButtonSettingClose.setOnClickListener(this);
         binding.includeLayoutNoti.buttonNotiClose.setOnClickListener(this);
         binding.spinnerUser.setOnClickListener(this);
+        binding.buttonChildAdd.setOnClickListener(this);
+        binding.includeLayoutAppendChild.imageButtonAppendChildClose.setOnClickListener(this);
 
         binding.bottomNavigationView.setOnItemSelectedListener(this);
 
@@ -584,7 +599,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
         if (view.getId() == R.id.button_child_add) {  // 자녀 추가 버튼
+            int layoutRootHeight = binding.layoutRoot.getHeight();
+            if (isAppendChild) {
+                binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(layoutRootHeight).setDuration(500);
+                binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
+                binding.includeLayoutAppendChild.layoutAppendChild.setClickable(false);
+                binding.layoutSearchMask.setClickable(false);
+                isAppendChild = false;
 
+            } else {
+                binding.includeLayoutAppendChild.layoutAppendChild.setTranslationY((float) layoutRootHeight);
+                binding.layoutSearchMask.setAlpha(0.0f);
+                binding.layoutSearchMask.setVisibility(View.VISIBLE);
+                binding.includeLayoutAppendChild.layoutAppendChild.setVisibility(View.VISIBLE);
+
+                binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(-layoutRootHeight).setDuration(500);
+                binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
+                binding.includeLayoutAppendChild.layoutAppendChild.setClickable(true);
+                binding.layoutSearchMask.setClickable(true);
+                isAppendChild = true;
+            }
+        }
+        if (view.getId() == R.id.imageButtonAppendChildClose) { // 자녀추가화면 속의 x버튼
+            onClick(binding.buttonChildAdd);
         }
     }
 
@@ -604,6 +641,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (isNotiPageOpen) {
             onClick(binding.includeLayoutNoti.buttonNotiClose);
+            return;
+        }
+        if (isAppendChild) {
+            onClick(binding.buttonChildAdd);
             return;
         }
 
