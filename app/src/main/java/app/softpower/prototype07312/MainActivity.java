@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spinnerChild2.setAdapter(adapterChild2);
 
         Spinner spinnerChild3 = binding.includeLayoutAppendChild.spinner3;
-        String[] itemsSpinnerChild3 = {"최성준", "최연이", "정화일"};
+        String[] itemsSpinnerChild3 = {"가져오지 않음", "최성준", "최연이", "정화일"};
         ArrayAdapter<String> adapterChild3 = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_dropdown_item, itemsSpinnerChild3);
         spinnerChild3.setAdapter(adapterChild3);
@@ -329,6 +329,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.spinnerUser.setOnClickListener(this);
         binding.buttonChildAdd.setOnClickListener(this);
         binding.includeLayoutAppendChild.imageButtonAppendChildClose.setOnClickListener(this);
+        binding.buttonModiChild.setOnClickListener(this);
 
         binding.bottomNavigationView.setOnItemSelectedListener(this);
 
@@ -608,6 +609,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 isAppendChild = false;
 
             } else {
+                binding.includeLayoutAppendChild.textView23.setText("  자녀 추가");
+                binding.includeLayoutAppendChild.buttonAppendChildDelete.setVisibility(View.INVISIBLE);
                 binding.includeLayoutAppendChild.layoutAppendChild.setTranslationY((float) layoutRootHeight);
                 binding.layoutSearchMask.setAlpha(0.0f);
                 binding.layoutSearchMask.setVisibility(View.VISIBLE);
@@ -620,8 +623,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 isAppendChild = true;
             }
         }
-        if (view.getId() == R.id.imageButtonAppendChildClose) { // 자녀추가화면 속의 x버튼
+        if (view.getId() == R.id.imageButtonAppendChildClose) { // 자녀추가 화면 속의 x버튼
             onClick(binding.buttonChildAdd);
+        }
+        if (view.getId() == R.id.button_modi_child) {  // 자녀 수정 버튼
+            int layoutRootHeight = binding.layoutRoot.getHeight();
+            if (isAppendChild) {
+                binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(layoutRootHeight).setDuration(500);
+                binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
+                binding.includeLayoutAppendChild.layoutAppendChild.setClickable(false);
+                binding.layoutSearchMask.setClickable(false);
+                isAppendChild = false;
+
+            } else {
+                binding.includeLayoutAppendChild.textView23.setText("  수정");
+                binding.includeLayoutAppendChild.buttonAppendChildDelete.setVisibility(View.VISIBLE);
+                binding.includeLayoutAppendChild.layoutAppendChild.setTranslationY((float) layoutRootHeight);
+                binding.layoutSearchMask.setAlpha(0.0f);
+                binding.layoutSearchMask.setVisibility(View.VISIBLE);
+                binding.includeLayoutAppendChild.layoutAppendChild.setVisibility(View.VISIBLE);
+
+                binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(-layoutRootHeight).setDuration(500);
+                binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
+                binding.includeLayoutAppendChild.layoutAppendChild.setClickable(true);
+                binding.layoutSearchMask.setClickable(true);
+                isAppendChild = true;
+            }
         }
     }
 

@@ -180,7 +180,7 @@
                                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                             <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/button_modi"
+                                android:id="@+id/button_modi_child"
                                 android:layout_width="60dp"
                                 android:layout_height="25dp"
                                 android:layout_marginStart="5dp"
@@ -231,8 +231,8 @@
                                 android:textColor="@color/black"
                                 android:textSize="13sp"
                                 app:iconGravity="end"
-                                app:layout_constraintBottom_toBottomOf="@id/button_modi"
-                                app:layout_constraintStart_toEndOf="@id/button_modi"
+                                app:layout_constraintBottom_toBottomOf="@id/button_modi_child"
+                                app:layout_constraintStart_toEndOf="@id/button_modi_child"
                                 tools:ignore="TouchTargetSizeCheck" />
 
                             <TextView
