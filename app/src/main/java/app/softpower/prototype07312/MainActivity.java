@@ -321,16 +321,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textTmp = "  모바일펜스 앱 업데이트 필요한 장치가 있습니다. 확인하기";
         ssb = new SpannableStringBuilder(textTmp);
         drawableTmp = ContextCompat.getDrawable(this, R.drawable.layerlist_ic_app_update);
-        drawableTmp.setBounds(0,0,40,40);
+        drawableTmp.setBounds(0, 0, 40, 40);
         verticalImageSpan = new VerticalImageSpan(drawableTmp);
-        ssb.setSpan(verticalImageSpan, 0,1,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ssb.setSpan(verticalImageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
                 showAlertDialog("확인하기 클릭됨");
             }
+
             @Override
-            public void updateDrawState(TextPaint textPaint){
+            public void updateDrawState(TextPaint textPaint) {
                 textPaint.setColor(getColor(R.color.textColor));
             }
         };
@@ -346,8 +347,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(@NonNull View widget) {
                 showAlertDialog("설정 방법 보기 클릭됨");
             }
+
             @Override
-            public void updateDrawState(TextPaint textPaint){
+            public void updateDrawState(TextPaint textPaint) {
                 textPaint.setColor(getColor(R.color.textColor));
             }
         };
@@ -374,6 +376,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.buttonChildAdd.setOnClickListener(this);
         binding.includeLayoutAppendChild.imageButtonAppendChildClose.setOnClickListener(this);
         binding.buttonModiChild.setOnClickListener(this);
+        binding.include2.item12.setOnClickListener(this);
+        binding.include2.item22.setOnClickListener(this);
+        binding.include2.item32.setOnClickListener(this);
+        binding.include2.item42.setOnClickListener(this);
+        binding.include2.item52.setOnClickListener(this);
+        binding.include1.buttonSettingRull2.setOnClickListener(this);
+        binding.include2.buttonBackToSummary.setOnClickListener(this);
 
         binding.bottomNavigationView.setOnItemSelectedListener(this);
 
@@ -508,191 +517,292 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.item1) {                                       // 활동요약 화면
-            binding.include1.select.animate().x(0).setDuration(100);
+        switch (view.getId()){
+            case R.id.item1:                                             // 활동요약 화면
+                binding.include1.select.animate().x(0).setDuration(100);
+                binding.include1.item1.setTextColor(Color.BLACK);
+                binding.include1.item2.setTextColor(def);
+                binding.include1.item1Layout.setVisibility(View.VISIBLE);
+                binding.include1.item2Layout.setVisibility(View.GONE);
+                break;
+            case R.id.item2:                                             // 타임라인 화면
+                binding.include1.item1.setTextColor(def);
+                binding.include1.item2.setTextColor(Color.BLACK);
 
-            binding.include1.item1.setTextColor(Color.BLACK);
-            binding.include1.item2.setTextColor(def);
-            binding.include1.item1Layout.setVisibility(View.VISIBLE);
-            binding.include1.item2Layout.setVisibility(View.GONE);
-        } else if (view.getId() == R.id.item2) {                                // 타임라인 화면
-            binding.include1.item1.setTextColor(def);
-            binding.include1.item2.setTextColor(Color.BLACK);
+                int size = binding.include1.item2.getWidth();
+                binding.include1.select.animate().x(size).setDuration(100);
 
-            int size = binding.include1.item2.getWidth();
-            binding.include1.select.animate().x(size).setDuration(100);
+                binding.include1.item2Layout.setVisibility(View.VISIBLE);
+                binding.include1.item1Layout.setVisibility(View.GONE);
+                break;
+            case R.id.buttonMenu:                                                 // 메뉴 화면
+                size = binding.layoutMenu.getWidth();
+                if (isMenuPageOpen) {
+                    binding.layoutMenu.animate().x(-size).setDuration(500);
+                    binding.layoutMenuMask.animate().alpha(0.0f).setDuration(500);
+                    binding.layoutMenuClose.setClickable(false);
+                    isMenuPageOpen = false;
+                } else {
+                    binding.layoutMenu.setTranslationX(-(float) size);
+                    binding.layoutMenu.setVisibility(View.VISIBLE);
+                    binding.layoutMenu.animate().x(0).setDuration(500);
+                    binding.layoutMenuMask.animate().alpha(0.5f).setDuration(500);
+                    binding.layoutMenuClose.setClickable(true);
+                    isMenuPageOpen = true;
+                }
+                break;
+            case R.id.layout_menu_close:                                             // 메뉴 화면 닫기 (검은색 부분)
+                onClick(binding.buttonMenu);
+                break;
+            case R.id.imageButton_menu_close:                                        // 메뉴 화면 닫기 (X 버튼)
+                onClick(binding.buttonMenu);
+                break;
+            case R.id.button_search_cancel:                                          // 검색 화면 닫기 (X 버튼)
+                size = binding.layoutSearch.getHeight();
+                if (isSearchPageOpen) {
+                    binding.layoutSearch.animate().yBy(size).setDuration(500);
+                    binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
+                    binding.layoutSearch.setClickable(false);
+                    binding.layoutSearchMask.setClickable(false);
+                    isSearchPageOpen = false;
+                } else {
+                    binding.layoutSearch.setTranslationY((float) size);
+                    binding.layoutSearchMask.setAlpha(0.0f);
+                    binding.layoutSearchMask.setVisibility(View.VISIBLE);
+                    binding.layoutSearch.setVisibility(View.VISIBLE);
 
-            binding.include1.item2Layout.setVisibility(View.VISIBLE);
-            binding.include1.item1Layout.setVisibility(View.GONE);
-        }
-        if (view.getId() == R.id.buttonMenu) {                                   // 메뉴 화면
-            int size = binding.layoutMenu.getWidth();
-            if (isMenuPageOpen) {
-                binding.layoutMenu.animate().x(-size).setDuration(500);
-                binding.layoutMenuMask.animate().alpha(0.0f).setDuration(500);
-                binding.layoutMenuClose.setClickable(false);
-                isMenuPageOpen = false;
-            } else {
-                binding.layoutMenu.setTranslationX(-(float) size);
-                binding.layoutMenu.setVisibility(View.VISIBLE);
-                binding.layoutMenu.animate().x(0).setDuration(500);
-                binding.layoutMenuMask.animate().alpha(0.5f).setDuration(500);
-                binding.layoutMenuClose.setClickable(true);
-                isMenuPageOpen = true;
-            }
-        }
-        if (view.getId() == R.id.layout_menu_close) {                             // 메뉴 화면 닫기 (검은색 부분)
-            onClick(binding.buttonMenu);
-        }
-        if (view.getId() == R.id.imageButton_menu_close) {                        // 메뉴 화면 닫기 (X 버튼)
-            onClick(binding.buttonMenu);
-        }
-        if (view.getId() == R.id.button_search_cancel) {                          // 검색 화면 닫기 (X 버튼)
-            int size = binding.layoutSearch.getHeight();
-            if (isSearchPageOpen) {
-                binding.layoutSearch.animate().yBy(size).setDuration(500);
-                binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
-                binding.layoutSearch.setClickable(false);
-                binding.layoutSearchMask.setClickable(false);
-                isSearchPageOpen = false;
-            } else {
-                binding.layoutSearch.setTranslationY((float) size);
-                binding.layoutSearchMask.setAlpha(0.0f);
-                binding.layoutSearchMask.setVisibility(View.VISIBLE);
-                binding.layoutSearch.setVisibility(View.VISIBLE);
+                    binding.layoutSearch.animate().yBy(-size).setDuration(500);
+                    binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
+                    binding.layoutSearch.setClickable(true);
+                    binding.layoutSearchMask.setClickable(true);
+                    isSearchPageOpen = true;
+                }
+                break;
+            case R.id.buttonSettingClose:                                             // 장치 설정 화면 닫기 (닫기 버튼)
+                int layoutRootHeight = binding.layoutRoot.getHeight();
+                if (isSettingPageOpen) {
+                    binding.includeLayoutSetting.layoutSetting.animate().yBy(layoutRootHeight).setDuration(500);
+                    binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
+                    binding.includeLayoutSetting.layoutSetting.setClickable(false);
+                    binding.layoutSearchMask.setClickable(false);
+                    isSettingPageOpen = false;
 
-                binding.layoutSearch.animate().yBy(-size).setDuration(500);
-                binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
-                binding.layoutSearch.setClickable(true);
-                binding.layoutSearchMask.setClickable(true);
-                isSearchPageOpen = true;
-            }
-        }
-        if (view.getId() == R.id.buttonSettingClose) {                             // 장치 설정 화면 닫기 (닫기 버튼)
-            int layoutRootHeight = binding.layoutRoot.getHeight();
-            if (isSettingPageOpen) {
-                binding.includeLayoutSetting.layoutSetting.animate().yBy(layoutRootHeight).setDuration(500);
-                binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
-                binding.includeLayoutSetting.layoutSetting.setClickable(false);
-                binding.layoutSearchMask.setClickable(false);
-                isSettingPageOpen = false;
+                } else {
+                    binding.includeLayoutSetting.layoutSetting.setTranslationY((float) layoutRootHeight);
+                    binding.layoutSearchMask.setAlpha(0.0f);
+                    binding.layoutSearchMask.setVisibility(View.VISIBLE);
+                    binding.includeLayoutSetting.layoutSetting.setVisibility(View.VISIBLE);
 
-            } else {
-                binding.includeLayoutSetting.layoutSetting.setTranslationY((float) layoutRootHeight);
-                binding.layoutSearchMask.setAlpha(0.0f);
-                binding.layoutSearchMask.setVisibility(View.VISIBLE);
-                binding.includeLayoutSetting.layoutSetting.setVisibility(View.VISIBLE);
+                    binding.includeLayoutSetting.layoutSetting.animate().yBy(-layoutRootHeight).setDuration(500);
+                    binding.includeLayoutSetting.scrollViewSetting.fullScroll(ScrollView.FOCUS_DOWN);
+                    binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
+                    binding.includeLayoutSetting.layoutSetting.setClickable(true);
+                    binding.layoutSearchMask.setClickable(true);
+                    isSettingPageOpen = true;
+                }
+                break;
+            case R.id.imageButtonSettingClose:                                        // 장치 설정 화면 닫기 (X 버튼)
+                onClick(binding.includeLayoutSetting.buttonSettingClose);
+                break;
+            case R.id.buttonNotiClose:                                                // 알림 화면 닫기 (닫기 버튼)
+                layoutRootHeight = binding.layoutRoot.getHeight();
+                if (isNotiPageOpen) {
+                    Log.i("cis", "isNotiPageOpen true");
+                    binding.includeLayoutNoti.layoutNoti.animate().yBy(layoutRootHeight).setDuration(500);
+                    binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
+                    binding.includeLayoutNoti.layoutNoti.setClickable(false);
+                    binding.layoutSearchMask.setClickable(false);
+                    isNotiPageOpen = false;
 
-                binding.includeLayoutSetting.layoutSetting.animate().yBy(-layoutRootHeight).setDuration(500);
-                binding.includeLayoutSetting.scrollViewSetting.fullScroll(ScrollView.FOCUS_DOWN);
-                binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
-                binding.includeLayoutSetting.layoutSetting.setClickable(true);
-                binding.layoutSearchMask.setClickable(true);
-                isSettingPageOpen = true;
-            }
-        }
-        if (view.getId() == R.id.imageButtonSettingClose) {                          // 장치 설정 화면 닫기 (X 버튼)
-            onClick(binding.includeLayoutSetting.buttonSettingClose);
-        }
-        if (view.getId() == R.id.buttonNotiClose) {                             // 알림 화면 닫기 (닫기 버튼)
-            int layoutRootHeight = binding.layoutRoot.getHeight();
-            if (isNotiPageOpen) {
-                Log.i("cis", "isNotiPageOpen true");
-                binding.includeLayoutNoti.layoutNoti.animate().yBy(layoutRootHeight).setDuration(500);
-                binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
-                binding.includeLayoutNoti.layoutNoti.setClickable(false);
-                binding.layoutSearchMask.setClickable(false);
-                isNotiPageOpen = false;
+                } else {
+                    Log.i("cis", "isNotiPageOpen false");
+                    binding.includeLayoutNoti.layoutNoti.setTranslationY((float) layoutRootHeight);
+                    binding.layoutSearchMask.setAlpha(0.0f);
+                    binding.layoutSearchMask.setVisibility(View.VISIBLE);
+                    binding.includeLayoutNoti.layoutNoti.setVisibility(View.VISIBLE);
 
-            } else {
-                Log.i("cis", "isNotiPageOpen false");
-                binding.includeLayoutNoti.layoutNoti.setTranslationY((float) layoutRootHeight);
-                binding.layoutSearchMask.setAlpha(0.0f);
-                binding.layoutSearchMask.setVisibility(View.VISIBLE);
-                binding.includeLayoutNoti.layoutNoti.setVisibility(View.VISIBLE);
-
-                binding.includeLayoutNoti.layoutNoti.animate().yBy(-layoutRootHeight).setDuration(500);
-                binding.includeLayoutNoti.scrollViewNoti.fullScroll(ScrollView.FOCUS_DOWN);
-                binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
-                binding.includeLayoutNoti.layoutNoti.setClickable(true);
-                binding.layoutSearchMask.setClickable(true);
-                isNotiPageOpen = true;
-            }
-        }
-        if (view.getId() == R.id.spinner_user) {  // 관리 대상 변경
-            Dialog dialog01;
-            dialog01 = new Dialog(MainActivity.this);
-            dialog01.setContentView(R.layout.custom_dialog_user_change);
-            dialog01.show();
+                    binding.includeLayoutNoti.layoutNoti.animate().yBy(-layoutRootHeight).setDuration(500);
+                    binding.includeLayoutNoti.scrollViewNoti.fullScroll(ScrollView.FOCUS_DOWN);
+                    binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
+                    binding.includeLayoutNoti.layoutNoti.setClickable(true);
+                    binding.layoutSearchMask.setClickable(true);
+                    isNotiPageOpen = true;
+                }
+                break;
+            case R.id.spinner_user:                                                // 관리 대상 변경
+                Dialog dialog01;
+                dialog01 = new Dialog(MainActivity.this);
+                dialog01.setContentView(R.layout.custom_dialog_user_change);
+                dialog01.show();
 
 //            RadioGroup rg = dialog01.findViewById(R.id.radioGroup);
-            RadioButton rb = dialog01.findViewById(R.id.radioButton);
-            RadioButton rb2 = dialog01.findViewById(R.id.radioButton2);
-            RadioButton rb3 = dialog01.findViewById(R.id.radioButton3);
+                RadioButton rb = dialog01.findViewById(R.id.radioButton);
+                RadioButton rb2 = dialog01.findViewById(R.id.radioButton2);
+                RadioButton rb3 = dialog01.findViewById(R.id.radioButton3);
 
-            Button noBtn = dialog01.findViewById(R.id.buttonDialogClose);
-            noBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog01.dismiss();
+                Button noBtn = dialog01.findViewById(R.id.buttonDialogClose);
+                noBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog01.dismiss();
 
-                    if (rb.isChecked()) binding.spinnerUser.setText(rb.getText());
-                    if (rb2.isChecked()) binding.spinnerUser.setText(rb2.getText());
-                    if (rb3.isChecked()) binding.spinnerUser.setText(rb3.getText());
+                        if (rb.isChecked()) binding.spinnerUser.setText(rb.getText());
+                        if (rb2.isChecked()) binding.spinnerUser.setText(rb2.getText());
+                        if (rb3.isChecked()) binding.spinnerUser.setText(rb3.getText());
+                    }
+                });
+                break;
+            case R.id.button_child_add:                                                       // 자녀 추가 버튼
+                layoutRootHeight = binding.layoutRoot.getHeight();
+                if (isAppendChild) {
+                    binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(layoutRootHeight).setDuration(500);
+                    binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
+                    binding.includeLayoutAppendChild.layoutAppendChild.setClickable(false);
+                    binding.layoutSearchMask.setClickable(false);
+                    isAppendChild = false;
+
+                } else {
+                    binding.includeLayoutAppendChild.textView23.setText("  자녀 추가");
+                    binding.includeLayoutAppendChild.buttonAppendChildDelete.setVisibility(View.INVISIBLE);
+                    binding.includeLayoutAppendChild.layoutAppendChild.setTranslationY((float) layoutRootHeight);
+                    binding.layoutSearchMask.setAlpha(0.0f);
+                    binding.layoutSearchMask.setVisibility(View.VISIBLE);
+                    binding.includeLayoutAppendChild.layoutAppendChild.setVisibility(View.VISIBLE);
+
+                    binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(-layoutRootHeight).setDuration(500);
+                    binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
+                    binding.includeLayoutAppendChild.layoutAppendChild.setClickable(true);
+                    binding.layoutSearchMask.setClickable(true);
+                    isAppendChild = true;
                 }
-            });
+                break;
+            case R.id.imageButtonAppendChildClose:                                                   // 자녀추가 화면 속의 x버튼
+                onClick(binding.buttonChildAdd);
+                break;
+            case R.id.button_modi_child:                                                             // 자녀 수정 버튼
+                layoutRootHeight = binding.layoutRoot.getHeight();
+                if (isAppendChild) {
+                    binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(layoutRootHeight).setDuration(500);
+                    binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
+                    binding.includeLayoutAppendChild.layoutAppendChild.setClickable(false);
+                    binding.layoutSearchMask.setClickable(false);
+                    isAppendChild = false;
 
-        }
-        if (view.getId() == R.id.button_child_add) {  // 자녀 추가 버튼
-            int layoutRootHeight = binding.layoutRoot.getHeight();
-            if (isAppendChild) {
-                binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(layoutRootHeight).setDuration(500);
-                binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
-                binding.includeLayoutAppendChild.layoutAppendChild.setClickable(false);
-                binding.layoutSearchMask.setClickable(false);
-                isAppendChild = false;
+                } else {
+                    binding.includeLayoutAppendChild.textView23.setText("  수정");
+                    binding.includeLayoutAppendChild.buttonAppendChildDelete.setVisibility(View.VISIBLE);
+                    binding.includeLayoutAppendChild.layoutAppendChild.setTranslationY((float) layoutRootHeight);
+                    binding.layoutSearchMask.setAlpha(0.0f);
+                    binding.layoutSearchMask.setVisibility(View.VISIBLE);
+                    binding.includeLayoutAppendChild.layoutAppendChild.setVisibility(View.VISIBLE);
 
-            } else {
-                binding.includeLayoutAppendChild.textView23.setText("  자녀 추가");
-                binding.includeLayoutAppendChild.buttonAppendChildDelete.setVisibility(View.INVISIBLE);
-                binding.includeLayoutAppendChild.layoutAppendChild.setTranslationY((float) layoutRootHeight);
-                binding.layoutSearchMask.setAlpha(0.0f);
-                binding.layoutSearchMask.setVisibility(View.VISIBLE);
-                binding.includeLayoutAppendChild.layoutAppendChild.setVisibility(View.VISIBLE);
+                    binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(-layoutRootHeight).setDuration(500);
+                    binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
+                    binding.includeLayoutAppendChild.layoutAppendChild.setClickable(true);
+                    binding.layoutSearchMask.setClickable(true);
+                    isAppendChild = true;
+                }
+                break;
+            case R.id.item1_2:                                                    // 규칙설정 어플 화면
 
-                binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(-layoutRootHeight).setDuration(500);
-                binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
-                binding.includeLayoutAppendChild.layoutAppendChild.setClickable(true);
-                binding.layoutSearchMask.setClickable(true);
-                isAppendChild = true;
-            }
-        }
-        if (view.getId() == R.id.imageButtonAppendChildClose) { // 자녀추가 화면 속의 x버튼
-            onClick(binding.buttonChildAdd);
-        }
-        if (view.getId() == R.id.button_modi_child) {  // 자녀 수정 버튼
-            int layoutRootHeight = binding.layoutRoot.getHeight();
-            if (isAppendChild) {
-                binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(layoutRootHeight).setDuration(500);
-                binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
-                binding.includeLayoutAppendChild.layoutAppendChild.setClickable(false);
-                binding.layoutSearchMask.setClickable(false);
-                isAppendChild = false;
+                int x = (int) binding.include2.item12.getX();
+                binding.include2.select2.animate().x(x).setDuration(50);
+                binding.include2.item12.setTextColor(Color.BLACK);
+                binding.include2.item22.setTextColor(def);
+                binding.include2.item32.setTextColor(def);
+                binding.include2.item42.setTextColor(def);
+                binding.include2.item52.setTextColor(def);
+                binding.include2.item1Layout.setVisibility(View.VISIBLE);
+                binding.include2.item2Layout.setVisibility(View.GONE);
+                binding.include2.item3Layout.setVisibility(View.GONE);
+                binding.include2.item4Layout.setVisibility(View.GONE);
+                binding.include2.item5Layout.setVisibility(View.GONE);
+                ViewGroup.LayoutParams params = binding.include2.select2.getLayoutParams();
+                params.width = binding.include2.item12.getWidth();
+                binding.include2.select2.setLayoutParams(params);
+                break;
+            case R.id.item2_2:                                                    // 규칙설정 사용시간 화면
 
-            } else {
-                binding.includeLayoutAppendChild.textView23.setText("  수정");
-                binding.includeLayoutAppendChild.buttonAppendChildDelete.setVisibility(View.VISIBLE);
-                binding.includeLayoutAppendChild.layoutAppendChild.setTranslationY((float) layoutRootHeight);
-                binding.layoutSearchMask.setAlpha(0.0f);
-                binding.layoutSearchMask.setVisibility(View.VISIBLE);
-                binding.includeLayoutAppendChild.layoutAppendChild.setVisibility(View.VISIBLE);
+                x = (int) binding.include2.item22.getX();
+                binding.include2.select2.animate().x(x).setDuration(50);
+                binding.include2.item12.setTextColor(def);
+                binding.include2.item22.setTextColor(Color.BLACK);
+                binding.include2.item32.setTextColor(def);
+                binding.include2.item42.setTextColor(def);
+                binding.include2.item52.setTextColor(def);
+                binding.include2.item1Layout.setVisibility(View.GONE);
+                binding.include2.item2Layout.setVisibility(View.VISIBLE);
+                binding.include2.item3Layout.setVisibility(View.GONE);
+                binding.include2.item4Layout.setVisibility(View.GONE);
+                binding.include2.item5Layout.setVisibility(View.GONE);
+                params = binding.include2.select2.getLayoutParams();
+                params.width = binding.include2.item22.getWidth();
+                binding.include2.select2.setLayoutParams(params);
+                break;
+            case R.id.item3_2:                                                    // 규칙설정 웹 화면
 
-                binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(-layoutRootHeight).setDuration(500);
-                binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
-                binding.includeLayoutAppendChild.layoutAppendChild.setClickable(true);
-                binding.layoutSearchMask.setClickable(true);
-                isAppendChild = true;
-            }
+                x = (int) binding.include2.item32.getX();
+                binding.include2.select2.animate().x(x).setDuration(50);
+                binding.include2.item12.setTextColor(def);
+                binding.include2.item22.setTextColor(def);
+                binding.include2.item32.setTextColor(Color.BLACK);
+                binding.include2.item42.setTextColor(def);
+                binding.include2.item52.setTextColor(def);
+                binding.include2.item1Layout.setVisibility(View.GONE);
+                binding.include2.item2Layout.setVisibility(View.GONE);
+                binding.include2.item3Layout.setVisibility(View.VISIBLE);
+                binding.include2.item4Layout.setVisibility(View.GONE);
+                binding.include2.item5Layout.setVisibility(View.GONE);
+                params = binding.include2.select2.getLayoutParams();
+                params.width = binding.include2.item32.getWidth();
+                binding.include2.select2.setLayoutParams(params);
+                break;
+            case R.id.item4_2:                                                    // 규칙설정 전화 화면
+
+                x = (int) binding.include2.item42.getX();
+                binding.include2.select2.animate().x(x).setDuration(50);
+                binding.include2.item12.setTextColor(def);
+                binding.include2.item22.setTextColor(def);
+                binding.include2.item32.setTextColor(def);
+                binding.include2.item42.setTextColor(Color.BLACK);
+                binding.include2.item52.setTextColor(def);
+                binding.include2.item1Layout.setVisibility(View.GONE);
+                binding.include2.item2Layout.setVisibility(View.GONE);
+                binding.include2.item3Layout.setVisibility(View.GONE);
+                binding.include2.item4Layout.setVisibility(View.VISIBLE);
+                binding.include2.item5Layout.setVisibility(View.GONE);
+                params = binding.include2.select2.getLayoutParams();
+                params.width = binding.include2.item42.getWidth();
+                binding.include2.select2.setLayoutParams(params);
+                break;
+            case R.id.item5_2:                                                    // 규칙설정 위치 화면
+
+                x = (int) binding.include2.item52.getX();
+                binding.include2.select2.animate().x(x).setDuration(50);
+                binding.include2.item12.setTextColor(def);
+                binding.include2.item22.setTextColor(def);
+                binding.include2.item32.setTextColor(def);
+                binding.include2.item42.setTextColor(def);
+                binding.include2.item52.setTextColor(Color.BLACK);
+                binding.include2.item1Layout.setVisibility(View.GONE);
+                binding.include2.item2Layout.setVisibility(View.GONE);
+                binding.include2.item3Layout.setVisibility(View.GONE);
+                binding.include2.item4Layout.setVisibility(View.GONE);
+                binding.include2.item5Layout.setVisibility(View.VISIBLE);
+                params = binding.include2.select2.getLayoutParams();
+                params.width = binding.include2.item52.getWidth();
+                binding.include2.select2.setLayoutParams(params);
+                break;
+            case R.id.button_setting_rull2:                                         // 규칙설정 버튼
+                binding.include1.layoutSumActivities.setVisibility(View.GONE);
+                binding.include2.layoutSetRules.setVisibility(View.VISIBLE);
+                binding.layoutNotification.setVisibility(View.GONE);
+                break;
+            case R.id.button_back_to_summary:                                       // 활동요약으로 돌아가기
+                binding.include2.layoutSetRules.setVisibility(View.GONE);
+                binding.include1.layoutSumActivities.setVisibility(View.VISIBLE);
+                binding.layoutNotification.setVisibility(View.VISIBLE);
+                break;
         }
     }
 
