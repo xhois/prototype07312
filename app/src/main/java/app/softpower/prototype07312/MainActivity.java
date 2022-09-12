@@ -8,10 +8,14 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
 import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
@@ -27,6 +31,7 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -204,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView_menu_family = binding.textViewMenuFamily;
         textTmp = "패밀리   (2)";
         ssb = new SpannableStringBuilder(textTmp);
-        Drawable drawableTmp = getBaseContext().getResources().getDrawable(R.drawable.image_menu_family);
+        Drawable drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_family);
         drawableTmp.setBounds(0, 0, 40, 40);
         VerticalImageSpan verticalImageSpan = new VerticalImageSpan(drawableTmp);
         ssb.setSpan(verticalImageSpan, 4, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -213,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView_menu_smartDevice = binding.textViewMenuSmartDevice;
         textTmp = "스마트기기    (1)";
         ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = getBaseContext().getResources().getDrawable(R.drawable.image_menu_smart_device);
+        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_smart_device);
         drawableTmp.setBounds(0, 0, 30, 40);
         verticalImageSpan = new VerticalImageSpan(drawableTmp);
         ssb.setSpan(verticalImageSpan, 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -222,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView_menu_setting = binding.textViewMenuSetting;
         textTmp = "설정  ";
         ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = getBaseContext().getResources().getDrawable(R.drawable.ic_baseline_settings_24);
+        drawableTmp = ContextCompat.getDrawable(this, R.drawable.ic_baseline_settings_24);
         drawableTmp.setBounds(0, 0, 40, 40);
         drawableTmp.setTint(Color.BLACK);
         verticalImageSpan = new VerticalImageSpan(drawableTmp);
@@ -232,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView_menu_payment = binding.textViewMenuPayment;
         textTmp = "결제 내역  ";
         ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = getBaseContext().getResources().getDrawable(R.drawable.image_menu_payment);
+        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_payment);
         drawableTmp.setBounds(0, 0, 20, 40);
         drawableTmp.setTint(Color.BLACK);
         verticalImageSpan = new VerticalImageSpan(drawableTmp);
@@ -242,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView_menu_baseOfKnowledge = binding.textViewMenuBaseOfKnowledge;
         textTmp = "지식 베이스  ";
         ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = getBaseContext().getResources().getDrawable(R.drawable.image_menu_knowledge);
+        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_knowledge);
         drawableTmp.setBounds(0, 0, 40, 40);
         drawableTmp.setTint(Color.BLACK);
         verticalImageSpan = new VerticalImageSpan(drawableTmp);
@@ -252,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView_menu_help = binding.textViewMenuHelp;
         textTmp = "도움말  ";
         ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = getBaseContext().getResources().getDrawable(R.drawable.image_menu_help);
+        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_help);
         drawableTmp.setBounds(0, 0, 10, 40);
         drawableTmp.setTint(Color.BLACK);
         verticalImageSpan = new VerticalImageSpan(drawableTmp);
@@ -262,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView_menu_support = binding.textViewMenuSupport;
         textTmp = "사용자 지원  ";
         ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = getBaseContext().getResources().getDrawable(R.drawable.image_menu_support);
+        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_support);
         drawableTmp.setBounds(0, 0, 40, 30);
         drawableTmp.setTint(Color.BLACK);
         verticalImageSpan = new VerticalImageSpan(drawableTmp);
@@ -272,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView_menu_customerCenter = binding.textViewMenuCustomerCenter;
         textTmp = "고객센터    02-2135-6877";
         ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = getBaseContext().getResources().getDrawable(R.drawable.image_menu_customer);
+        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_customer);
         drawableTmp.setBounds(0, 0, 30, 30);
         drawableTmp.setTint(Color.BLACK);
         verticalImageSpan = new VerticalImageSpan(drawableTmp);
@@ -284,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView_menu_evaluation = binding.textViewMenuEvaluation;
         textTmp = "평가/리뷰하기  ";
         ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = getBaseContext().getResources().getDrawable(R.drawable.image_menu_evaluation);
+        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_evaluation);
         drawableTmp.setBounds(0, 0, 40, 40);
         drawableTmp.setTint(Color.RED);
         verticalImageSpan = new VerticalImageSpan(drawableTmp);
@@ -294,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView_menu_notice = binding.textViewMenuNotice;
         textTmp = "공지사항  ";
         ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = getBaseContext().getResources().getDrawable(R.drawable.ic_noti);
+        drawableTmp = ContextCompat.getDrawable(this, R.drawable.ic_noti);
         drawableTmp.setBounds(0, 0, 40, 40);
         drawableTmp.setTint(Color.BLACK);
         verticalImageSpan = new VerticalImageSpan(drawableTmp);
@@ -304,12 +309,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView_menu_news = binding.textViewMenuNews;
         textTmp = "최신소식  ";
         ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = getBaseContext().getResources().getDrawable(R.drawable.image_menu_news);
+        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_news);
         drawableTmp.setBounds(0, 0, 40, 40);
         drawableTmp.setTint(Color.BLACK);
         verticalImageSpan = new VerticalImageSpan(drawableTmp);
         ssb.setSpan(verticalImageSpan, 5, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView_menu_news.setText(ssb);
+
+        TextView textViewAppUpdate = binding.textViewAppUpdate;
+        textTmp = "  모바일펜스 앱 업데이트 필요한 장치가 있습니다. 확인하기";
+        ssb = new SpannableStringBuilder(textTmp);
+        drawableTmp = ContextCompat.getDrawable(this, R.drawable.layerlist_ic_app_update);
+        drawableTmp.setBounds(0,0,40,40);
+        verticalImageSpan = new VerticalImageSpan(drawableTmp);
+        ssb.setSpan(verticalImageSpan, 0,1,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                Toast.makeText(getApplicationContext(), "확인하기 클릭됨", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void updateDrawState(TextPaint textPaint){
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan, 29, 33, 0);
+        textViewAppUpdate.setText(ssb);
+        textViewAppUpdate.setMovementMethod(LinkMovementMethod.getInstance());
+
 
 
         ///////////////////////SpannableStringBuilder

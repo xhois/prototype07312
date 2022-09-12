@@ -149,7 +149,8 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp">
 
                             <ImageView
                                 android:id="@+id/imageView3"
@@ -304,87 +305,101 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutNotification"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:visibility="visible">
+
                             <TextView
                                 android:id="@+id/textView_noti_1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_marginTop="15dp"
                                 android:drawableLeft="@drawable/ic_noti"
                                 android:text=" 공지 [2021.10.28] - &quot;위젯 추가 차단&quot; 기능 추가"
                                 android:textColor="@color/black"
                                 android:textStyle="normal"
-                                app:drawableTint="@android:color/holo_green_dark"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/divider" />
+                                app:drawableTint="@android:color/holo_green_dark" />
 
                             <TextView
                                 android:id="@+id/textView_noti_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
                                 android:layout_marginTop="3dp"
                                 android:drawableLeft="@drawable/ic_noti"
                                 android:text=" 공지 [2021.8.31] - &quot;외부 키보드 차단&quot; 기능 추가"
                                 android:textColor="@color/black"
                                 android:textStyle="normal"
-                                app:drawableTint="@android:color/holo_green_dark"
-                                app:layout_constraintStart_toStartOf="@id/textView_noti_1"
-                                app:layout_constraintTop_toBottomOf="@+id/textView_noti_1" />
+                                app:drawableTint="@android:color/holo_green_dark" />
 
                             <TextView
                                 android:id="@+id/textView_noti_3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
                                 android:layout_marginTop="3dp"
                                 android:drawableLeft="@drawable/ic_noti"
                                 android:text=" 공지 [2021.7.12] - &quot;유해 키워드 차단&quot; 기능 추가"
                                 android:textColor="@color/black"
                                 android:textStyle="normal"
-                                app:drawableTint="@android:color/holo_green_dark"
-                                app:layout_constraintStart_toStartOf="@id/textView_noti_1"
-                                app:layout_constraintTop_toBottomOf="@id/textView_noti_2" />
+                                app:drawableTint="@android:color/holo_green_dark" />
+                        </LinearLayout>
 
-                            <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/button_setting_rull"
-                                android:layout_width="110dp"
-                                android:layout_height="35dp"
-                                android:background="@drawable/custom_button2"
-                                android:drawableLeft="@drawable/ic_baseline_settings_24"
-                                android:foregroundGravity="bottom"
-                                android:includeFontPadding="false"
-                                android:insetLeft="0dp"
-                                android:insetTop="0dp"
-                                android:insetRight="0dp"
-                                android:insetBottom="0dp"
-                                android:minWidth="0dp"
-                                android:minHeight="0dp"
-                                android:outlineProvider="none"
-                                android:paddingLeft="15dp"
-                                android:paddingTop="0dp"
-                                android:paddingRight="15dp"
-                                android:paddingBottom="0dp"
-                                android:text="규칙 설정"
-                                android:textColor="@color/white"
-                                android:textSize="15sp"
-                                app:iconGravity="end"
-                                app:layout_constraintEnd_toEndOf="@id/include_1"
-                                app:layout_constraintTop_toTopOf="@+id/include_1"
-                                tools:ignore="TouchTargetSizeCheck" />
+                        <LinearLayout
+                            android:id="@+id/layoutAppUpdate"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingStart="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:visibility="visible">
 
-                            <include
-                                android:id="@+id/include_1"
-                                layout="@layout/activity_summary"
-                                android:layout_width="0dp"
+                            <View
+                                android:layout_width="5dp"
+                                android:layout_height="match_parent"
+                                android:background="#FBB321" />
+
+                            <TextView
+                                android:id="@+id/textViewAppUpdate"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginTop="4dp"
-                                android:layout_marginEnd="10dp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="1.0"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/textView_noti_3" />
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/layerlist_app_update"
+                                android:gravity="center_vertical"
+                                android:padding="15dp"
+                                android:text="모바일펜스 앱 업데이트 필요한 장치가 있습니다. 확인하기"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/layerlist_usage_time"
+                            android:gravity="center_vertical"
+                            android:padding="10dp"
+                            android:text="[중요!] &quot;안전모드 차단&quot;이 되어 있지 않습니다. 자녀가 모바일펜스를 삭제하거나 기능을 중지하지 못하도록 지금 바로 차단 설정을 해주세요. 설정 방법 보기"
+                            android:textColor="@color/black" />
+
+                        <include
+                            android:id="@+id/include_1"
+                            layout="@layout/activity_summary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="10dp" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
