@@ -9,7 +9,7 @@
             <corners
                 android:bottomRightRadius="10dp"
                 android:topRightRadius="10dp" />
-            <solid android:color="#FCF3E0" />
+            <solid android:color="#FAEAE5" />
         </shape>
     </item>
 </layer-list>

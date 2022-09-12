@@ -73,6 +73,7 @@
         <entry key="app/src/main/res/drawable/layerlist_ic_app_update.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/layerlist_imageView.xml" value="0.281" />
         <entry key="app/src/main/res/drawable/layerlist_imageview.xml" value="0.281" />
+        <entry key="app/src/main/res/drawable/layerlist_safe_mode.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/layerlist_search_cancel.xml" value="0.343" />
         <entry key="app/src/main/res/drawable/layerlist_usage_time.xml" value="0.281" />
         <entry key="app/src/main/res/drawable/layerlist_usage_time_image.xml" value="0.281" />

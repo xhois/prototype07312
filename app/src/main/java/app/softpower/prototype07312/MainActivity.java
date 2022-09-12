@@ -1,6 +1,7 @@
 package app.softpower.prototype07312;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -326,7 +327,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                Toast.makeText(getApplicationContext(), "확인하기 클릭됨", Toast.LENGTH_SHORT).show();
+                showAlertDialog("확인하기 클릭됨");
             }
             @Override
             public void updateDrawState(TextPaint textPaint){
@@ -337,7 +338,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewAppUpdate.setText(ssb);
         textViewAppUpdate.setMovementMethod(LinkMovementMethod.getInstance());
 
-
+        TextView textViewSafeMode = binding.textViewSafeMode;
+        textTmp = "[중요!] \"안전모드 차단\"이 되어 있지 않습니다. 자녀가 모바일펜스를 삭제하거나 기능을 중지하지 못하도록 지금 바로 차단 설정을 해주세요. 설정 방법 보기";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan2 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("설정 방법 보기 클릭됨");
+            }
+            @Override
+            public void updateDrawState(TextPaint textPaint){
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan2, 79, 87, 0);
+        ssb.setSpan(new StyleSpan(Typeface.BOLD), 1, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
+        textViewSafeMode.setText(ssb);
+        textViewSafeMode.setMovementMethod(LinkMovementMethod.getInstance());
 
         ///////////////////////SpannableStringBuilder
 
@@ -840,5 +857,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public int getItemCount() {
             return mSetItemCount;
         }
+    }
+
+    void showAlertDialog(String str) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("AlertDialog");
+        builder.setMessage(str);
+        Log.i("cis", "여기오나?");
+        Log.i("cis", str);
+        builder.show();
     }
 }
