@@ -41,6 +41,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_menu_24_click.xml" value="0.176" />
         <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.281" />
         <entry key="app/src/main/res/drawable/ic_edittext.xml" value="0.273" />
+        <entry key="app/src/main/res/drawable/ic_funnel.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/ic_help.xml" value="0.1405" />
         <entry key="app/src/main/res/drawable/ic_modi.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.281" />
@@ -79,6 +80,10 @@
         <entry key="app/src/main/res/drawable/layerlist_usage_time_image.xml" value="0.281" />
         <entry key="app/src/main/res/drawable/layerlist_usage_time_line_image.xml" value="0.281" />
         <entry key="app/src/main/res/drawable/menu_selector_color.xml" value="0.1605" />
+        <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.2775" />
+        <entry key="app/src/main/res/drawable/switch_track_off.xml" value="0.2775" />
+        <entry key="app/src/main/res/drawable/switch_track_on.xml" value="0.2775" />
+        <entry key="app/src/main/res/drawable/switch_track_selector.xml" value="0.2775" />
         <entry key="app/src/main/res/layout-v31/activity_main.xml" value="0.3224417426545086" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_summary.xml" value="0.5373575348248206" />
@@ -100,6 +105,7 @@
         <entry key="app/src/main/res/layout/spinner_item2.xml" value="0.5373575348248206" />
         <entry key="app/src/main/res/layout/spinner_item3.xml" value="0.6064814814814815" />
         <entry key="app/src/main/res/layout/spinner_item4.xml" value="0.6388888888888888" />
+        <entry key="app/src/main/res/layout/spinner_item5.xml" value="0.48518518518518516" />
         <entry key="app/src/main/res/menu/menu_bottom.xml" value="0.5074074074074074" />
       </map>
     </option>

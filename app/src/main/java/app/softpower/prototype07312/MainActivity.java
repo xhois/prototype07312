@@ -120,6 +120,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapterLanguage.setDropDownViewResource(R.layout.spinner_item4);
         spinnerLanguage.setAdapter(adapterLanguage);
 
+        Spinner spinnerUser2_rule = binding.include2.spinnerUser2;
+        String[] itemsSpinnerUser2_rule = {" 오락/소셜 앱만 보기 (14)", " 전체보기 (20)"};
+        ArrayAdapter<String> adapter2_rule = new ArrayAdapter<String>(
+                this, R.layout.spinner_item5, itemsSpinnerUser2_rule);
+        adapter2_rule.setDropDownViewResource(R.layout.spinner_item5);
+        spinnerUser2_rule.setAdapter(adapter2_rule);
+
         ////////////item2 layout***************************************************************************************************
 
         Spinner spinnerUser2_2 = binding.include1.spinnerUser22;

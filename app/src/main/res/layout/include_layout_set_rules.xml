@@ -135,10 +135,10 @@
                 android:layout_marginTop="16dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:text="스마트기기 이용현황"
+                android:text="어플리케이션 규칙"
                 android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="normal"
+                android:textSize="22sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -150,7 +150,7 @@
                 android:layout_marginTop="8dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:text="자녀가 스마트기기에서 무엇을 했는지, 또 얼마나 많은 시간을 사용했는지 한눈에 보여줍니다.\n자녀의 활동 패턴을 파악하여 스마트기기를 올바르게 사용할 수 있도록 지도하세요."
+                android:text="어플을 차단하거나 허용할 수 있습니다. &quot;실행 차단&quot;되어 있지 않은 앱은 기본적으로 실행 가능 상태입니다. 아래 앱 목록에서 어플을 클릭해보세요."
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -158,32 +158,47 @@
 
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:text="조회할 날짜 선택:"
+                android:text="어플 규칙"
                 android:textColor="@color/black"
-                android:textStyle="normal|bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-            <Spinner
-                android:id="@+id/spinner_user2"
-                android:layout_width="280dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/convert_spinner_arrow2"
-                android:contentDescription="11월15일,2021 - 11월15일,2021"
-                android:popupBackground="@drawable/convert_spinner_arrow2"
-
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8"
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch1"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="-2dp"
+                android:checked="true"
+                android:thumb="@drawable/switch_thumb"
+                app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:switchMinWidth="0dp"
+                app:track="@drawable/switch_track_selector"
                 tools:ignore="TouchTargetSizeCheck" />
 
+
+            <Spinner
+                android:id="@+id/spinner_user2"
+                android:layout_width="240dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/convert_spinner_arrow3"
+
+                android:contentDescription="오락/소셜 앱만 보기 (14)"
+                android:gravity="center_vertical"
+                android:popupBackground="@drawable/convert_spinner_arrow3"
+                app:layout_constraintEnd_toEndOf="@+id/layout_usageTime"
+                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_usageTime"
@@ -544,7 +559,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/back_item2"
             android:paddingBottom="30dp"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView2_2"
@@ -869,7 +884,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/back_item2"
             android:paddingBottom="30dp"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView2_3"
@@ -894,7 +909,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/back_item2"
             android:paddingBottom="30dp"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView2_4"
@@ -919,7 +934,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/back_item2"
             android:paddingBottom="30dp"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView2_5"
