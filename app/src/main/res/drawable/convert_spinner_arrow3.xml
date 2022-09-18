@@ -17,7 +17,7 @@
             </item>
             <item android:drawable="@drawable/ic_baseline_keyboard_arrow_down_24"
                 android:width="24dp" android:height="24dp"
-                android:gravity="right|top" android:start="5dp" android:top="2dp" android:right="5dp">
+                android:gravity="right|center_vertical" android:start="5dp" android:right="5dp">
             </item>
         </layer-list>
     </item>
