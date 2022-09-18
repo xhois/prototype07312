@@ -6,6 +6,8 @@
         <entry key="app/src/main/res/drawable/back_item2.xml" value="0.343" />
         <entry key="app/src/main/res/drawable/back_item3.xml" value="0.343" />
         <entry key="app/src/main/res/drawable/back_item4_r2.xml" value="0.332" />
+        <entry key="app/src/main/res/drawable/back_item5.xml" value="0.189" />
+        <entry key="app/src/main/res/drawable/back_item6.xml" value="0.189" />
         <entry key="app/src/main/res/drawable/back_tabs.xml" value="0.1405" />
         <entry key="app/src/main/res/drawable/bg_indicator_active.xml" value="0.343" />
         <entry key="app/src/main/res/drawable/bg_indicator_inactive.xml" value="0.3155" />
@@ -29,6 +31,7 @@
         <entry key="app/src/main/res/drawable/custom_button6.xml" value="0.343" />
         <entry key="app/src/main/res/drawable/custom_button7.xml" value="0.343" />
         <entry key="app/src/main/res/drawable/custom_button8_r0.xml" value="0.332" />
+        <entry key="app/src/main/res/drawable/custom_button9.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/custom_imageView.xml" value="0.281" />
         <entry key="app/src/main/res/drawable/edit_text_design.xml" value="0.273" />
         <entry key="app/src/main/res/drawable/ic_addition_child.xml" value="0.273" />
@@ -43,6 +46,8 @@
         <entry key="app/src/main/res/drawable/ic_edittext.xml" value="0.273" />
         <entry key="app/src/main/res/drawable/ic_funnel.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/ic_help.xml" value="0.1405" />
+        <entry key="app/src/main/res/drawable/ic_laboratory_layerList.xml" value="0.303" />
+        <entry key="app/src/main/res/drawable/ic_laboratory_layerlist.xml" value="0.303" />
         <entry key="app/src/main/res/drawable/ic_modi.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.281" />
         <entry key="app/src/main/res/drawable/ic_status_device.xml" value="0.1405" />
@@ -85,7 +90,7 @@
         <entry key="app/src/main/res/drawable/switch_track_on.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/switch_track_selector.xml" value="0.2775" />
         <entry key="app/src/main/res/layout-v31/activity_main.xml" value="0.3224417426545086" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3855239248940036" />
         <entry key="app/src/main/res/layout/activity_summary.xml" value="0.5373575348248206" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.3224417426545086" />
         <entry key="app/src/main/res/layout/custom_dialog_user_change.xml" value="0.5282669138090825" />
@@ -94,7 +99,7 @@
         <entry key="app/src/main/res/layout/fragment_search3.xml" value="0.5373575348248206" />
         <entry key="app/src/main/res/layout/include_layout_append_child.xml" value="0.43560485839843743" />
         <entry key="app/src/main/res/layout/include_layout_noti.xml" value="0.4061420345489443" />
-        <entry key="app/src/main/res/layout/include_layout_set_rules.xml" value="0.48518518518518516" />
+        <entry key="app/src/main/res/layout/include_layout_set_rules.xml" value="0.379107666015625" />
         <entry key="app/src/main/res/layout/include_layout_setting.xml" value="0.3100828729281768" />
         <entry key="app/src/main/res/layout/include_setting.xml" value="0.5373575348248206" />
         <entry key="app/src/main/res/layout/item_recyclerview.xml" value="0.5373575348248206" />

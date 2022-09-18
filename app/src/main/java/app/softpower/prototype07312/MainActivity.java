@@ -364,6 +364,122 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ssb.setSpan(new StyleSpan(Typeface.BOLD), 1, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
         textViewSafeMode.setText(ssb);
         textViewSafeMode.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "※ 설치된 앱이 보이지 않나요? 알아보기";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan3 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("알아보기 클릭됨");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan3, 18, 22, 0);
+        ssb.setSpan(new AbsoluteSizeSpan(50), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 사이즈
+        binding.include2.textViewAppList.setText(ssb);
+        binding.include2.textViewAppList.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "⚑ 특정 어플은 항상 허용할 수 있나요? 알아보기";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan4 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("특정 어플은 항상 허용할 수 있습니다.");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan4, 23, 27, 0);
+        binding.include2.textView36.setText(ssb);
+        binding.include2.textView36.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "⚑ 변경된 규칙이 기기에 반영되지 않나요? 알아보기";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan5 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("다시 한번 적용해보세요.");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan5, 24, 28, 0);
+        binding.include2.textView37.setText(ssb);
+        binding.include2.textView37.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "⚑ 게임 차단 방법에는 어떤 것들이 있나요? 알아보기";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan6 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("이런 저런 방법들이 있습니다.");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan6, 25, 29, 0);
+        binding.include2.textView38.setText(ssb);
+        binding.include2.textView38.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "︎⚑ 제한 조건의 우선 순위 알아보기";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan7 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("순서가 뭐가 중요해요~");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan7, 16, 20, 0);
+        binding.include2.textView39.setText(ssb);
+        binding.include2.textView39.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "︎모바일펜스를 삭제하거나 무력화하지 못하도록 기기의 설정 진입 및 램 관리(알약,V3,클린마스터,듀얼앱 등) 유형의 앱을 차단합니다. 자녀들의 불평이 있어도 잠시라도 이 설정을 풀어주어서는 안됩니다. 모니터링/제어가 안 되는 상황이 반드시 생깁니다. 무력화방지를 참고하세요. 이 옵션이 켜져 있어도 WiFi설정은 가능하며 여기를 참고하세요.";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan8 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("무력화방지가 뭐가 중요해요~");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan8, 139, 145, 0);
+        ClickableSpan clickableSpan9 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("메롱~ 속았지롱~");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan9, 179, 182, 0);
+        binding.include2.textViewBlockSetting.setText(ssb);
+        binding.include2.textViewBlockSetting.setMovementMethod(LinkMovementMethod.getInstance());
+
 
         ///////////////////////SpannableStringBuilder
 
