@@ -678,6 +678,99 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ssb.setSpan(clickableSpan21, 27, 33, 0);
         binding.include2.includeApp.textViewWidget.setText(ssb);
         binding.include2.includeApp.textViewWidget.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "자녀 스마트기기의 한주간 사용계획을 수립해서, 제한된 시간대에 자녀가 다른 생산적인 활동에 더욱 집중하도록 할 수 있습니다. (제한할 시간대의 칸을 클릭하거나, 마우스로 제한할 시간대 영역을 끌어서 붉은색으로 마킹하고, 이 시간대에 \"제한할 기능\"을 활성화 하세요.)";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan22 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("제한할 기능 화면으로 이동");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan22, 131, 137, 0);
+        ssb.setSpan(new StyleSpan(Typeface.BOLD), 111, 148, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
+        binding.include2.includeUsageTime.textView7.setText(ssb);
+        binding.include2.includeUsageTime.textView7.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "⚑ 제한 시간대인데 앱이 차단되지 않나요? 알아보기";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan23 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("제한 시간대인데 앱이 차단되지 않는 경우가 뭐가 있을까?");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan23, 24, 28, 0);
+        binding.include2.includeUsageTime.textView.setText(ssb);
+        binding.include2.includeUsageTime.textView.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "위 빨간 \"제한된 시간대\"에서 차단할 기능을 선택하세요. 일부 어플은 예외적으로 \"항상허용\" 또는 \"허가시간대 항상허용\"으로 설정할수도 있습니다.";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan24 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("제한된 시간대 설명화면");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan24, 6, 13, 0);
+        ClickableSpan clickableSpan25 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("항상허용 설명화면");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan25, 46, 50, 0);
+        ClickableSpan clickableSpan26 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("허가시간대 항상허용 설명화면");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan26, 56, 66, 0);
+        binding.include2.includeUsageTime.textViewRestrictFunction.setText(ssb);
+        binding.include2.includeUsageTime.textViewRestrictFunction.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "하루에 최대 몇 시간 스마트기기 사용을 허가할지를 설정합니다. 더 알아보기>>";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan27 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("기기 사용시간 설명화면");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan27, 35, 43, 0);
+        binding.include2.includeUsageTime.textViewDeviceUsageTime.setText(ssb);
+        binding.include2.includeUsageTime.textViewDeviceUsageTime.setMovementMethod(LinkMovementMethod.getInstance());
 
 
         ///////////////////////SpannableStringBuilder
@@ -1035,7 +1128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.item42.setTextColor(def);
                 binding.include2.item52.setTextColor(def);
                 binding.include2.includeApp.item1Layout.setVisibility(View.VISIBLE);
-                binding.include2.item2Layout.setVisibility(View.GONE);
+                binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
                 binding.include2.item3Layout.setVisibility(View.GONE);
                 binding.include2.item4Layout.setVisibility(View.GONE);
                 binding.include2.item5Layout.setVisibility(View.GONE);
@@ -1053,7 +1146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.item42.setTextColor(def);
                 binding.include2.item52.setTextColor(def);
                 binding.include2.includeApp.item1Layout.setVisibility(View.GONE);
-                binding.include2.item2Layout.setVisibility(View.VISIBLE);
+                binding.include2.includeUsageTime.item2Layout.setVisibility(View.VISIBLE);
                 binding.include2.item3Layout.setVisibility(View.GONE);
                 binding.include2.item4Layout.setVisibility(View.GONE);
                 binding.include2.item5Layout.setVisibility(View.GONE);
@@ -1071,7 +1164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.item42.setTextColor(def);
                 binding.include2.item52.setTextColor(def);
                 binding.include2.includeApp.item1Layout.setVisibility(View.GONE);
-                binding.include2.item2Layout.setVisibility(View.GONE);
+                binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
                 binding.include2.item3Layout.setVisibility(View.VISIBLE);
                 binding.include2.item4Layout.setVisibility(View.GONE);
                 binding.include2.item5Layout.setVisibility(View.GONE);
@@ -1089,7 +1182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.item42.setTextColor(Color.BLACK);
                 binding.include2.item52.setTextColor(def);
                 binding.include2.includeApp.item1Layout.setVisibility(View.GONE);
-                binding.include2.item2Layout.setVisibility(View.GONE);
+                binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
                 binding.include2.item3Layout.setVisibility(View.GONE);
                 binding.include2.item4Layout.setVisibility(View.VISIBLE);
                 binding.include2.item5Layout.setVisibility(View.GONE);
@@ -1107,7 +1200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.item42.setTextColor(def);
                 binding.include2.item52.setTextColor(Color.BLACK);
                 binding.include2.includeApp.item1Layout.setVisibility(View.GONE);
-                binding.include2.item2Layout.setVisibility(View.GONE);
+                binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
                 binding.include2.item3Layout.setVisibility(View.GONE);
                 binding.include2.item4Layout.setVisibility(View.GONE);
                 binding.include2.item5Layout.setVisibility(View.VISIBLE);
