@@ -132,6 +132,13 @@
             layout="@layout/include2_item2_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="invisible" />
+
+        <include
+            android:id="@+id/includeWeb"
+            layout="@layout/include2_item3_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:visibility="visible" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
