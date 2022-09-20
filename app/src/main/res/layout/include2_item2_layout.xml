@@ -426,7 +426,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/back_item2"
             android:paddingTop="15dp"
-            android:paddingBottom="20dp">
+            android:paddingBottom="0dp">
 
             <TextView
                 android:id="@+id/textView30"
@@ -484,7 +484,9 @@
                 android:id="@+id/imageView15"
                 android:layout_width="0dp"
                 android:layout_height="260dp"
+                android:layout_marginStart="2dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider4"
@@ -496,6 +498,7 @@
             android:id="@+id/textView31"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="10dp"
             android:text="⚑ '기기시간,게임시간'이 초과되어 사용되나요? 알아보기"
@@ -505,6 +508,7 @@
             android:id="@+id/textView35"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="10dp"
             android:text="⚑ 변경된 규칙이 기기에 반영되지 않나요? 알아보기"
@@ -514,6 +518,7 @@
             android:id="@+id/textView40"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="10dp"
             android:text="⚑ 시간을 다 써도 전화는 되게 할 수 있나요? 알아보기"
@@ -547,12 +552,19 @@
             android:layout_marginTop="8dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:paddingBottom="20dp"
+            android:paddingBottom="10dp"
             android:text="하루 이용 가능한 게임 시간을 설정합니다. 더 알아보기>>"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:srcCompat="@drawable/image_game_time" />
 
     </LinearLayout>
 

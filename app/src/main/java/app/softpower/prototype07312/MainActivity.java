@@ -822,6 +822,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ssb.setSpan(clickableSpan30, 27, 31, 0);
         binding.include2.includeUsageTime.textView40.setText(ssb);
         binding.include2.includeUsageTime.textView40.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "하루 이용 가능한 게임 시간을 설정합니다. 더 알아보기>>";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan31 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("하루 이용 가능한 게임 시간 화면으로");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan31, 24, 32, 0);
+        binding.include2.includeUsageTime.textViewMoreTime.setText(ssb);
+        binding.include2.includeUsageTime.textViewMoreTime.setMovementMethod(LinkMovementMethod.getInstance());
 
 
         ///////////////////////SpannableStringBuilder
