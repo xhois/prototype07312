@@ -771,6 +771,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ssb.setSpan(clickableSpan27, 35, 43, 0);
         binding.include2.includeUsageTime.textViewDeviceUsageTime.setText(ssb);
         binding.include2.includeUsageTime.textViewDeviceUsageTime.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "⚑ '기기시간,게임시간'이 초과되어 사용되나요? 알아보기";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan28 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("기기시간,게임시간 설명 화면으로");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan28, 27, 31, 0);
+        binding.include2.includeUsageTime.textView31.setText(ssb);
+        binding.include2.includeUsageTime.textView31.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "⚑ 변경된 규칙이 기기에 반영되지 않나요? 알아보기";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan29 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("변경된 규칙 화면으로");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan29, 24, 28, 0);
+        binding.include2.includeUsageTime.textView35.setText(ssb);
+        binding.include2.includeUsageTime.textView35.setMovementMethod(LinkMovementMethod.getInstance());
+        //------------------------------------------------------------------------------
+        textTmp = "⚑ 시간을 다 써도 전화는 되게 할 수 있나요? 알아보기";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan30 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("전화 화면으로");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan30, 27, 31, 0);
+        binding.include2.includeUsageTime.textView40.setText(ssb);
+        binding.include2.includeUsageTime.textView40.setMovementMethod(LinkMovementMethod.getInstance());
 
 
         ///////////////////////SpannableStringBuilder
