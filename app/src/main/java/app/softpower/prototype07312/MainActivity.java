@@ -1197,8 +1197,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.item52.setTextColor(def);
                 binding.include2.includeApp.item1Layout.setVisibility(View.VISIBLE);
                 binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
-                binding.include2.item3Layout.setVisibility(View.GONE);
-                binding.include2.item4Layout.setVisibility(View.GONE);
+                binding.include2.includeWeb.item3Layout.setVisibility(View.GONE);
+                binding.include2.includePhone.item4Layout.setVisibility(View.GONE);
                 binding.include2.item5Layout.setVisibility(View.GONE);
                 ViewGroup.LayoutParams params = binding.include2.select2.getLayoutParams();
                 params.width = binding.include2.item12.getWidth();
@@ -1215,8 +1215,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.item52.setTextColor(def);
                 binding.include2.includeApp.item1Layout.setVisibility(View.GONE);
                 binding.include2.includeUsageTime.item2Layout.setVisibility(View.VISIBLE);
-                binding.include2.item3Layout.setVisibility(View.GONE);
-                binding.include2.item4Layout.setVisibility(View.GONE);
+                binding.include2.includeWeb.item3Layout.setVisibility(View.GONE);
+                binding.include2.includePhone.item4Layout.setVisibility(View.GONE);
                 binding.include2.item5Layout.setVisibility(View.GONE);
                 params = binding.include2.select2.getLayoutParams();
                 params.width = binding.include2.item22.getWidth();
@@ -1233,8 +1233,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.item52.setTextColor(def);
                 binding.include2.includeApp.item1Layout.setVisibility(View.GONE);
                 binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
-                binding.include2.item3Layout.setVisibility(View.VISIBLE);
-                binding.include2.item4Layout.setVisibility(View.GONE);
+                binding.include2.includeWeb.item3Layout.setVisibility(View.VISIBLE);
+                binding.include2.includePhone.item4Layout.setVisibility(View.GONE);
                 binding.include2.item5Layout.setVisibility(View.GONE);
                 params = binding.include2.select2.getLayoutParams();
                 params.width = binding.include2.item32.getWidth();
@@ -1251,8 +1251,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.item52.setTextColor(def);
                 binding.include2.includeApp.item1Layout.setVisibility(View.GONE);
                 binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
-                binding.include2.item3Layout.setVisibility(View.GONE);
-                binding.include2.item4Layout.setVisibility(View.VISIBLE);
+                binding.include2.includeWeb.item3Layout.setVisibility(View.GONE);
+                binding.include2.includePhone.item4Layout.setVisibility(View.VISIBLE);
                 binding.include2.item5Layout.setVisibility(View.GONE);
                 params = binding.include2.select2.getLayoutParams();
                 params.width = binding.include2.item42.getWidth();
@@ -1269,8 +1269,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.item52.setTextColor(Color.BLACK);
                 binding.include2.includeApp.item1Layout.setVisibility(View.GONE);
                 binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
-                binding.include2.item3Layout.setVisibility(View.GONE);
-                binding.include2.item4Layout.setVisibility(View.GONE);
+                binding.include2.includeWeb.item3Layout.setVisibility(View.GONE);
+                binding.include2.includePhone.item4Layout.setVisibility(View.GONE);
                 binding.include2.item5Layout.setVisibility(View.VISIBLE);
                 params = binding.include2.select2.getLayoutParams();
                 params.width = binding.include2.item52.getWidth();

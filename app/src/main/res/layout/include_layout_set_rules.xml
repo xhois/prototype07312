@@ -139,57 +139,14 @@
             layout="@layout/include2_item3_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="invisible" />
+
+        <include
+            android:id="@+id/includePhone"
+            layout="@layout/include2_item4_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:visibility="visible" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item3_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/back_item2"
-            android:paddingBottom="30dp"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/textView2_3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:text="웹 화면"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item4_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/back_item2"
-            android:paddingBottom="30dp"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/textView2_4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:text="전화 화면"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item5_layout"
