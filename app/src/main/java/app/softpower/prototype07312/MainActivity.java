@@ -127,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter2_rule.setDropDownViewResource(R.layout.spinner_item5);
         spinnerUser2_rule.setAdapter(adapter2_rule);
 
+
+
         ////////////item2 layout***************************************************************************************************
 
         Spinner spinnerUser2_2 = binding.include1.spinnerUser22;
@@ -156,6 +158,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ArrayAdapter<String> adapterChild3 = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_dropdown_item, itemsSpinnerChild3);
         spinnerChild3.setAdapter(adapterChild3);
+
+        Spinner spinnerLocationSpan = binding.include2.includeLocation.spinnerUser3;
+        String[] itemsSpinnerLocationSpan = {"1 시간", "2 시간", "3 시간"};
+        ArrayAdapter<String> adapterLocationSpan = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_dropdown_item, itemsSpinnerLocationSpan);
+        spinnerLocationSpan.setAdapter(adapterLocationSpan);
 
 
         ///////////////////////////spinner
@@ -1199,7 +1207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
                 binding.include2.includeWeb.item3Layout.setVisibility(View.GONE);
                 binding.include2.includePhone.item4Layout.setVisibility(View.GONE);
-                binding.include2.item5Layout.setVisibility(View.GONE);
+                binding.include2.includeLocation.item5Layout.setVisibility(View.GONE);
                 ViewGroup.LayoutParams params = binding.include2.select2.getLayoutParams();
                 params.width = binding.include2.item12.getWidth();
                 binding.include2.select2.setLayoutParams(params);
@@ -1217,7 +1225,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.includeUsageTime.item2Layout.setVisibility(View.VISIBLE);
                 binding.include2.includeWeb.item3Layout.setVisibility(View.GONE);
                 binding.include2.includePhone.item4Layout.setVisibility(View.GONE);
-                binding.include2.item5Layout.setVisibility(View.GONE);
+                binding.include2.includeLocation.item5Layout.setVisibility(View.GONE);
                 params = binding.include2.select2.getLayoutParams();
                 params.width = binding.include2.item22.getWidth();
                 binding.include2.select2.setLayoutParams(params);
@@ -1235,7 +1243,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
                 binding.include2.includeWeb.item3Layout.setVisibility(View.VISIBLE);
                 binding.include2.includePhone.item4Layout.setVisibility(View.GONE);
-                binding.include2.item5Layout.setVisibility(View.GONE);
+                binding.include2.includeLocation.item5Layout.setVisibility(View.GONE);
                 params = binding.include2.select2.getLayoutParams();
                 params.width = binding.include2.item32.getWidth();
                 binding.include2.select2.setLayoutParams(params);
@@ -1253,7 +1261,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
                 binding.include2.includeWeb.item3Layout.setVisibility(View.GONE);
                 binding.include2.includePhone.item4Layout.setVisibility(View.VISIBLE);
-                binding.include2.item5Layout.setVisibility(View.GONE);
+                binding.include2.includeLocation.item5Layout.setVisibility(View.GONE);
                 params = binding.include2.select2.getLayoutParams();
                 params.width = binding.include2.item42.getWidth();
                 binding.include2.select2.setLayoutParams(params);
@@ -1271,7 +1279,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
                 binding.include2.includeWeb.item3Layout.setVisibility(View.GONE);
                 binding.include2.includePhone.item4Layout.setVisibility(View.GONE);
-                binding.include2.item5Layout.setVisibility(View.VISIBLE);
+                binding.include2.includeLocation.item5Layout.setVisibility(View.VISIBLE);
                 params = binding.include2.select2.getLayoutParams();
                 params.width = binding.include2.item52.getWidth();
                 binding.include2.select2.setLayoutParams(params);
