@@ -119,30 +119,6 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:orientation="horizontal"
-                        android:paddingLeft="10dp">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            app:srcCompat="@drawable/ic_support" />
-
-                        <TextView
-                            android:id="@+id/textSupport"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:paddingStart="5dp"
-                            android:textColor="?android:attr/textColorPrimaryNoDisable"
-                            android:textSize="16sp"
-                            android:textStyle="normal"
-                            tools:text="고객지원 : 02-2135-6877 (또는 채팅 상담)" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FBFAFA"
                         android:orientation="vertical">
@@ -428,64 +404,65 @@
                             android:layout_marginEnd="10dp"
                             android:visibility="gone" />
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="30dp">
-
-                            <TextView
-                                android:id="@+id/textView_copyright"
-                                android:layout_width="0dp"
-                                android:layout_height="170dp"
-                                android:layout_marginTop="0dp"
-                                android:background="@color/gray2"
-                                android:paddingStart="20dp"
-                                android:paddingTop="10dp"
-                                android:textSize="13sp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:text="T2014-2021 Ⓒ Mobile Fence, Inc. All rights reserved.\n
-    고객 센터 : 02-2135-6877 (평일 오전 9시 ~ 오후 6시)\n
-    광고/제휴 : partner@mobilefence.com\n
-    팔로우하여 최신 소식과 할인 코드를 놓치지 마세요 : " />
-
-                            <ImageView
-                                android:id="@+id/imageView2"
-                                android:layout_width="60dp"
-                                android:layout_height="30dp"
-                                android:layout_marginTop="55dp"
-                                android:layout_marginEnd="32dp"
-                                app:layout_constraintEnd_toEndOf="@+id/textView_copyright"
-                                app:layout_constraintTop_toTopOf="@+id/textView_copyright"
-                                app:srcCompat="@drawable/image_follow" />
-
-                            <TextView
-                                android:id="@+id/textView10"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="4dp"
-                                android:text="언어"
-                                android:textSize="13sp"
-                                app:layout_constraintBottom_toBottomOf="@+id/spinner_Language"
-                                app:layout_constraintEnd_toStartOf="@id/spinner_Language" />
-
-                            <Spinner
-                                android:id="@+id/spinner_Language"
-                                android:layout_width="130dp"
-                                android:layout_height="25dp"
-
-                                android:layout_marginEnd="20dp"
-                                android:layout_marginBottom="7dp"
-                                android:background="@drawable/convert_spinner_arrow3"
-                                android:popupBackground="@drawable/convert_spinner_arrow3"
-                                app:layout_constraintBottom_toBottomOf="@+id/textView_copyright"
-                                app:layout_constraintEnd_toEndOf="@+id/textView_copyright"
-                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
                     </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30dp">
+
+                        <TextView
+                            android:id="@+id/textView_copyright"
+                            android:layout_width="0dp"
+                            android:layout_height="170dp"
+                            android:layout_marginTop="0dp"
+                            android:background="@color/gray2"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:textSize="13sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="T2014-2021 Ⓒ Mobile Fence, Inc. All rights reserved.\n
+고객 센터 : 02-2135-6877 (평일 오전 9시 ~ 오후 6시)\n
+광고/제휴 : partner@mobilefence.com\n
+팔로우하여 최신 소식과 할인 코드를 놓치지 마세요 : " />
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="55dp"
+                            android:layout_marginEnd="32dp"
+                            app:layout_constraintEnd_toEndOf="@+id/textView_copyright"
+                            app:layout_constraintTop_toTopOf="@+id/textView_copyright"
+                            app:srcCompat="@drawable/image_follow" />
+
+                        <TextView
+                            android:id="@+id/textView10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="4dp"
+                            android:text="언어"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/spinner_Language"
+                            app:layout_constraintEnd_toStartOf="@id/spinner_Language" />
+
+                        <Spinner
+                            android:id="@+id/spinner_Language"
+                            android:layout_width="130dp"
+                            android:layout_height="25dp"
+
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="7dp"
+                            android:background="@drawable/convert_spinner_arrow3"
+                            android:popupBackground="@drawable/convert_spinner_arrow3"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView_copyright"
+                            app:layout_constraintEnd_toEndOf="@+id/textView_copyright"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </LinearLayout>
             </ScrollView>
 

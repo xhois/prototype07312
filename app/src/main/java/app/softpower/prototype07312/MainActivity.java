@@ -71,13 +71,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        TextView textSupport = binding.textSupport;
-        String textTmp = "고객지원 : 02-2135-6877 (또는 채팅 상담)";
-        SpannableStringBuilder ssb = new SpannableStringBuilder(textTmp);
-        ssb.setSpan(new StyleSpan(Typeface.BOLD), 23, textTmp.length() - 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
-        ssb.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.textColor)), 23, textTmp.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 칼라
-        ssb.setSpan(new AbsoluteSizeSpan(35), 21, 23, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 사이즈
-        textSupport.setText(ssb);
+//        TextView textSupport = binding.textSupport;
+//        String textTmp = "고객지원 : 02-2135-6877 (또는 채팅 상담)";
+//        SpannableStringBuilder ssb = new SpannableStringBuilder(textTmp);
+//        ssb.setSpan(new StyleSpan(Typeface.BOLD), 23, textTmp.length() - 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
+//        ssb.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.textColor)), 23, textTmp.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 칼라
+//        ssb.setSpan(new AbsoluteSizeSpan(35), 21, 23, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 사이즈
+//        textSupport.setText(ssb);
 
         ///////////////////////////spinner
 
@@ -169,8 +169,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ///////////////////////////spinner
 
         TextView textView_noti_1 = binding.textViewNoti1;
-        textTmp = "  공지 [2021.10.28] - \"위젯 추가차단\" 기능 추가";
-        ssb = new SpannableStringBuilder(textTmp);
+        String textTmp = "  공지 [2021.10.28] - \"위젯 추가차단\" 기능 추가";
+        SpannableStringBuilder ssb = new SpannableStringBuilder(textTmp);
         int divide = textTmp.indexOf(" - ");
         ssb.setSpan(new StyleSpan(Typeface.BOLD), 2, divide, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
         ssb.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.green)), 2, divide, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 칼라
