@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isNotiPageOpen = false;
     boolean isAvatarChecked = false;
     boolean isAppendChild = false;
+    boolean isDeviceStatusOpen = false;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -71,14 +72,139 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        TextView textSupport = binding.textSupport;
-//        String textTmp = "고객지원 : 02-2135-6877 (또는 채팅 상담)";
-//        SpannableStringBuilder ssb = new SpannableStringBuilder(textTmp);
-//        ssb.setSpan(new StyleSpan(Typeface.BOLD), 23, textTmp.length() - 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
-//        ssb.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.textColor)), 23, textTmp.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 칼라
-//        ssb.setSpan(new AbsoluteSizeSpan(35), 21, 23, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 사이즈
-//        textSupport.setText(ssb);
+        spinnerSetup();
+        spannableSetup();
 
+        def = binding.include1.item2.getTextColors();
+
+        binding.include1.item1.setOnClickListener(this);
+        binding.include1.item2.setOnClickListener(this);
+        binding.buttonMenu.setOnClickListener(this);
+        binding.layoutMenuClose.setOnClickListener(this);
+        binding.imageButtonMenuClose.setOnClickListener(this);
+        binding.buttonSearchCancel.setOnClickListener(this);
+        binding.includeLayoutSetting.buttonSettingClose.setOnClickListener(this);
+        binding.includeLayoutSetting.imageButtonSettingClose.setOnClickListener(this);
+        binding.includeLayoutNoti.buttonNotiClose.setOnClickListener(this);
+        binding.spinnerUser.setOnClickListener(this);
+        binding.buttonChildAdd.setOnClickListener(this);
+        binding.includeLayoutAppendChild.imageButtonAppendChildClose.setOnClickListener(this);
+        binding.buttonModiChild.setOnClickListener(this);
+        binding.include2.item12.setOnClickListener(this);
+        binding.include2.item22.setOnClickListener(this);
+        binding.include2.item32.setOnClickListener(this);
+        binding.include2.item42.setOnClickListener(this);
+        binding.include2.item52.setOnClickListener(this);
+        binding.include1.buttonSettingRull2.setOnClickListener(this);
+        binding.include2.buttonBackToSummary.setOnClickListener(this);
+        binding.textViewDeviceStatus.setOnClickListener(this);
+
+        binding.bottomNavigationView.setOnItemSelectedListener(this);
+
+        // 장치설정 화면, 스크롤 했을때 중간에서 멈춤
+        binding.includeLayoutSetting.scrollViewSetting2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            stopScroll(v);
+                        }
+                    }, 100);
+                }
+                return false;
+            }
+        });
+
+        binding.includeLayoutSetting.scrollViewSetting.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            stopScroll(v);
+                        }
+                    }, 100);
+                }
+                return false;
+            }
+        });
+
+        // 알림 화면, 스크롤 했을때 중간에서 멈춤
+        binding.includeLayoutNoti.scrollViewNoti2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            stopScroll(v);
+                        }
+                    }, 100);
+                }
+                return false;
+            }
+        });
+
+        binding.includeLayoutNoti.scrollViewNoti.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            stopScroll(v);
+                        }
+                    }, 100);
+                }
+                return false;
+            }
+        });
+
+        binding.includeLayoutAppendChild.radioGroupAvatar1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId != -1 && isAvatarChecked) {
+                    isAvatarChecked = false;
+                    binding.includeLayoutAppendChild.radioGroupAvatar2.clearCheck();
+                }
+                isAvatarChecked = true;
+            }
+        });
+
+        binding.includeLayoutAppendChild.radioGroupAvatar2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId != -1 && isAvatarChecked) {
+                    isAvatarChecked = false;
+                    binding.includeLayoutAppendChild.radioGroupAvatar1.clearCheck();
+                }
+                isAvatarChecked = true;
+            }
+        });
+
+        setInit(); // 검색화면 ViewPager2
+        // 뷰페이저2 사용 순서
+        // xml layout 에 ViewPager2 등록
+        // 각각의 페이지용 layout xml 작성
+        // FragmentStateAdapter class 만들고
+        // 생성자 만들고, 오버라이드(createFragment, getItemId, getItemCount)
+        // onCreate 에서 초기화
+        // FragmentStateAdapter 인스턴스 생성
+        // viewPager2.setAdapter(fragmentStateAdapter); ViewPager2 에 FragmentStateAdapter 인스턴스를 어댑터로 설정
+        // 이러면 끝인데, 기타 여러가지 설정들을 해준다. (스크롤 방향, 페이지 갯수, 처음 보여질 페이지, 옆 페이지 보이게 등등)
+        // viewPager2.registerOnPageChangeCallback 리스너 등록하면서
+        // 메소드 오버라이드(onPageScrolled, onPageSelected, onPageScrollStateChanged
+        // 끝
+    }
+
+    private void spinnerSetup() {
         ///////////////////////////spinner
 
 //        Spinner spinnerUser = binding.spinnerUser;
@@ -167,6 +293,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         ///////////////////////////spinner
+    }
+
+    private void spannableSetup() {
+        //        TextView textSupport = binding.textSupport;
+//        String textTmp = "고객지원 : 02-2135-6877 (또는 채팅 상담)";
+//        SpannableStringBuilder ssb = new SpannableStringBuilder(textTmp);
+//        ssb.setSpan(new StyleSpan(Typeface.BOLD), 23, textTmp.length() - 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
+//        ssb.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.textColor)), 23, textTmp.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 칼라
+//        ssb.setSpan(new AbsoluteSizeSpan(35), 21, 23, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 사이즈
+//        textSupport.setText(ssb);
 
         TextView textView_noti_1 = binding.textViewNoti1;
         String textTmp = "  공지 [2021.10.28] - \"위젯 추가차단\" 기능 추가";
@@ -850,135 +986,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         ///////////////////////SpannableStringBuilder
-
-        def = binding.include1.item2.getTextColors();
-
-
-        binding.include1.item1.setOnClickListener(this);
-        binding.include1.item2.setOnClickListener(this);
-        binding.buttonMenu.setOnClickListener(this);
-        binding.layoutMenuClose.setOnClickListener(this);
-        binding.imageButtonMenuClose.setOnClickListener(this);
-        binding.buttonSearchCancel.setOnClickListener(this);
-        binding.includeLayoutSetting.buttonSettingClose.setOnClickListener(this);
-        binding.includeLayoutSetting.imageButtonSettingClose.setOnClickListener(this);
-        binding.includeLayoutNoti.buttonNotiClose.setOnClickListener(this);
-        binding.spinnerUser.setOnClickListener(this);
-        binding.buttonChildAdd.setOnClickListener(this);
-        binding.includeLayoutAppendChild.imageButtonAppendChildClose.setOnClickListener(this);
-        binding.buttonModiChild.setOnClickListener(this);
-        binding.include2.item12.setOnClickListener(this);
-        binding.include2.item22.setOnClickListener(this);
-        binding.include2.item32.setOnClickListener(this);
-        binding.include2.item42.setOnClickListener(this);
-        binding.include2.item52.setOnClickListener(this);
-        binding.include1.buttonSettingRull2.setOnClickListener(this);
-        binding.include2.buttonBackToSummary.setOnClickListener(this);
-
-        binding.bottomNavigationView.setOnItemSelectedListener(this);
-
-        // 장치설정 화면, 스크롤 했을때 중간에서 멈춤
-        binding.includeLayoutSetting.scrollViewSetting2.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
-                    Handler mHandler = new Handler();
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            stopScroll(v);
-                        }
-                    }, 100);
-                }
-                return false;
-            }
-        });
-
-        binding.includeLayoutSetting.scrollViewSetting.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
-                    Handler mHandler = new Handler();
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            stopScroll(v);
-                        }
-                    }, 100);
-                }
-                return false;
-            }
-        });
-
-        // 알림 화면, 스크롤 했을때 중간에서 멈춤
-        binding.includeLayoutNoti.scrollViewNoti2.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
-                    Handler mHandler = new Handler();
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            stopScroll(v);
-                        }
-                    }, 100);
-                }
-                return false;
-            }
-        });
-
-        binding.includeLayoutNoti.scrollViewNoti.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
-                    Handler mHandler = new Handler();
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            stopScroll(v);
-                        }
-                    }, 100);
-                }
-                return false;
-            }
-        });
-
-        binding.includeLayoutAppendChild.radioGroupAvatar1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId != -1 && isAvatarChecked) {
-                    isAvatarChecked = false;
-                    binding.includeLayoutAppendChild.radioGroupAvatar2.clearCheck();
-                }
-                isAvatarChecked = true;
-            }
-        });
-
-        binding.includeLayoutAppendChild.radioGroupAvatar2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId != -1 && isAvatarChecked) {
-                    isAvatarChecked = false;
-                    binding.includeLayoutAppendChild.radioGroupAvatar1.clearCheck();
-                }
-                isAvatarChecked = true;
-            }
-        });
-
-        setInit(); // 검색화면 ViewPager2
-        // 뷰페이저2 사용 순서
-        // xml layout 에 ViewPager2 등록
-        // 각각의 페이지용 layout xml 작성
-        // FragmentStateAdapter class 만들고
-        // 생성자 만들고, 오버라이드(createFragment, getItemId, getItemCount)
-        // onCreate 에서 초기화
-        // FragmentStateAdapter 인스턴스 생성
-        // viewPager2.setAdapter(fragmentStateAdapter); ViewPager2 에 FragmentStateAdapter 인스턴스를 어댑터로 설정
-        // 이러면 끝인데, 기타 여러가지 설정들을 해준다. (스크롤 방향, 페이지 갯수, 처음 보여질 페이지, 옆 페이지 보이게 등등)
-        // viewPager2.registerOnPageChangeCallback 리스너 등록하면서
-        // 메소드 오버라이드(onPageScrolled, onPageSelected, onPageScrollStateChanged
-        // 끝
-
     }
 
     private void stopScroll(View v) {
@@ -1294,6 +1301,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include1.layoutSumActivities.setVisibility(View.VISIBLE);
                 binding.layoutNotification.setVisibility(View.VISIBLE);
                 break;
+            case R.id.textViewDeviceStatus:                                         // 기기상태 텍스트뷰
+                if (isDeviceStatusOpen) {
+                    binding.layoutMain.setVisibility(View.VISIBLE);
+                    binding.includeDeviceStatus.layoutDeviceStatus.setVisibility(View.GONE);
+                    isDeviceStatusOpen = false;
+                } else {
+                    binding.layoutMain.setVisibility(View.GONE);
+                    binding.includeDeviceStatus.layoutDeviceStatus.setVisibility(View.VISIBLE);
+                    isDeviceStatusOpen = true;
+                }
+                break;
         }
     }
 
@@ -1317,6 +1335,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (isAppendChild) {
             onClick(binding.buttonChildAdd);
+            return;
+        }
+        if (isDeviceStatusOpen) {
+            onClick(binding.textViewDeviceStatus);
             return;
         }
 

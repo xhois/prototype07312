@@ -518,7 +518,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/back_item2"
             android:paddingBottom="30dp"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView2_2"

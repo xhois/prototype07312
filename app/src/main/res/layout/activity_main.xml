@@ -118,10 +118,12 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/layoutMain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FBFAFA"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -213,7 +215,7 @@
                                 tools:ignore="TouchTargetSizeCheck" />
 
                             <TextView
-                                android:id="@+id/textView3"
+                                android:id="@+id/textViewDeviceStatus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -231,8 +233,8 @@
                                 android:layout_marginStart="5dp"
                                 android:text="(1/1개 동작 중)"
                                 android:textColor="@color/black"
-                                app:layout_constraintBottom_toBottomOf="@id/textView3"
-                                app:layout_constraintStart_toEndOf="@+id/textView3" />
+                                app:layout_constraintBottom_toBottomOf="@id/textViewDeviceStatus"
+                                app:layout_constraintStart_toEndOf="@+id/textViewDeviceStatus" />
 
                             <TextView
                                 android:id="@+id/textView4"
@@ -241,8 +243,8 @@
                                 android:layout_marginTop="3dp"
                                 android:text="최근 위치확인: 11월 15일 오전 7:35"
                                 android:textColor="@color/black"
-                                app:layout_constraintStart_toStartOf="@id/textView3"
-                                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                                app:layout_constraintStart_toStartOf="@id/textViewDeviceStatus"
+                                app:layout_constraintTop_toBottomOf="@+id/textViewDeviceStatus" />
 
                             <TextView
                                 android:id="@+id/textView5"
@@ -253,7 +255,7 @@
                                 android:text=" 마지막 파악된 위치보기"
                                 android:textColor="@color/textColor"
                                 app:drawableTint="@android:color/darker_gray"
-                                app:layout_constraintStart_toStartOf="@id/textView3"
+                                app:layout_constraintStart_toStartOf="@id/textViewDeviceStatus"
                                 app:layout_constraintTop_toBottomOf="@id/textView4" />
 
                             <TextView
@@ -405,6 +407,13 @@
                             android:visibility="gone" />
 
                     </LinearLayout>
+
+                    <include
+                        android:id="@+id/includeDeviceStatus"
+                        layout="@layout/include_device_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
