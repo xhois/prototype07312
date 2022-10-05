@@ -1,8 +1,11 @@
 package app.softpower.prototype07312;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -64,10 +67,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isAppendChild = false;
     boolean isDeviceStatusOpen = false;
 
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        checkForFirstRun();
+
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -202,6 +206,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // viewPager2.registerOnPageChangeCallback 리스너 등록하면서
         // 메소드 오버라이드(onPageScrolled, onPageSelected, onPageScrollStateChanged
         // 끝
+    }
+
+    private void checkForFirstRun(){
+        SharedPreferences pref = getSharedPreferences("checkFirst", Activity.MODE_PRIVATE);
+        boolean checkFirst = pref.getBoolean("checkFirst", true);
+        if (true){
+            // 앱 최초 실행시 하고 싶은 작업
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("checkFirst", false);
+            editor.commit();
+            Intent intent = new Intent(MainActivity.this, TutorialActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void spinnerSetup() {
