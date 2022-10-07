@@ -1,7 +1,12 @@
 package app.softpower.prototype07312;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +16,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import app.softpower.prototype07312.databinding.ActivityTutorialBinding;
+import app.softpower.prototype07312.databinding.CustomDialogIntroBinding;
 
 public class TutorialActivity extends AppCompatActivity {
 
@@ -54,7 +60,30 @@ public class TutorialActivity extends AppCompatActivity {
                 if (newPage < 4) {
                     viewPageSetup.setCurrentItem(newPage, true);
                 } else {
+                    Dialog dialog01;
+                    dialog01 = new Dialog(TutorialActivity.this);
+                    dialog01.setContentView(R.layout.custom_dialog_intro);
+                    dialog01.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    WindowManager.LayoutParams params = dialog01.getWindow().getAttributes();
+                    params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                    params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                    dialog01.getWindow().setAttributes(params);
 
+                    dialog01.show();
+                    Button agree = dialog01.findViewById(R.id.agree);
+                    agree.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                        }
+                    });
+                    Button disagree = dialog01.findViewById(R.id.disagree);
+                    disagree.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog01.dismiss();
+                        }
+                    });
                 }
             }
         });
