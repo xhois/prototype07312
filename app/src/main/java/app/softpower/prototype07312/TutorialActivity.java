@@ -75,6 +75,7 @@ public class TutorialActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             finish();
+
                         }
                     });
                     Button disagree = dialog01.findViewById(R.id.disagree);

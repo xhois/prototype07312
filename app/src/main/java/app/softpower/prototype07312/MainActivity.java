@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.layoutRoot.setVisibility(View.VISIBLE);
+
         spinnerSetup();
         spannableSetup();
 
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.include1.buttonSettingRull2.setOnClickListener(this);
         binding.include2.buttonBackToSummary.setOnClickListener(this);
         binding.textViewDeviceStatus.setOnClickListener(this);
+        binding.textViewMenuFamily.setOnClickListener(this);
 
         binding.bottomNavigationView.setOnItemSelectedListener(this);
 
@@ -211,14 +214,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void checkForFirstRun(){
         SharedPreferences pref = getSharedPreferences("checkFirst", Activity.MODE_PRIVATE);
         boolean checkFirst = pref.getBoolean("checkFirst", true);
-        if (true){
+        if (checkFirst){
             // 앱 최초 실행시 하고 싶은 작업
             SharedPreferences.Editor editor = pref.edit();
             editor.putBoolean("checkFirst", false);
             editor.commit();
             Intent intent = new Intent(MainActivity.this, TutorialActivity.class);
             startActivity(intent);
-            finish();
         }
     }
 
@@ -1330,6 +1332,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     isDeviceStatusOpen = true;
                 }
                 break;
+            case R.id.textView_menu_family:                                         // 메뉴화면 안의 패밀리 텍스트뷰
+                size = binding.layoutMenu.getWidth();
+                if (isMenuPageOpen) {
+                    binding.layoutMenu.animate().x(-size).setDuration(500);
+                    binding.layoutMenuMask.animate().alpha(0.0f).setDuration(500);
+                    binding.layoutMenuClose.setClickable(false);
+                    isMenuPageOpen = false;
+                }
+
         }
     }
 
@@ -1367,6 +1378,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {  // bottomNavigationView 의 버튼들
         switch (item.getItemId()) {
             case R.id.tab1_home:
+                onClick(binding.textViewMenuFamily);
                 return true;
             case R.id.tab2_menu:
                 onClick(binding.buttonMenu);
