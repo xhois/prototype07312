@@ -6,9 +6,10 @@
     android:id="@+id/layout_setting"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
+    android:background="@null"
     android:orientation="vertical"
-    >
+    android:padding="10dp"
+    android:visibility="gone">
 
     <app.softpower.prototype07312.CustomScrollView
         android:id="@+id/scrollViewSetting"
@@ -54,9 +55,6 @@
 
                     <TextView
                         android:id="@+id/textView23"
-                        app:drawableTint="@android:color/holo_green_dark"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:drawableLeft="@drawable/ic_baseline_settings_applications_24"
@@ -64,26 +62,29 @@
                         android:text=" 장치 설정"
                         android:textColor="@color/black"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:drawableTint="@android:color/holo_green_dark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="아래 기능들은 이 장치(SM-A315N)에만 적용됩니다." />
+                        android:text="아래 기능들은 이 장치(SM-A315N)에만 적용됩니다."
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
                     <ImageButton
                         android:id="@+id/imageButtonSettingClose"
+                        android:layout_width="50dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/custom_button8_r0"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_baseline_close_24"
                         app:tint="@color/gray3"
-                        tools:ignore="SpeakableTextPresentCheck"
-                        android:layout_width="50dp"
-                        android:layout_height="0dp"
-                        android:background="@drawable/custom_button8_r0" />
+                        tools:ignore="SpeakableTextPresentCheck" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -120,7 +121,6 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/buttonSettingClose"
-                    tools:ignore="TouchTargetSizeCheck"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginStart="5dp"
@@ -128,7 +128,8 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/custom_button3_r20"
                     android:stateListAnimator="@null"
-                    android:text="닫기" />
+                    android:text="닫기"
+                    tools:ignore="TouchTargetSizeCheck" />
 
             </LinearLayout>
 

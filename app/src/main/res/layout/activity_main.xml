@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
-    android:visibility="visible"
     app:layoutDescription="@xml/activity_main_scene"
     tools:context=".MainActivity">
 
@@ -492,7 +491,7 @@
             android:layout_height="match_parent"
             android:clickable="true"
             android:orientation="horizontal"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="250dp"
@@ -580,6 +579,7 @@
                     android:textSize="14sp" />
 
                 <LinearLayout
+                    android:id="@+id/menuPayment"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="1dp"
@@ -590,7 +590,7 @@
                         android:id="@+id/textView_menu_Payment"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
+                        android:background="@null"
                         android:gravity="center_vertical"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
@@ -706,7 +706,7 @@
                 android:id="@+id/layout_menu_close"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/transparent"
+                android:background="@null"
                 android:orientation="vertical">
 
                 <ImageButton
@@ -715,7 +715,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="30dp"
-                    android:background="@android:color/transparent"
+                    android:background="@null"
                     android:minWidth="48dp"
                     android:minHeight="48dp"
                     app:srcCompat="@drawable/ic_baseline_close_24"
@@ -728,171 +728,32 @@
 
     </FrameLayout>
 
-    <LinearLayout
+    <View
         android:id="@+id/layout_search_mask"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.5"
         android:background="@color/black"
         android:orientation="vertical"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_search"
+    <ViewStub
+        android:id="@+id/viewStubLayoutSearch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/back_item2"
-        android:orientation="vertical"
-        android:visibility="invisible"
+        android:layout="@layout/viewstub_layout_search"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="궁금하신 사용방법이나 기능을 검색해 보세요."
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:text="예) 위치, 무력화방지, 모든앱차단"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView16" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/back_item3"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView17">
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center|left"
-                android:background="@drawable/custom_button6"
-                android:minHeight="48dp"
-                android:paddingTop="5dp"
-                app:srcCompat="@drawable/ic_baseline_search_24"
-                app:tint="@color/gray3"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:ems="10"
-                android:inputType="textPersonName"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/pagerIndicator"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="4dp"
-                app:srcCompat="@drawable/bg_indicator_inactive" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="4dp"
-                app:srcCompat="@drawable/bg_indicator_inactive" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="4dp"
-                app:srcCompat="@drawable/bg_indicator_inactive" />
-
-        </LinearLayout>
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager_search"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            app:layout_constraintBottom_toTopOf="@id/linearLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pagerIndicator" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/layerlist_search_cancel"
-            android:clickable="true"
-            android:gravity="right|center_vertical"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_search_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/custom_button7"
-                android:text="취소"
-                android:textColor="@color/gray3"
-                tools:ignore="TouchTargetSizeCheck" />
-
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/includeLayoutSetting"
         layout="@layout/include_layout_setting"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@android:color/transparent"
+        android:background="@null"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -904,10 +765,7 @@
         layout="@layout/include_layout_noti"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:background="@null"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -923,6 +781,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@null"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,15 +4,18 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -22,14 +25,18 @@ import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
@@ -39,6 +46,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.ActionMenuItem;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -51,10 +60,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import app.softpower.prototype07312.databinding.ActivityMainBinding;
+import app.softpower.prototype07312.databinding.ViewstubLayoutSearchBinding;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationBarView.OnItemSelectedListener {
 
     private ActivityMainBinding binding;
+    private ViewstubLayoutSearchBinding layoutSearchBinding;
     private ViewPager2 viewPageSetup;
 
     ColorStateList def;
@@ -66,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isAvatarChecked = false;
     boolean isAppendChild = false;
     boolean isDeviceStatusOpen = false;
+//    static int appWidth;
+//    static int appHeight;
+    static float appDensity;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -76,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.layoutRoot.setVisibility(View.VISIBLE);
+        getAppDisplaySize();
 
         spinnerSetup();
         spannableSetup();
@@ -88,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.buttonMenu.setOnClickListener(this);
         binding.layoutMenuClose.setOnClickListener(this);
         binding.imageButtonMenuClose.setOnClickListener(this);
-        binding.buttonSearchCancel.setOnClickListener(this);
         binding.includeLayoutSetting.buttonSettingClose.setOnClickListener(this);
         binding.includeLayoutSetting.imageButtonSettingClose.setOnClickListener(this);
         binding.includeLayoutNoti.buttonNotiClose.setOnClickListener(this);
@@ -105,8 +118,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.include2.buttonBackToSummary.setOnClickListener(this);
         binding.textViewDeviceStatus.setOnClickListener(this);
         binding.textViewMenuFamily.setOnClickListener(this);
-
+        binding.textViewMenuSmartDevice.setOnClickListener(this);
+        binding.textViewMenuSetting.setOnClickListener(this);
+        binding.menuPayment.setOnClickListener(this);
+        binding.textViewMenuBaseOfKnowledge.setOnClickListener(this);
+        binding.textViewMenuHelp.setOnClickListener(this);
+        binding.textViewMenuSupport.setOnClickListener(this);
+        binding.textViewMenuCustomerCenter.setOnClickListener(this);
+        binding.textViewMenuEvaluation.setOnClickListener(this);
+        binding.textViewMenuNotice.setOnClickListener(this);
+        binding.textViewMenuNews.setOnClickListener(this);
         binding.bottomNavigationView.setOnItemSelectedListener(this);
+
 
         // 장치설정 화면, 스크롤 했을때 중간에서 멈춤
         binding.includeLayoutSetting.scrollViewSetting2.setOnTouchListener(new View.OnTouchListener() {
@@ -196,7 +219,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        setInit(); // 검색화면 ViewPager2
+        binding.viewStubLayoutSearch.setOnInflateListener(new ViewStub.OnInflateListener() {
+            @Override
+            public void onInflate(ViewStub stub, View inflated) {
+                layoutSearchBinding = ViewstubLayoutSearchBinding.bind(inflated);
+
+                ConstraintLayout.LayoutParams param = (ConstraintLayout.LayoutParams) layoutSearchBinding.layoutSearch.getLayoutParams();
+                param.setMargins(0, DpToPx(50), 0, 0);
+                layoutSearchBinding.layoutSearch.setLayoutParams(param);
+
+                layoutSearchBinding.buttonSearchCancel.setOnClickListener(MainActivity.this);
+            }
+        });
+
+//        setInit(); // 검색화면 ViewPager2
         // 뷰페이저2 사용 순서
         // xml layout 에 ViewPager2 등록
         // 각각의 페이지용 layout xml 작성
@@ -222,6 +258,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MainActivity.this, TutorialActivity.class);
             startActivity(intent);
         }
+    }
+
+    private void getAppDisplaySize() {
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        appDensity = getResources().getDisplayMetrics().density;
+//        appWidth = outMetrics.widthPixels;
+//        appHeight = outMetrics.heightPixels;
+//        Log.i("cis", String.valueOf("widthPixels: "+outMetrics.widthPixels + ", getWidth: " + appWidth));
     }
 
     private void spinnerSetup() {
@@ -1017,7 +1064,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } else if (y < 1690) {
                 binding.includeLayoutSetting.scrollViewSetting.smoothScrollTo(0, 1400);
             } else {
-                binding.includeLayoutSetting.scrollViewSetting.smoothScrollTo(0, 1979);
+//                binding.includeLayoutSetting.scrollViewSetting.smoothScrollTo(0, 1979);
+                binding.includeLayoutSetting.scrollViewSetting.fullScroll(ScrollView.FOCUS_DOWN);
             }
         }
         if (v.getId() == R.id.scrollViewNoti || v.getId() == R.id.scrollViewNoti2) {
@@ -1028,7 +1076,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } else if (y < 1690) {
                 binding.includeLayoutNoti.scrollViewNoti.smoothScrollTo(0, 1400);
             } else {
-                binding.includeLayoutNoti.scrollViewNoti.smoothScrollTo(0, 1979);
+//                binding.includeLayoutNoti.scrollViewNoti.smoothScrollTo(0, 1979);
+                binding.includeLayoutNoti.scrollViewNoti.fullScroll(ScrollView.FOCUS_DOWN);
             }
         }
     }
@@ -1054,7 +1103,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include1.item1Layout.setVisibility(View.GONE);
                 break;
             case R.id.buttonMenu:                                                 // 메뉴 화면
-                size = binding.layoutMenu.getWidth();
+                size = binding.layoutRoot.getWidth();
+//                Log.i("cis", String.valueOf("appWidth: " + appWidth));
                 if (isMenuPageOpen) {
                     binding.layoutMenu.animate().x(-size).setDuration(500);
                     binding.layoutMenuMask.animate().alpha(0.0f).setDuration(500);
@@ -1067,6 +1117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     binding.layoutMenuMask.animate().alpha(0.5f).setDuration(500);
                     binding.layoutMenuClose.setClickable(true);
                     isMenuPageOpen = true;
+//                    Log.i("cis", String.valueOf("getWidth: " + binding.layoutMenu.getWidth()));
                 }
                 break;
             case R.id.layout_menu_close:                                             // 메뉴 화면 닫기 (검은색 부분)
@@ -1076,25 +1127,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 onClick(binding.buttonMenu);
                 break;
             case R.id.button_search_cancel:                                          // 검색 화면 닫기 (X 버튼)
-                size = binding.layoutSearch.getHeight();
-                if (isSearchPageOpen) {
-                    binding.layoutSearch.animate().yBy(size).setDuration(500);
-                    binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
-                    binding.layoutSearch.setClickable(false);
-                    binding.layoutSearchMask.setClickable(false);
-                    isSearchPageOpen = false;
-                } else {
-                    binding.layoutSearch.setTranslationY((float) size);
-                    binding.layoutSearchMask.setAlpha(0.0f);
-                    binding.layoutSearchMask.setVisibility(View.VISIBLE);
-                    binding.layoutSearch.setVisibility(View.VISIBLE);
-
-                    binding.layoutSearch.animate().yBy(-size).setDuration(500);
-                    binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
-                    binding.layoutSearch.setClickable(true);
-                    binding.layoutSearchMask.setClickable(true);
-                    isSearchPageOpen = true;
-                }
+//                Log.i("cis","button_search_cancel 클릭됨");
+                onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(2));
                 break;
             case R.id.buttonSettingClose:                                             // 장치 설정 화면 닫기 (닫기 버튼)
                 int layoutRootHeight = binding.layoutRoot.getHeight();
@@ -1125,7 +1159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonNotiClose:                                                // 알림 화면 닫기 (닫기 버튼)
                 layoutRootHeight = binding.layoutRoot.getHeight();
                 if (isNotiPageOpen) {
-                    Log.i("cis", "isNotiPageOpen true");
+//                    Log.i("cis", "isNotiPageOpen true");
                     binding.includeLayoutNoti.layoutNoti.animate().yBy(layoutRootHeight).setDuration(500);
                     binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
                     binding.includeLayoutNoti.layoutNoti.setClickable(false);
@@ -1351,7 +1385,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         if (isSearchPageOpen) {
-            onClick(binding.buttonSearchCancel);
+            onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(2));
             return;
         }
         if (isSettingPageOpen) {
@@ -1384,7 +1418,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 onClick(binding.buttonMenu);
                 return true;
             case R.id.tab3_search:
-                onClick(binding.buttonSearchCancel);
+                if (binding.viewStubLayoutSearch.getVisibility() == View.GONE){
+                    setInit();
+                }
+                int size = binding.layoutRoot.getHeight() - DpToPx(50);
+                if (isSearchPageOpen) {
+                    layoutSearchBinding.layoutSearch.animate().yBy(size).setDuration(500);
+                    binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
+                    layoutSearchBinding.layoutSearch.setClickable(false);
+                    binding.layoutSearchMask.setClickable(false);
+                    isSearchPageOpen = false;
+                } else {
+                    layoutSearchBinding.layoutSearch.setTranslationY((float) size);
+                    if (layoutSearchBinding.layoutSearch.getVisibility() == View.GONE){
+                        layoutSearchBinding.layoutSearch.setTranslationY((float) size + DpToPx(50));
+                    }
+                    binding.layoutSearchMask.setAlpha(0.0f);
+                    binding.layoutSearchMask.setVisibility(View.VISIBLE);
+                    layoutSearchBinding.layoutSearch.setVisibility(View.VISIBLE);
+
+                    layoutSearchBinding.layoutSearch.animate().yBy(-size).setDuration(500);
+                    binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
+                    layoutSearchBinding.layoutSearch.setClickable(true);
+                    binding.layoutSearchMask.setClickable(true);
+                    isSearchPageOpen = true;
+                }
                 return true;
             case R.id.tab4_setting:
                 onClick(binding.includeLayoutSetting.buttonSettingClose);
@@ -1400,7 +1458,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         // 장치 설정 화면 관련 초기화
-        int settingViewHeight = binding.includeLayoutSetting.layoutSetting.getMeasuredHeight();
+        int settingViewHeight = binding.layoutRoot.getMeasuredHeight() - DpToPx(20);
         ViewGroup.LayoutParams params;
 
         // 장치설정 화면
@@ -1423,7 +1481,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setInit() {  // 뷰페이저2 실행 메서드
-        viewPageSetup = binding.viewPagerSearch;  // 여기서 뷰페이저를 참조한다.
+        binding.viewStubLayoutSearch.setVisibility(View.VISIBLE);
+
+        viewPageSetup = layoutSearchBinding.viewPagerSearch;  // 여기서 뷰페이저를 참조한다.
         FragPagerAdapter SetupPagerAdapter = new FragPagerAdapter(this); // 프래그먼트에서는 getActivity 로 참조하고, 액티비티에서는 this 를 사용한다.
         viewPageSetup.setAdapter(SetupPagerAdapter);  //FragPagerAdapter 를 파라미터로 받고 ViewPager2 에 전달 받는다.
         viewPageSetup.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);  // 방향은 가로
@@ -1458,9 +1518,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setCurrentIndicator(int position) {
-        int childCount = binding.pagerIndicator.getChildCount();
+        int childCount = layoutSearchBinding.pagerIndicator.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            ImageView imageView = (ImageView) binding.pagerIndicator.getChildAt(i);
+            ImageView imageView = (ImageView) layoutSearchBinding.pagerIndicator.getChildAt(i);
             if (i == position) {
                 imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.bg_indicator_active));
             } else {
@@ -1520,4 +1580,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.i("cis", str);
         builder.show();
     }
+
+    private static int DpToPx(int dp){
+        return Math.round((float) dp * appDensity);
+    }
+
 }

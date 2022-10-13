@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_item2"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:visibility="gone">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -368,6 +369,7 @@
             android:text="삭제"
             android:visibility="invisible"
             tools:ignore="TouchTargetSizeCheck" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="40dp"

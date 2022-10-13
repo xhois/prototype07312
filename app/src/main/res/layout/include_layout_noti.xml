@@ -7,7 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:visibility="gone">
 
     <app.softpower.prototype07312.CustomScrollView
         android:id="@+id/scrollViewNoti"
@@ -26,7 +28,7 @@
             <View
                 android:id="@+id/viewNotiFirst"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="200dp"
                 android:background="@android:color/transparent"
                 android:scrollbars="none" />
 
