@@ -748,15 +748,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/includeLayoutSetting"
-        layout="@layout/include_layout_setting"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@null"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ViewStub
+        android:id="@+id/viewStubLayoutSetting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/include_layout_setting"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
