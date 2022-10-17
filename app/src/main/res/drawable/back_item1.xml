@@ -2,10 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape>
-            <gradient
-                android:angle="0"
-                android:startColor="@android:color/white"
-                android:endColor="@android:color/white"/>
+            <solid
+                android:color="@color/white" />
 
             <corners
                 android:bottomLeftRadius="5dp"
