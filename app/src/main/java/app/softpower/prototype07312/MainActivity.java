@@ -56,6 +56,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import app.softpower.prototype07312.databinding.ActivityMainBinding;
+import app.softpower.prototype07312.databinding.IncludeLayoutAppendChildBinding;
 import app.softpower.prototype07312.databinding.IncludeLayoutNotiBinding;
 import app.softpower.prototype07312.databinding.IncludeLayoutSetRulesBinding;
 import app.softpower.prototype07312.databinding.IncludeLayoutSettingBinding;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private IncludeLayoutSettingBinding layoutSettingBinding;
     private IncludeLayoutNotiBinding layoutNotiBinding;
     private IncludeLayoutSetRulesBinding layoutSetRulesBinding;
+    private IncludeLayoutAppendChildBinding layoutAppendChildBinding;
     private ViewPager2 viewPageSetup;
 
     ColorStateList def;
@@ -105,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.imageButtonMenuClose.setOnClickListener(this);
         binding.spinnerUser.setOnClickListener(this);
         binding.buttonChildAdd.setOnClickListener(this);
-        binding.includeLayoutAppendChild.imageButtonAppendChildClose.setOnClickListener(this);
         binding.buttonModiChild.setOnClickListener(this);
         binding.include1.buttonSettingRull2.setOnClickListener(this);
         binding.textViewDeviceStatus.setOnClickListener(this);
@@ -121,28 +122,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.textViewMenuNotice.setOnClickListener(this);
         binding.textViewMenuNews.setOnClickListener(this);
         binding.bottomNavigationView.setOnItemSelectedListener(this);
-
-        binding.includeLayoutAppendChild.radioGroupAvatar1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId != -1 && isAvatarChecked) {
-                    isAvatarChecked = false;
-                    binding.includeLayoutAppendChild.radioGroupAvatar2.clearCheck();
-                }
-                isAvatarChecked = true;
-            }
-        });
-
-        binding.includeLayoutAppendChild.radioGroupAvatar2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId != -1 && isAvatarChecked) {
-                    isAvatarChecked = false;
-                    binding.includeLayoutAppendChild.radioGroupAvatar1.clearCheck();
-                }
-                isAvatarChecked = true;
-            }
-        });
 
         binding.viewStubLayoutSearch.setOnInflateListener(new ViewStub.OnInflateListener() {
             @Override
@@ -754,7 +733,59 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        binding.viewStubLayoutAppendChild.setOnInflateListener(new ViewStub.OnInflateListener() {
+            @Override
+            public void onInflate(ViewStub stub, View inflated) {
+                layoutAppendChildBinding = IncludeLayoutAppendChildBinding.bind(inflated);
 
+                layoutAppendChildBinding.imageButtonAppendChildClose.setOnClickListener(MainActivity.this);
+
+                layoutAppendChildBinding.radioGroupAvatar1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        if (checkedId != -1 && isAvatarChecked) {
+                            isAvatarChecked = false;
+                            layoutAppendChildBinding.radioGroupAvatar2.clearCheck();
+                        }
+                        isAvatarChecked = true;
+                    }
+                });
+
+                layoutAppendChildBinding.radioGroupAvatar2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        if (checkedId != -1 && isAvatarChecked) {
+                            isAvatarChecked = false;
+                            layoutAppendChildBinding.radioGroupAvatar1.clearCheck();
+                        }
+                        isAvatarChecked = true;
+                    }
+                });
+
+                // 자녀추가 레이아웃*****************************************************************************************************************
+                ArrayList<String> years = new ArrayList<String>();
+                int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+                for (int i = 2000; i <= thisYear; i++) {
+                    years.add(Integer.toString(i));
+                }
+                ArrayAdapter<String> adapterAddChild = new ArrayAdapter<String>(
+                        getBaseContext(), android.R.layout.simple_spinner_dropdown_item, years);
+                layoutAppendChildBinding.spinner.setAdapter(adapterAddChild);
+
+                Spinner spinnerChild2 = layoutAppendChildBinding.spinner2;
+                String[] itemsSpinnerChild2 = {"1", "2", "3"};
+                ArrayAdapter<String> adapterChild2 = new ArrayAdapter<String>(
+                        getBaseContext(), android.R.layout.simple_spinner_dropdown_item, itemsSpinnerChild2);
+                spinnerChild2.setAdapter(adapterChild2);
+
+                Spinner spinnerChild3 = layoutAppendChildBinding.spinner3;
+                String[] itemsSpinnerChild3 = {"가져오지 않음", "최성준", "최연이", "정화일"};
+                ArrayAdapter<String> adapterChild3 = new ArrayAdapter<String>(
+                        getBaseContext(), android.R.layout.simple_spinner_dropdown_item, itemsSpinnerChild3);
+                spinnerChild3.setAdapter(adapterChild3);
+
+            }
+        });
 //        setInit(); // 검색화면 ViewPager2
         // 뷰페이저2 사용 순서
         // xml layout 에 ViewPager2 등록
@@ -847,26 +878,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter2_2.setDropDownViewResource(R.layout.spinner_item2);
         spinnerUser2_2.setAdapter(adapter2_2);
 
-        // 자녀추가 레이아웃*****************************************************************************************************************
-        ArrayList<String> years = new ArrayList<String>();
-        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-        for (int i = 2000; i <= thisYear; i++) {
-            years.add(Integer.toString(i));
-        }
-        ArrayAdapter<String> adapterAddChild = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, years);
-        binding.includeLayoutAppendChild.spinner.setAdapter(adapterAddChild);
 
-        Spinner spinnerChild2 = binding.includeLayoutAppendChild.spinner2;
-        String[] itemsSpinnerChild2 = {"1", "2", "3"};
-        ArrayAdapter<String> adapterChild2 = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_dropdown_item, itemsSpinnerChild2);
-        spinnerChild2.setAdapter(adapterChild2);
-
-        Spinner spinnerChild3 = binding.includeLayoutAppendChild.spinner3;
-        String[] itemsSpinnerChild3 = {"가져오지 않음", "최성준", "최연이", "정화일"};
-        ArrayAdapter<String> adapterChild3 = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_dropdown_item, itemsSpinnerChild3);
-        spinnerChild3.setAdapter(adapterChild3);
 
         
 
@@ -1198,24 +1210,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
                 break;
             case R.id.button_child_add:                                                       // 자녀 추가 버튼
+                if (binding.viewStubLayoutAppendChild.getVisibility() == View.GONE){
+                    binding.viewStubLayoutAppendChild.setVisibility(View.VISIBLE);
+                }
                 if (isAppendChild) {
-                    binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(appHeight).setDuration(500);
+                    layoutAppendChildBinding.layoutAppendChild.animate().yBy(appHeight).setDuration(500);
                     binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
-                    binding.includeLayoutAppendChild.layoutAppendChild.setClickable(false);
+                    layoutAppendChildBinding.layoutAppendChild.setClickable(false);
                     binding.layoutSearchMask.setClickable(false);
                     isAppendChild = false;
 
                 } else {
-                    binding.includeLayoutAppendChild.textView23.setText("  자녀 추가");
-                    binding.includeLayoutAppendChild.buttonAppendChildDelete.setVisibility(View.INVISIBLE);
-                    binding.includeLayoutAppendChild.layoutAppendChild.setTranslationY((float) appHeight);
+                    if (layoutAppendChildBinding.layoutAppendChild.getVisibility() == View.GONE){
+                        layoutAppendChildBinding.layoutAppendChild.setVisibility(View.VISIBLE);
+                        ConstraintLayout.LayoutParams p = (ConstraintLayout.LayoutParams) layoutAppendChildBinding.layoutAppendChild.getLayoutParams();
+                        int d = DpToPx(10);
+                        p.setMargins(d,d,d,d);
+                        layoutAppendChildBinding.layoutAppendChild.setLayoutParams(p);
+                    }
+                    layoutAppendChildBinding.textView23.setText("  자녀 추가");
+                    layoutAppendChildBinding.buttonAppendChildDelete.setVisibility(View.INVISIBLE);
+                    layoutAppendChildBinding.layoutAppendChild.setTranslationY((float) appHeight);
                     binding.layoutSearchMask.setAlpha(0.0f);
                     binding.layoutSearchMask.setVisibility(View.VISIBLE);
-                    binding.includeLayoutAppendChild.layoutAppendChild.setVisibility(View.VISIBLE);
+                    layoutAppendChildBinding.layoutAppendChild.setVisibility(View.VISIBLE);
 
-                    binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(-appHeight).setDuration(500);
+                    layoutAppendChildBinding.layoutAppendChild.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            layoutAppendChildBinding.layoutAppendChild.animate().yBy(-appHeight).setDuration(500);
+                        }
+                    });
                     binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
-                    binding.includeLayoutAppendChild.layoutAppendChild.setClickable(true);
+                    layoutAppendChildBinding.layoutAppendChild.setClickable(true);
                     binding.layoutSearchMask.setClickable(true);
                     isAppendChild = true;
                 }
@@ -1224,27 +1251,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 onClick(binding.buttonChildAdd);
                 break;
             case R.id.button_modi_child:                                                             // 자녀 수정 버튼
-                if (isAppendChild) {
-                    binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(appHeight).setDuration(500);
-                    binding.layoutSearchMask.animate().alpha(0.0f).setDuration(500);
-                    binding.includeLayoutAppendChild.layoutAppendChild.setClickable(false);
-                    binding.layoutSearchMask.setClickable(false);
-                    isAppendChild = false;
-
-                } else {
-                    binding.includeLayoutAppendChild.textView23.setText("  수정");
-                    binding.includeLayoutAppendChild.buttonAppendChildDelete.setVisibility(View.VISIBLE);
-                    binding.includeLayoutAppendChild.layoutAppendChild.setTranslationY((float) appHeight);
-                    binding.layoutSearchMask.setAlpha(0.0f);
-                    binding.layoutSearchMask.setVisibility(View.VISIBLE);
-                    binding.includeLayoutAppendChild.layoutAppendChild.setVisibility(View.VISIBLE);
-
-                    binding.includeLayoutAppendChild.layoutAppendChild.animate().yBy(-appHeight).setDuration(500);
-                    binding.layoutSearchMask.animate().alpha(0.5f).setDuration(500);
-                    binding.includeLayoutAppendChild.layoutAppendChild.setClickable(true);
-                    binding.layoutSearchMask.setClickable(true);
-                    isAppendChild = true;
-                }
+                onClick(binding.buttonChildAdd);
+                layoutAppendChildBinding.textView23.setText("  수정");
+                layoutAppendChildBinding.buttonAppendChildDelete.setVisibility(View.VISIBLE);
                 break;
             case R.id.item1_2:                                                    // 규칙설정 어플 화면
                 int x = (int) layoutSetRulesBinding.item12.getX();
