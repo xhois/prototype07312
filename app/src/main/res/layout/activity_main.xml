@@ -395,14 +395,11 @@
                             android:layout_marginEnd="10dp"
                             android:visibility="visible" />
 
-                        <include
-                            android:id="@+id/include_2"
-                            layout="@layout/include_layout_set_rules"
+                        <ViewStub
+                            android:id="@+id/viewStubLayoutSetRules"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="10dp"
+                            android:layout="@layout/include_layout_set_rules"
                             android:visibility="gone" />
 
                     </LinearLayout>

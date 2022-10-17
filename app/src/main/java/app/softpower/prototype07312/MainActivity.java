@@ -57,6 +57,7 @@ import java.util.Calendar;
 
 import app.softpower.prototype07312.databinding.ActivityMainBinding;
 import app.softpower.prototype07312.databinding.IncludeLayoutNotiBinding;
+import app.softpower.prototype07312.databinding.IncludeLayoutSetRulesBinding;
 import app.softpower.prototype07312.databinding.IncludeLayoutSettingBinding;
 import app.softpower.prototype07312.databinding.ViewstubLayoutSearchBinding;
 
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ViewstubLayoutSearchBinding layoutSearchBinding;
     private IncludeLayoutSettingBinding layoutSettingBinding;
     private IncludeLayoutNotiBinding layoutNotiBinding;
+    private IncludeLayoutSetRulesBinding layoutSetRulesBinding;
     private ViewPager2 viewPageSetup;
 
     ColorStateList def;
@@ -105,13 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.buttonChildAdd.setOnClickListener(this);
         binding.includeLayoutAppendChild.imageButtonAppendChildClose.setOnClickListener(this);
         binding.buttonModiChild.setOnClickListener(this);
-        binding.include2.item12.setOnClickListener(this);
-        binding.include2.item22.setOnClickListener(this);
-        binding.include2.item32.setOnClickListener(this);
-        binding.include2.item42.setOnClickListener(this);
-        binding.include2.item52.setOnClickListener(this);
         binding.include1.buttonSettingRull2.setOnClickListener(this);
-        binding.include2.buttonBackToSummary.setOnClickListener(this);
         binding.textViewDeviceStatus.setOnClickListener(this);
         binding.textViewMenuFamily.setOnClickListener(this);
         binding.textViewMenuSmartDevice.setOnClickListener(this);
@@ -125,9 +121,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.textViewMenuNotice.setOnClickListener(this);
         binding.textViewMenuNews.setOnClickListener(this);
         binding.bottomNavigationView.setOnItemSelectedListener(this);
-
-
-
 
         binding.includeLayoutAppendChild.radioGroupAvatar1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -250,6 +243,513 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         return false;
                     }
                 });
+            }
+        });
+        
+        binding.viewStubLayoutSetRules.setOnInflateListener(new ViewStub.OnInflateListener() {
+            @Override
+            public void onInflate(ViewStub stub, View inflated) {
+                layoutSetRulesBinding = IncludeLayoutSetRulesBinding.bind(inflated);
+
+                layoutSetRulesBinding.item12.setOnClickListener(MainActivity.this);
+                layoutSetRulesBinding.item22.setOnClickListener(MainActivity.this);
+                layoutSetRulesBinding.item32.setOnClickListener(MainActivity.this);
+                layoutSetRulesBinding.item42.setOnClickListener(MainActivity.this);
+                layoutSetRulesBinding.item52.setOnClickListener(MainActivity.this);
+                layoutSetRulesBinding.buttonBackToSummary.setOnClickListener(MainActivity.this);
+
+                LinearLayout.LayoutParams p = (LinearLayout.LayoutParams) layoutSetRulesBinding.layoutSetRules.getLayoutParams();
+                p.setMargins(DpToPx(10), DpToPx(5), DpToPx(10),0);
+                layoutSetRulesBinding.layoutSetRules.setLayoutParams(p);
+
+                Spinner spinnerUser2_rule = layoutSetRulesBinding.includeApp.spinnerUser2;
+                String[] itemsSpinnerUser2_rule = {" 오락/소셜 앱만 보기 (14)", " 전체보기 (20)"};
+                ArrayAdapter<String> adapter2_rule = new ArrayAdapter<String>(
+                        getBaseContext(), R.layout.spinner_item5, itemsSpinnerUser2_rule);
+                adapter2_rule.setDropDownViewResource(R.layout.spinner_item5);
+                spinnerUser2_rule.setAdapter(adapter2_rule);
+
+                Spinner spinnerLocationSpan = layoutSetRulesBinding.includeLocation.spinnerUser3;
+                String[] itemsSpinnerLocationSpan = {"1 시간", "2 시간", "3 시간"};
+                ArrayAdapter<String> adapterLocationSpan = new ArrayAdapter<String>(
+                        getBaseContext(), android.R.layout.simple_spinner_dropdown_item, itemsSpinnerLocationSpan);
+                spinnerLocationSpan.setAdapter(adapterLocationSpan);
+
+                //------------------------------------------------------------------------------
+                String textTmp = "※ 설치된 앱이 보이지 않나요? 알아보기";
+                SpannableStringBuilder ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan3 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("알아보기 클릭됨");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan3, 18, 22, 0);
+                ssb.setSpan(new AbsoluteSizeSpan(50), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 사이즈
+                layoutSetRulesBinding.includeApp.textViewAppList.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewAppList.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "⚑ 특정 어플은 항상 허용할 수 있나요? 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan4 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("특정 어플은 항상 허용할 수 있습니다.");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan4, 23, 27, 0);
+                layoutSetRulesBinding.includeApp.textView36.setText(ssb);
+                layoutSetRulesBinding.includeApp.textView36.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "⚑ 변경된 규칙이 기기에 반영되지 않나요? 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan5 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("다시 한번 적용해보세요.");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan5, 24, 28, 0);
+                layoutSetRulesBinding.includeApp.textView37.setText(ssb);
+                layoutSetRulesBinding.includeApp.textView37.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "⚑ 게임 차단 방법에는 어떤 것들이 있나요? 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan6 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("이런 저런 방법들이 있습니다.");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan6, 25, 29, 0);
+                layoutSetRulesBinding.includeApp.textView38.setText(ssb);
+                layoutSetRulesBinding.includeApp.textView38.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "︎⚑ 제한 조건의 우선 순위 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan7 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("순서가 뭐가 중요해요~");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan7, 16, 20, 0);
+                layoutSetRulesBinding.includeApp.textView39.setText(ssb);
+                layoutSetRulesBinding.includeApp.textView39.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "︎모바일펜스를 삭제하거나 무력화하지 못하도록 기기의 설정 진입 및 램 관리(알약,V3,클린마스터,듀얼앱 등) 유형의 앱을 차단합니다. 자녀들의 불평이 있어도 잠시라도 이 설정을 풀어주어서는 안됩니다. 모니터링/제어가 안 되는 상황이 반드시 생깁니다. 무력화방지를 참고하세요. 이 옵션이 켜져 있어도 WiFi설정은 가능하며 여기를 참고하세요.";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan8 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("무력화방지가 뭐가 중요해요~");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan8, 139, 145, 0);
+                ClickableSpan clickableSpan9 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("메롱~ 속았지롱~");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan9, 179, 182, 0);
+                layoutSetRulesBinding.includeApp.textViewBlockSetting.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewBlockSetting.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "︎GPS를 항상 활성화 상태로 두고 끄지 못하도록 합니다. MDM에이전트 활성화가 먼저 필요합니다. 더 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan10 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("MDM에이전트가 뭐야?");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan10, 32, 40, 0);
+                ClickableSpan clickableSpan11 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("더 알아 볼 필요가 있나요?");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan11, 55, 62, 0);
+                layoutSetRulesBinding.includeApp.textViewGps.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewGps.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "제조사 기본 런처(Launcher)외에 외부 런처 앱 설치를 차단 합니다. 더 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan12 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("더 알아보지 마십시오.");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan12, 42, 48, 0);
+                layoutSetRulesBinding.includeApp.textViewLauncher.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewLauncher.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "기본 키보드만 사용하도록 외부 키보드 앱 설치를 차단합니다. 더 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan13 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("더 알아보시면 다칠 수 있습니다.");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan13, 34, 40, 0);
+                layoutSetRulesBinding.includeApp.textViewKeyboard.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewKeyboard.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "VPN 연결을 차단하여 해외 프록시 서버로 우회하여 유해사이트에 접속하는 것을 차단합니다. 더 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan14 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("어버버");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan14, 51, 57, 0);
+                layoutSetRulesBinding.includeApp.textViewVPN.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewVPN.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "실험실은 아직 연구중인 기능들을 위한 공간입니다. 실험실 기능은 언제든지 변경 또는 다운되거나 개발 중단될 수 있습니다. 기능 사용전에, 자녀 기기에 설치된 모바일펜스 앱 버전이 최신인지 확인하세요. 실험실 기능 설명 자세히 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan15 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("어버버 알쏭달쏭");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan15, 112, 130, 0);
+                layoutSetRulesBinding.includeApp.textViewLaboratory.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewLaboratory.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "화면이 꺼진 상태에서도 동작하는 백그라운드 음악 재생 시간을 앱 사용시간으로 집계합니다. 더 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan16 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("어버버 알쏭달쏭 오라가락");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan16, 50, 56, 0);
+                layoutSetRulesBinding.includeApp.textViewBackgroundMusic.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewBackgroundMusic.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "유튜브 앱 내의 설정 메뉴를 차단하여, \"컨텐츠 제한모드\"를 자녀가 변경하지 못하도록 합니다 더 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan17 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("동영상에 중독될 수 있습니다. 조심하십시오.");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan17, 52, 58, 0);
+                layoutSetRulesBinding.includeApp.textViewYoutube.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewYoutube.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "전화 설정메뉴 진입을 차단하여 통화차단번호 등을 자녀가 변경하지 못하도록 합니다. 더 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan18 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("더 알아보지 마십시오.");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan18, 46, 52, 0);
+                layoutSetRulesBinding.includeApp.textViewPhone.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewPhone.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "메시지 설정메뉴 진입을 차단하여 메시지차단번호, 차단문구등을 자녀가 변경하지 못하도록 합니다. 더 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan19 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("더 알아볼 것 없습니다.");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan19, 53, 59, 0);
+                layoutSetRulesBinding.includeApp.textViewMessage.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewMessage.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "Play스토어 설정메뉴 진입을 차단하여 자녀보호기능 등을 자녀가 변경하지 못하도록 합니다. 더 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan20 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("더 알아볼 내용이 없습니다.");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan20, 51, 57, 0);
+                layoutSetRulesBinding.includeApp.textViewPlayStore.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewPlayStore.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "홈 화면에 위젯을 추가하지 못하도록 차단합니다. 더 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan21 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("위젯을 추가하면 안됩니다.");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan21, 27, 33, 0);
+                layoutSetRulesBinding.includeApp.textViewWidget.setText(ssb);
+                layoutSetRulesBinding.includeApp.textViewWidget.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "자녀 스마트기기의 한주간 사용계획을 수립해서, 제한된 시간대에 자녀가 다른 생산적인 활동에 더욱 집중하도록 할 수 있습니다. (제한할 시간대의 칸을 클릭하거나, 마우스로 제한할 시간대 영역을 끌어서 붉은색으로 마킹하고, 이 시간대에 \"제한할 기능\"을 활성화 하세요.)";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan22 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("제한할 기능 화면으로 이동");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan22, 131, 137, 0);
+                ssb.setSpan(new StyleSpan(Typeface.BOLD), 111, 148, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
+                layoutSetRulesBinding.includeUsageTime.textView7.setText(ssb);
+                layoutSetRulesBinding.includeUsageTime.textView7.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "⚑ 제한 시간대인데 앱이 차단되지 않나요? 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan23 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("제한 시간대인데 앱이 차단되지 않는 경우가 뭐가 있을까?");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan23, 24, 28, 0);
+                layoutSetRulesBinding.includeUsageTime.textView.setText(ssb);
+                layoutSetRulesBinding.includeUsageTime.textView.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "위 빨간 \"제한된 시간대\"에서 차단할 기능을 선택하세요. 일부 어플은 예외적으로 \"항상허용\" 또는 \"허가시간대 항상허용\"으로 설정할수도 있습니다.";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan24 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("제한된 시간대 설명화면");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan24, 6, 13, 0);
+                ClickableSpan clickableSpan25 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("항상허용 설명화면");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan25, 46, 50, 0);
+                ClickableSpan clickableSpan26 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("허가시간대 항상허용 설명화면");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan26, 56, 66, 0);
+                layoutSetRulesBinding.includeUsageTime.textViewRestrictFunction.setText(ssb);
+                layoutSetRulesBinding.includeUsageTime.textViewRestrictFunction.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "하루에 최대 몇 시간 스마트기기 사용을 허가할지를 설정합니다. 더 알아보기>>";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan27 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("기기 사용시간 설명화면");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan27, 35, 43, 0);
+                layoutSetRulesBinding.includeUsageTime.textViewDeviceUsageTime.setText(ssb);
+                layoutSetRulesBinding.includeUsageTime.textViewDeviceUsageTime.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "⚑ '기기시간,게임시간'이 초과되어 사용되나요? 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan28 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("기기시간,게임시간 설명 화면으로");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan28, 27, 31, 0);
+                layoutSetRulesBinding.includeUsageTime.textView31.setText(ssb);
+                layoutSetRulesBinding.includeUsageTime.textView31.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "⚑ 변경된 규칙이 기기에 반영되지 않나요? 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan29 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("변경된 규칙 화면으로");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan29, 24, 28, 0);
+                layoutSetRulesBinding.includeUsageTime.textView35.setText(ssb);
+                layoutSetRulesBinding.includeUsageTime.textView35.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "⚑ 시간을 다 써도 전화는 되게 할 수 있나요? 알아보기";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan30 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("전화 화면으로");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan30, 27, 31, 0);
+                layoutSetRulesBinding.includeUsageTime.textView40.setText(ssb);
+                layoutSetRulesBinding.includeUsageTime.textView40.setMovementMethod(LinkMovementMethod.getInstance());
+                //------------------------------------------------------------------------------
+                textTmp = "하루 이용 가능한 게임 시간을 설정합니다. 더 알아보기>>";
+                ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan31 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("하루 이용 가능한 게임 시간 화면으로");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan31, 24, 32, 0);
+                layoutSetRulesBinding.includeUsageTime.textViewMoreTime.setText(ssb);
+                layoutSetRulesBinding.includeUsageTime.textViewMoreTime.setMovementMethod(LinkMovementMethod.getInstance());
 
             }
         });
@@ -338,14 +838,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapterLanguage.setDropDownViewResource(R.layout.spinner_item4);
         spinnerLanguage.setAdapter(adapterLanguage);
 
-        Spinner spinnerUser2_rule = binding.include2.includeApp.spinnerUser2;
-        String[] itemsSpinnerUser2_rule = {" 오락/소셜 앱만 보기 (14)", " 전체보기 (20)"};
-        ArrayAdapter<String> adapter2_rule = new ArrayAdapter<String>(
-                this, R.layout.spinner_item5, itemsSpinnerUser2_rule);
-        adapter2_rule.setDropDownViewResource(R.layout.spinner_item5);
-        spinnerUser2_rule.setAdapter(adapter2_rule);
-
-
         ////////////item2 layout***************************************************************************************************
 
         Spinner spinnerUser2_2 = binding.include1.spinnerUser22;
@@ -376,11 +868,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this, android.R.layout.simple_spinner_dropdown_item, itemsSpinnerChild3);
         spinnerChild3.setAdapter(adapterChild3);
 
-        Spinner spinnerLocationSpan = binding.include2.includeLocation.spinnerUser3;
-        String[] itemsSpinnerLocationSpan = {"1 시간", "2 시간", "3 시간"};
-        ArrayAdapter<String> adapterLocationSpan = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_dropdown_item, itemsSpinnerLocationSpan);
-        spinnerLocationSpan.setAdapter(adapterLocationSpan);
+        
 
 
         ///////////////////////////spinner
@@ -599,481 +1087,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ssb.setSpan(new StyleSpan(Typeface.BOLD), 1, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
         textViewSafeMode.setText(ssb);
         textViewSafeMode.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "※ 설치된 앱이 보이지 않나요? 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan3 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("알아보기 클릭됨");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan3, 18, 22, 0);
-        ssb.setSpan(new AbsoluteSizeSpan(50), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 사이즈
-        binding.include2.includeApp.textViewAppList.setText(ssb);
-        binding.include2.includeApp.textViewAppList.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "⚑ 특정 어플은 항상 허용할 수 있나요? 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan4 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("특정 어플은 항상 허용할 수 있습니다.");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan4, 23, 27, 0);
-        binding.include2.includeApp.textView36.setText(ssb);
-        binding.include2.includeApp.textView36.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "⚑ 변경된 규칙이 기기에 반영되지 않나요? 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan5 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("다시 한번 적용해보세요.");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan5, 24, 28, 0);
-        binding.include2.includeApp.textView37.setText(ssb);
-        binding.include2.includeApp.textView37.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "⚑ 게임 차단 방법에는 어떤 것들이 있나요? 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan6 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("이런 저런 방법들이 있습니다.");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan6, 25, 29, 0);
-        binding.include2.includeApp.textView38.setText(ssb);
-        binding.include2.includeApp.textView38.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "︎⚑ 제한 조건의 우선 순위 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan7 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("순서가 뭐가 중요해요~");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan7, 16, 20, 0);
-        binding.include2.includeApp.textView39.setText(ssb);
-        binding.include2.includeApp.textView39.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "︎모바일펜스를 삭제하거나 무력화하지 못하도록 기기의 설정 진입 및 램 관리(알약,V3,클린마스터,듀얼앱 등) 유형의 앱을 차단합니다. 자녀들의 불평이 있어도 잠시라도 이 설정을 풀어주어서는 안됩니다. 모니터링/제어가 안 되는 상황이 반드시 생깁니다. 무력화방지를 참고하세요. 이 옵션이 켜져 있어도 WiFi설정은 가능하며 여기를 참고하세요.";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan8 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("무력화방지가 뭐가 중요해요~");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan8, 139, 145, 0);
-        ClickableSpan clickableSpan9 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("메롱~ 속았지롱~");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan9, 179, 182, 0);
-        binding.include2.includeApp.textViewBlockSetting.setText(ssb);
-        binding.include2.includeApp.textViewBlockSetting.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "︎GPS를 항상 활성화 상태로 두고 끄지 못하도록 합니다. MDM에이전트 활성화가 먼저 필요합니다. 더 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan10 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("MDM에이전트가 뭐야?");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan10, 32, 40, 0);
-        ClickableSpan clickableSpan11 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("더 알아 볼 필요가 있나요?");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan11, 55, 62, 0);
-        binding.include2.includeApp.textViewGps.setText(ssb);
-        binding.include2.includeApp.textViewGps.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "제조사 기본 런처(Launcher)외에 외부 런처 앱 설치를 차단 합니다. 더 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan12 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("더 알아보지 마십시오.");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan12, 42, 48, 0);
-        binding.include2.includeApp.textViewLauncher.setText(ssb);
-        binding.include2.includeApp.textViewLauncher.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "기본 키보드만 사용하도록 외부 키보드 앱 설치를 차단합니다. 더 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan13 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("더 알아보시면 다칠 수 있습니다.");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan13, 34, 40, 0);
-        binding.include2.includeApp.textViewKeyboard.setText(ssb);
-        binding.include2.includeApp.textViewKeyboard.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "VPN 연결을 차단하여 해외 프록시 서버로 우회하여 유해사이트에 접속하는 것을 차단합니다. 더 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan14 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("어버버");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan14, 51, 57, 0);
-        binding.include2.includeApp.textViewVPN.setText(ssb);
-        binding.include2.includeApp.textViewVPN.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "실험실은 아직 연구중인 기능들을 위한 공간입니다. 실험실 기능은 언제든지 변경 또는 다운되거나 개발 중단될 수 있습니다. 기능 사용전에, 자녀 기기에 설치된 모바일펜스 앱 버전이 최신인지 확인하세요. 실험실 기능 설명 자세히 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan15 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("어버버 알쏭달쏭");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan15, 112, 130, 0);
-        binding.include2.includeApp.textViewLaboratory.setText(ssb);
-        binding.include2.includeApp.textViewLaboratory.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "화면이 꺼진 상태에서도 동작하는 백그라운드 음악 재생 시간을 앱 사용시간으로 집계합니다. 더 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan16 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("어버버 알쏭달쏭 오라가락");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan16, 50, 56, 0);
-        binding.include2.includeApp.textViewBackgroundMusic.setText(ssb);
-        binding.include2.includeApp.textViewBackgroundMusic.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "유튜브 앱 내의 설정 메뉴를 차단하여, \"컨텐츠 제한모드\"를 자녀가 변경하지 못하도록 합니다 더 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan17 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("동영상에 중독될 수 있습니다. 조심하십시오.");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan17, 52, 58, 0);
-        binding.include2.includeApp.textViewYoutube.setText(ssb);
-        binding.include2.includeApp.textViewYoutube.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "전화 설정메뉴 진입을 차단하여 통화차단번호 등을 자녀가 변경하지 못하도록 합니다. 더 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan18 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("더 알아보지 마십시오.");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan18, 46, 52, 0);
-        binding.include2.includeApp.textViewPhone.setText(ssb);
-        binding.include2.includeApp.textViewPhone.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "메시지 설정메뉴 진입을 차단하여 메시지차단번호, 차단문구등을 자녀가 변경하지 못하도록 합니다. 더 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan19 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("더 알아볼 것 없습니다.");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan19, 53, 59, 0);
-        binding.include2.includeApp.textViewMessage.setText(ssb);
-        binding.include2.includeApp.textViewMessage.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "Play스토어 설정메뉴 진입을 차단하여 자녀보호기능 등을 자녀가 변경하지 못하도록 합니다. 더 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan20 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("더 알아볼 내용이 없습니다.");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan20, 51, 57, 0);
-        binding.include2.includeApp.textViewPlayStore.setText(ssb);
-        binding.include2.includeApp.textViewPlayStore.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "홈 화면에 위젯을 추가하지 못하도록 차단합니다. 더 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan21 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("위젯을 추가하면 안됩니다.");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan21, 27, 33, 0);
-        binding.include2.includeApp.textViewWidget.setText(ssb);
-        binding.include2.includeApp.textViewWidget.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "자녀 스마트기기의 한주간 사용계획을 수립해서, 제한된 시간대에 자녀가 다른 생산적인 활동에 더욱 집중하도록 할 수 있습니다. (제한할 시간대의 칸을 클릭하거나, 마우스로 제한할 시간대 영역을 끌어서 붉은색으로 마킹하고, 이 시간대에 \"제한할 기능\"을 활성화 하세요.)";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan22 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("제한할 기능 화면으로 이동");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan22, 131, 137, 0);
-        ssb.setSpan(new StyleSpan(Typeface.BOLD), 111, 148, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
-        binding.include2.includeUsageTime.textView7.setText(ssb);
-        binding.include2.includeUsageTime.textView7.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "⚑ 제한 시간대인데 앱이 차단되지 않나요? 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan23 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("제한 시간대인데 앱이 차단되지 않는 경우가 뭐가 있을까?");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan23, 24, 28, 0);
-        binding.include2.includeUsageTime.textView.setText(ssb);
-        binding.include2.includeUsageTime.textView.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "위 빨간 \"제한된 시간대\"에서 차단할 기능을 선택하세요. 일부 어플은 예외적으로 \"항상허용\" 또는 \"허가시간대 항상허용\"으로 설정할수도 있습니다.";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan24 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("제한된 시간대 설명화면");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan24, 6, 13, 0);
-        ClickableSpan clickableSpan25 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("항상허용 설명화면");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan25, 46, 50, 0);
-        ClickableSpan clickableSpan26 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("허가시간대 항상허용 설명화면");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan26, 56, 66, 0);
-        binding.include2.includeUsageTime.textViewRestrictFunction.setText(ssb);
-        binding.include2.includeUsageTime.textViewRestrictFunction.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "하루에 최대 몇 시간 스마트기기 사용을 허가할지를 설정합니다. 더 알아보기>>";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan27 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("기기 사용시간 설명화면");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan27, 35, 43, 0);
-        binding.include2.includeUsageTime.textViewDeviceUsageTime.setText(ssb);
-        binding.include2.includeUsageTime.textViewDeviceUsageTime.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "⚑ '기기시간,게임시간'이 초과되어 사용되나요? 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan28 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("기기시간,게임시간 설명 화면으로");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan28, 27, 31, 0);
-        binding.include2.includeUsageTime.textView31.setText(ssb);
-        binding.include2.includeUsageTime.textView31.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "⚑ 변경된 규칙이 기기에 반영되지 않나요? 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan29 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("변경된 규칙 화면으로");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan29, 24, 28, 0);
-        binding.include2.includeUsageTime.textView35.setText(ssb);
-        binding.include2.includeUsageTime.textView35.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "⚑ 시간을 다 써도 전화는 되게 할 수 있나요? 알아보기";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan30 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("전화 화면으로");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan30, 27, 31, 0);
-        binding.include2.includeUsageTime.textView40.setText(ssb);
-        binding.include2.includeUsageTime.textView40.setMovementMethod(LinkMovementMethod.getInstance());
-        //------------------------------------------------------------------------------
-        textTmp = "하루 이용 가능한 게임 시간을 설정합니다. 더 알아보기>>";
-        ssb = new SpannableStringBuilder(textTmp);
-        ClickableSpan clickableSpan31 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                showAlertDialog("하루 이용 가능한 게임 시간 화면으로");
-            }
-
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-                textPaint.setColor(getColor(R.color.textColor));
-            }
-        };
-        ssb.setSpan(clickableSpan31, 24, 32, 0);
-        binding.include2.includeUsageTime.textViewMoreTime.setText(ssb);
-        binding.include2.includeUsageTime.textViewMoreTime.setMovementMethod(LinkMovementMethod.getInstance());
+        
 
 
         ///////////////////////SpannableStringBuilder
@@ -1233,104 +1247,102 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.item1_2:                                                    // 규칙설정 어플 화면
-
-                int x = (int) binding.include2.item12.getX();
-                binding.include2.select2.animate().x(x).setDuration(50);
-                binding.include2.item12.setTextColor(Color.BLACK);
-                binding.include2.item22.setTextColor(def);
-                binding.include2.item32.setTextColor(def);
-                binding.include2.item42.setTextColor(def);
-                binding.include2.item52.setTextColor(def);
-                binding.include2.includeApp.item1Layout.setVisibility(View.VISIBLE);
-                binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
-                binding.include2.includeWeb.item3Layout.setVisibility(View.GONE);
-                binding.include2.includePhone.item4Layout.setVisibility(View.GONE);
-                binding.include2.includeLocation.item5Layout.setVisibility(View.GONE);
-                ViewGroup.LayoutParams params = binding.include2.select2.getLayoutParams();
-                params.width = binding.include2.item12.getWidth();
-                binding.include2.select2.setLayoutParams(params);
+                int x = (int) layoutSetRulesBinding.item12.getX();
+                layoutSetRulesBinding.select2.animate().x(x).setDuration(50);
+                layoutSetRulesBinding.item12.setTextColor(Color.BLACK);
+                layoutSetRulesBinding.item22.setTextColor(def);
+                layoutSetRulesBinding.item32.setTextColor(def);
+                layoutSetRulesBinding.item42.setTextColor(def);
+                layoutSetRulesBinding.item52.setTextColor(def);
+                layoutSetRulesBinding.includeApp.item1Layout.setVisibility(View.VISIBLE);
+                layoutSetRulesBinding.includeUsageTime.item2Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includeWeb.item3Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includePhone.item4Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includeLocation.item5Layout.setVisibility(View.GONE);
+                ViewGroup.LayoutParams params = layoutSetRulesBinding.select2.getLayoutParams();
+                params.width = layoutSetRulesBinding.item12.getWidth();
+                layoutSetRulesBinding.select2.setLayoutParams(params);
                 break;
             case R.id.item2_2:                                                    // 규칙설정 사용시간 화면
-
-                x = (int) binding.include2.item22.getX();
-                binding.include2.select2.animate().x(x).setDuration(50);
-                binding.include2.item12.setTextColor(def);
-                binding.include2.item22.setTextColor(Color.BLACK);
-                binding.include2.item32.setTextColor(def);
-                binding.include2.item42.setTextColor(def);
-                binding.include2.item52.setTextColor(def);
-                binding.include2.includeApp.item1Layout.setVisibility(View.GONE);
-                binding.include2.includeUsageTime.item2Layout.setVisibility(View.VISIBLE);
-                binding.include2.includeWeb.item3Layout.setVisibility(View.GONE);
-                binding.include2.includePhone.item4Layout.setVisibility(View.GONE);
-                binding.include2.includeLocation.item5Layout.setVisibility(View.GONE);
-                params = binding.include2.select2.getLayoutParams();
-                params.width = binding.include2.item22.getWidth();
-                binding.include2.select2.setLayoutParams(params);
+                x = (int) layoutSetRulesBinding.item22.getX();
+                layoutSetRulesBinding.select2.animate().x(x).setDuration(50);
+                layoutSetRulesBinding.item12.setTextColor(def);
+                layoutSetRulesBinding.item22.setTextColor(Color.BLACK);
+                layoutSetRulesBinding.item32.setTextColor(def);
+                layoutSetRulesBinding.item42.setTextColor(def);
+                layoutSetRulesBinding.item52.setTextColor(def);
+                layoutSetRulesBinding.includeApp.item1Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includeUsageTime.item2Layout.setVisibility(View.VISIBLE);
+                layoutSetRulesBinding.includeWeb.item3Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includePhone.item4Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includeLocation.item5Layout.setVisibility(View.GONE);
+                params = layoutSetRulesBinding.select2.getLayoutParams();
+                params.width = layoutSetRulesBinding.item22.getWidth();
+                layoutSetRulesBinding.select2.setLayoutParams(params);
                 break;
             case R.id.item3_2:                                                    // 규칙설정 웹 화면
-
-                x = (int) binding.include2.item32.getX();
-                binding.include2.select2.animate().x(x).setDuration(50);
-                binding.include2.item12.setTextColor(def);
-                binding.include2.item22.setTextColor(def);
-                binding.include2.item32.setTextColor(Color.BLACK);
-                binding.include2.item42.setTextColor(def);
-                binding.include2.item52.setTextColor(def);
-                binding.include2.includeApp.item1Layout.setVisibility(View.GONE);
-                binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
-                binding.include2.includeWeb.item3Layout.setVisibility(View.VISIBLE);
-                binding.include2.includePhone.item4Layout.setVisibility(View.GONE);
-                binding.include2.includeLocation.item5Layout.setVisibility(View.GONE);
-                params = binding.include2.select2.getLayoutParams();
-                params.width = binding.include2.item32.getWidth();
-                binding.include2.select2.setLayoutParams(params);
+                x = (int) layoutSetRulesBinding.item32.getX();
+                layoutSetRulesBinding.select2.animate().x(x).setDuration(50);
+                layoutSetRulesBinding.item12.setTextColor(def);
+                layoutSetRulesBinding.item22.setTextColor(def);
+                layoutSetRulesBinding.item32.setTextColor(Color.BLACK);
+                layoutSetRulesBinding.item42.setTextColor(def);
+                layoutSetRulesBinding.item52.setTextColor(def);
+                layoutSetRulesBinding.includeApp.item1Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includeUsageTime.item2Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includeWeb.item3Layout.setVisibility(View.VISIBLE);
+                layoutSetRulesBinding.includePhone.item4Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includeLocation.item5Layout.setVisibility(View.GONE);
+                params = layoutSetRulesBinding.select2.getLayoutParams();
+                params.width = layoutSetRulesBinding.item32.getWidth();
+                layoutSetRulesBinding.select2.setLayoutParams(params);
                 break;
             case R.id.item4_2:                                                    // 규칙설정 전화 화면
-
-                x = (int) binding.include2.item42.getX();
-                binding.include2.select2.animate().x(x).setDuration(50);
-                binding.include2.item12.setTextColor(def);
-                binding.include2.item22.setTextColor(def);
-                binding.include2.item32.setTextColor(def);
-                binding.include2.item42.setTextColor(Color.BLACK);
-                binding.include2.item52.setTextColor(def);
-                binding.include2.includeApp.item1Layout.setVisibility(View.GONE);
-                binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
-                binding.include2.includeWeb.item3Layout.setVisibility(View.GONE);
-                binding.include2.includePhone.item4Layout.setVisibility(View.VISIBLE);
-                binding.include2.includeLocation.item5Layout.setVisibility(View.GONE);
-                params = binding.include2.select2.getLayoutParams();
-                params.width = binding.include2.item42.getWidth();
-                binding.include2.select2.setLayoutParams(params);
+                x = (int) layoutSetRulesBinding.item42.getX();
+                layoutSetRulesBinding.select2.animate().x(x).setDuration(50);
+                layoutSetRulesBinding.item12.setTextColor(def);
+                layoutSetRulesBinding.item22.setTextColor(def);
+                layoutSetRulesBinding.item32.setTextColor(def);
+                layoutSetRulesBinding.item42.setTextColor(Color.BLACK);
+                layoutSetRulesBinding.item52.setTextColor(def);
+                layoutSetRulesBinding.includeApp.item1Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includeUsageTime.item2Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includeWeb.item3Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includePhone.item4Layout.setVisibility(View.VISIBLE);
+                layoutSetRulesBinding.includeLocation.item5Layout.setVisibility(View.GONE);
+                params = layoutSetRulesBinding.select2.getLayoutParams();
+                params.width = layoutSetRulesBinding.item42.getWidth();
+                layoutSetRulesBinding.select2.setLayoutParams(params);
                 break;
             case R.id.item5_2:                                                    // 규칙설정 위치 화면
-
-                x = (int) binding.include2.item52.getX();
-                binding.include2.select2.animate().x(x).setDuration(50);
-                binding.include2.item12.setTextColor(def);
-                binding.include2.item22.setTextColor(def);
-                binding.include2.item32.setTextColor(def);
-                binding.include2.item42.setTextColor(def);
-                binding.include2.item52.setTextColor(Color.BLACK);
-                binding.include2.includeApp.item1Layout.setVisibility(View.GONE);
-                binding.include2.includeUsageTime.item2Layout.setVisibility(View.GONE);
-                binding.include2.includeWeb.item3Layout.setVisibility(View.GONE);
-                binding.include2.includePhone.item4Layout.setVisibility(View.GONE);
-                binding.include2.includeLocation.item5Layout.setVisibility(View.VISIBLE);
-                params = binding.include2.select2.getLayoutParams();
-                params.width = binding.include2.item52.getWidth();
-                binding.include2.select2.setLayoutParams(params);
+                x = (int) layoutSetRulesBinding.item52.getX();
+                layoutSetRulesBinding.select2.animate().x(x).setDuration(50);
+                layoutSetRulesBinding.item12.setTextColor(def);
+                layoutSetRulesBinding.item22.setTextColor(def);
+                layoutSetRulesBinding.item32.setTextColor(def);
+                layoutSetRulesBinding.item42.setTextColor(def);
+                layoutSetRulesBinding.item52.setTextColor(Color.BLACK);
+                layoutSetRulesBinding.includeApp.item1Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includeUsageTime.item2Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includeWeb.item3Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includePhone.item4Layout.setVisibility(View.GONE);
+                layoutSetRulesBinding.includeLocation.item5Layout.setVisibility(View.VISIBLE);
+                params = layoutSetRulesBinding.select2.getLayoutParams();
+                params.width = layoutSetRulesBinding.item52.getWidth();
+                layoutSetRulesBinding.select2.setLayoutParams(params);
                 break;
             case R.id.button_setting_rull2:                                         // 규칙설정 버튼
                 binding.include1.layoutSumActivities.setVisibility(View.GONE);
-                binding.include2.layoutSetRules.setVisibility(View.VISIBLE);
-                binding.layoutNotification.setVisibility(View.GONE);
+                if (binding.viewStubLayoutSetRules.getVisibility() == View.GONE){
+                    binding.viewStubLayoutSetRules.setVisibility(View.VISIBLE);
+                }
+                layoutSetRulesBinding.layoutSetRules.setVisibility(View.VISIBLE);
+//                binding.layoutNotification.setVisibility(View.GONE);
                 break;
             case R.id.button_back_to_summary:                                       // 활동요약으로 돌아가기
-                binding.include2.layoutSetRules.setVisibility(View.GONE);
+                layoutSetRulesBinding.layoutSetRules.setVisibility(View.GONE);
                 binding.include1.layoutSumActivities.setVisibility(View.VISIBLE);
-                binding.layoutNotification.setVisibility(View.VISIBLE);
+//                binding.layoutNotification.setVisibility(View.VISIBLE);
                 break;
             case R.id.textViewDeviceStatus:                                         // 기기상태 텍스트뷰
                 if (isDeviceStatusOpen) {
@@ -1351,7 +1363,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     binding.layoutMenuClose.setClickable(false);
                     isMenuPageOpen = false;
                 }
-
         }
     }
 
