@@ -56,10 +56,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import app.softpower.prototype07312.databinding.ActivityMainBinding;
+import app.softpower.prototype07312.databinding.IncludeDeviceStatusBinding;
 import app.softpower.prototype07312.databinding.IncludeLayoutAppendChildBinding;
 import app.softpower.prototype07312.databinding.IncludeLayoutNotiBinding;
 import app.softpower.prototype07312.databinding.IncludeLayoutSetRulesBinding;
 import app.softpower.prototype07312.databinding.IncludeLayoutSettingBinding;
+import app.softpower.prototype07312.databinding.ViewstubLayoutMenuBinding;
 import app.softpower.prototype07312.databinding.ViewstubLayoutSearchBinding;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationBarView.OnItemSelectedListener {
@@ -70,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private IncludeLayoutNotiBinding layoutNotiBinding;
     private IncludeLayoutSetRulesBinding layoutSetRulesBinding;
     private IncludeLayoutAppendChildBinding layoutAppendChildBinding;
+    private ViewstubLayoutMenuBinding layoutMenuBinding;
+    private IncludeDeviceStatusBinding deviceStatusBinding;
     private ViewPager2 viewPageSetup;
 
     ColorStateList def;
@@ -103,24 +107,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.include1.item1.setOnClickListener(this);
         binding.include1.item2.setOnClickListener(this);
         binding.buttonMenu.setOnClickListener(this);
-        binding.layoutMenuClose.setOnClickListener(this);
-        binding.imageButtonMenuClose.setOnClickListener(this);
         binding.spinnerUser.setOnClickListener(this);
         binding.buttonChildAdd.setOnClickListener(this);
         binding.buttonModiChild.setOnClickListener(this);
         binding.include1.buttonSettingRull2.setOnClickListener(this);
         binding.textViewDeviceStatus.setOnClickListener(this);
-        binding.textViewMenuFamily.setOnClickListener(this);
-        binding.textViewMenuSmartDevice.setOnClickListener(this);
-        binding.textViewMenuSetting.setOnClickListener(this);
-        binding.menuPayment.setOnClickListener(this);
-        binding.textViewMenuBaseOfKnowledge.setOnClickListener(this);
-        binding.textViewMenuHelp.setOnClickListener(this);
-        binding.textViewMenuSupport.setOnClickListener(this);
-        binding.textViewMenuCustomerCenter.setOnClickListener(this);
-        binding.textViewMenuEvaluation.setOnClickListener(this);
-        binding.textViewMenuNotice.setOnClickListener(this);
-        binding.textViewMenuNews.setOnClickListener(this);
+
         binding.bottomNavigationView.setOnItemSelectedListener(this);
 
         binding.viewStubLayoutSearch.setOnInflateListener(new ViewStub.OnInflateListener() {
@@ -786,6 +778,145 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+
+        binding.viewStubLayoutMenu.setOnInflateListener(new ViewStub.OnInflateListener() {
+            @Override
+            public void onInflate(ViewStub stub, View inflated) {
+                layoutMenuBinding = ViewstubLayoutMenuBinding.bind(inflated);
+
+                layoutMenuBinding.layoutMenuClose.setOnClickListener(MainActivity.this);
+                layoutMenuBinding.imageButtonMenuClose.setOnClickListener(MainActivity.this);
+                layoutMenuBinding.textViewMenuFamily.setOnClickListener(MainActivity.this);
+                layoutMenuBinding.textViewMenuSmartDevice.setOnClickListener(MainActivity.this);
+                layoutMenuBinding.textViewMenuSetting.setOnClickListener(MainActivity.this);
+                layoutMenuBinding.menuPayment.setOnClickListener(MainActivity.this);
+                layoutMenuBinding.textViewMenuBaseOfKnowledge.setOnClickListener(MainActivity.this);
+                layoutMenuBinding.textViewMenuHelp.setOnClickListener(MainActivity.this);
+                layoutMenuBinding.textViewMenuSupport.setOnClickListener(MainActivity.this);
+                layoutMenuBinding.textViewMenuCustomerCenter.setOnClickListener(MainActivity.this);
+                layoutMenuBinding.textViewMenuEvaluation.setOnClickListener(MainActivity.this);
+                layoutMenuBinding.textViewMenuNotice.setOnClickListener(MainActivity.this);
+                layoutMenuBinding.textViewMenuNews.setOnClickListener(MainActivity.this);
+
+                TextView textView_menu_family = layoutMenuBinding.textViewMenuFamily;
+                String textTmp = "패밀리   (2)";
+                SpannableStringBuilder ssb = new SpannableStringBuilder(textTmp);
+                Drawable drawableTmp = ContextCompat.getDrawable(getBaseContext(), R.drawable.image_menu_family);
+                drawableTmp.setBounds(0, 0, 40, 40);
+                VerticalImageSpan verticalImageSpan = new VerticalImageSpan(drawableTmp);
+                ssb.setSpan(verticalImageSpan, 4, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView_menu_family.setText(ssb);
+
+                TextView textView_menu_smartDevice = layoutMenuBinding.textViewMenuSmartDevice;
+                textTmp = "스마트기기    (1)";
+                ssb = new SpannableStringBuilder(textTmp);
+                drawableTmp = ContextCompat.getDrawable(getBaseContext(), R.drawable.image_menu_smart_device);
+                drawableTmp.setBounds(0, 0, 30, 40);
+                verticalImageSpan = new VerticalImageSpan(drawableTmp);
+                ssb.setSpan(verticalImageSpan, 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView_menu_smartDevice.setText(ssb);
+
+                TextView textView_menu_setting = layoutMenuBinding.textViewMenuSetting;
+                textTmp = "설정  ";
+                ssb = new SpannableStringBuilder(textTmp);
+                drawableTmp = ContextCompat.getDrawable(getBaseContext(), R.drawable.ic_baseline_settings_24);
+                drawableTmp.setBounds(0, 0, 40, 40);
+                drawableTmp.setTint(Color.BLACK);
+                verticalImageSpan = new VerticalImageSpan(drawableTmp);
+                ssb.setSpan(verticalImageSpan, 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView_menu_setting.setText(ssb);
+
+                TextView textView_menu_payment = layoutMenuBinding.textViewMenuPayment;
+                textTmp = "결제 내역  ";
+                ssb = new SpannableStringBuilder(textTmp);
+                drawableTmp = ContextCompat.getDrawable(getBaseContext(), R.drawable.image_menu_payment);
+                drawableTmp.setBounds(0, 0, 20, 40);
+                drawableTmp.setTint(Color.BLACK);
+                verticalImageSpan = new VerticalImageSpan(drawableTmp);
+                ssb.setSpan(verticalImageSpan, 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView_menu_payment.setText(ssb);
+
+                TextView textView_menu_baseOfKnowledge = layoutMenuBinding.textViewMenuBaseOfKnowledge;
+                textTmp = "지식 베이스  ";
+                ssb = new SpannableStringBuilder(textTmp);
+                drawableTmp = ContextCompat.getDrawable(getBaseContext(), R.drawable.image_menu_knowledge);
+                drawableTmp.setBounds(0, 0, 40, 40);
+                drawableTmp.setTint(Color.BLACK);
+                verticalImageSpan = new VerticalImageSpan(drawableTmp);
+                ssb.setSpan(verticalImageSpan, 7, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView_menu_baseOfKnowledge.setText(ssb);
+
+                TextView textView_menu_help = layoutMenuBinding.textViewMenuHelp;
+                textTmp = "도움말  ";
+                ssb = new SpannableStringBuilder(textTmp);
+                drawableTmp = ContextCompat.getDrawable(getBaseContext(), R.drawable.image_menu_help);
+                drawableTmp.setBounds(0, 0, 10, 40);
+                drawableTmp.setTint(Color.BLACK);
+                verticalImageSpan = new VerticalImageSpan(drawableTmp);
+                ssb.setSpan(verticalImageSpan, 4, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView_menu_help.setText(ssb);
+
+                TextView textView_menu_support = layoutMenuBinding.textViewMenuSupport;
+                textTmp = "사용자 지원  ";
+                ssb = new SpannableStringBuilder(textTmp);
+                drawableTmp = ContextCompat.getDrawable(getBaseContext(), R.drawable.image_menu_support);
+                drawableTmp.setBounds(0, 0, 40, 30);
+                drawableTmp.setTint(Color.BLACK);
+                verticalImageSpan = new VerticalImageSpan(drawableTmp);
+                ssb.setSpan(verticalImageSpan, 7, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView_menu_support.setText(ssb);
+
+                TextView textView_menu_customerCenter = layoutMenuBinding.textViewMenuCustomerCenter;
+                textTmp = "고객센터    02-2135-6877";
+                ssb = new SpannableStringBuilder(textTmp);
+                drawableTmp = ContextCompat.getDrawable(getBaseContext(), R.drawable.image_menu_customer);
+                drawableTmp.setBounds(0, 0, 30, 30);
+                drawableTmp.setTint(Color.BLACK);
+                verticalImageSpan = new VerticalImageSpan(drawableTmp);
+                ssb.setSpan(verticalImageSpan, 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ssb.setSpan(new StyleSpan(Typeface.BOLD), 0, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
+                ssb.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.textColor)), 8, 20, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 칼라
+                textView_menu_customerCenter.setText(ssb);
+
+                TextView textView_menu_evaluation = layoutMenuBinding.textViewMenuEvaluation;
+                textTmp = "평가/리뷰하기  ";
+                ssb = new SpannableStringBuilder(textTmp);
+                drawableTmp = ContextCompat.getDrawable(getBaseContext(), R.drawable.image_menu_evaluation);
+                drawableTmp.setBounds(0, 0, 40, 40);
+                drawableTmp.setTint(Color.RED);
+                verticalImageSpan = new VerticalImageSpan(drawableTmp);
+                ssb.setSpan(verticalImageSpan, 8, 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView_menu_evaluation.setText(ssb);
+
+                TextView textView_menu_notice = layoutMenuBinding.textViewMenuNotice;
+                textTmp = "공지사항  ";
+                ssb = new SpannableStringBuilder(textTmp);
+                drawableTmp = ContextCompat.getDrawable(getBaseContext(), R.drawable.ic_noti);
+                drawableTmp.setBounds(0, 0, 40, 40);
+                drawableTmp.setTint(Color.BLACK);
+                verticalImageSpan = new VerticalImageSpan(drawableTmp);
+                ssb.setSpan(verticalImageSpan, 5, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView_menu_notice.setText(ssb);
+
+                TextView textView_menu_news = layoutMenuBinding.textViewMenuNews;
+                textTmp = "최신소식  ";
+                ssb = new SpannableStringBuilder(textTmp);
+                drawableTmp = ContextCompat.getDrawable(getBaseContext(), R.drawable.image_menu_news);
+                drawableTmp.setBounds(0, 0, 40, 40);
+                drawableTmp.setTint(Color.BLACK);
+                verticalImageSpan = new VerticalImageSpan(drawableTmp);
+                ssb.setSpan(verticalImageSpan, 5, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView_menu_news.setText(ssb);
+
+            }
+        });
+
+        binding.viewStubDeviceStatus.setOnInflateListener(new ViewStub.OnInflateListener() {
+            @Override
+            public void onInflate(ViewStub stub, View inflated) {
+                deviceStatusBinding = IncludeDeviceStatusBinding.bind(inflated);
+            }
+        });
 //        setInit(); // 검색화면 ViewPager2
         // 뷰페이저2 사용 순서
         // xml layout 에 ViewPager2 등록
@@ -894,7 +1025,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        ssb.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.textColor)), 23, textTmp.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 칼라
 //        ssb.setSpan(new AbsoluteSizeSpan(35), 21, 23, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 사이즈
 //        textSupport.setText(ssb);
-
         TextView textView_noti_1 = binding.textViewNoti1;
         String textTmp = "  공지 [2021.10.28] - \"위젯 추가차단\" 기능 추가";
         SpannableStringBuilder ssb = new SpannableStringBuilder(textTmp);
@@ -949,122 +1079,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ssb.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.textColor)), 15, 19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 칼라
         textView_more_2.setText(ssb);
 
-        TextView textView_menu_family = binding.textViewMenuFamily;
-        textTmp = "패밀리   (2)";
-        ssb = new SpannableStringBuilder(textTmp);
-        Drawable drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_family);
-        drawableTmp.setBounds(0, 0, 40, 40);
-        VerticalImageSpan verticalImageSpan = new VerticalImageSpan(drawableTmp);
-        ssb.setSpan(verticalImageSpan, 4, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView_menu_family.setText(ssb);
-
-        TextView textView_menu_smartDevice = binding.textViewMenuSmartDevice;
-        textTmp = "스마트기기    (1)";
-        ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_smart_device);
-        drawableTmp.setBounds(0, 0, 30, 40);
-        verticalImageSpan = new VerticalImageSpan(drawableTmp);
-        ssb.setSpan(verticalImageSpan, 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView_menu_smartDevice.setText(ssb);
-
-        TextView textView_menu_setting = binding.textViewMenuSetting;
-        textTmp = "설정  ";
-        ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = ContextCompat.getDrawable(this, R.drawable.ic_baseline_settings_24);
-        drawableTmp.setBounds(0, 0, 40, 40);
-        drawableTmp.setTint(Color.BLACK);
-        verticalImageSpan = new VerticalImageSpan(drawableTmp);
-        ssb.setSpan(verticalImageSpan, 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView_menu_setting.setText(ssb);
-
-        TextView textView_menu_payment = binding.textViewMenuPayment;
-        textTmp = "결제 내역  ";
-        ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_payment);
-        drawableTmp.setBounds(0, 0, 20, 40);
-        drawableTmp.setTint(Color.BLACK);
-        verticalImageSpan = new VerticalImageSpan(drawableTmp);
-        ssb.setSpan(verticalImageSpan, 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView_menu_payment.setText(ssb);
-
-        TextView textView_menu_baseOfKnowledge = binding.textViewMenuBaseOfKnowledge;
-        textTmp = "지식 베이스  ";
-        ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_knowledge);
-        drawableTmp.setBounds(0, 0, 40, 40);
-        drawableTmp.setTint(Color.BLACK);
-        verticalImageSpan = new VerticalImageSpan(drawableTmp);
-        ssb.setSpan(verticalImageSpan, 7, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView_menu_baseOfKnowledge.setText(ssb);
-
-        TextView textView_menu_help = binding.textViewMenuHelp;
-        textTmp = "도움말  ";
-        ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_help);
-        drawableTmp.setBounds(0, 0, 10, 40);
-        drawableTmp.setTint(Color.BLACK);
-        verticalImageSpan = new VerticalImageSpan(drawableTmp);
-        ssb.setSpan(verticalImageSpan, 4, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView_menu_help.setText(ssb);
-
-        TextView textView_menu_support = binding.textViewMenuSupport;
-        textTmp = "사용자 지원  ";
-        ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_support);
-        drawableTmp.setBounds(0, 0, 40, 30);
-        drawableTmp.setTint(Color.BLACK);
-        verticalImageSpan = new VerticalImageSpan(drawableTmp);
-        ssb.setSpan(verticalImageSpan, 7, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView_menu_support.setText(ssb);
-
-        TextView textView_menu_customerCenter = binding.textViewMenuCustomerCenter;
-        textTmp = "고객센터    02-2135-6877";
-        ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_customer);
-        drawableTmp.setBounds(0, 0, 30, 30);
-        drawableTmp.setTint(Color.BLACK);
-        verticalImageSpan = new VerticalImageSpan(drawableTmp);
-        ssb.setSpan(verticalImageSpan, 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ssb.setSpan(new StyleSpan(Typeface.BOLD), 0, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
-        ssb.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.textColor)), 8, 20, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // 칼라
-        textView_menu_customerCenter.setText(ssb);
-
-        TextView textView_menu_evaluation = binding.textViewMenuEvaluation;
-        textTmp = "평가/리뷰하기  ";
-        ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_evaluation);
-        drawableTmp.setBounds(0, 0, 40, 40);
-        drawableTmp.setTint(Color.RED);
-        verticalImageSpan = new VerticalImageSpan(drawableTmp);
-        ssb.setSpan(verticalImageSpan, 8, 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView_menu_evaluation.setText(ssb);
-
-        TextView textView_menu_notice = binding.textViewMenuNotice;
-        textTmp = "공지사항  ";
-        ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = ContextCompat.getDrawable(this, R.drawable.ic_noti);
-        drawableTmp.setBounds(0, 0, 40, 40);
-        drawableTmp.setTint(Color.BLACK);
-        verticalImageSpan = new VerticalImageSpan(drawableTmp);
-        ssb.setSpan(verticalImageSpan, 5, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView_menu_notice.setText(ssb);
-
-        TextView textView_menu_news = binding.textViewMenuNews;
-        textTmp = "최신소식  ";
-        ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = ContextCompat.getDrawable(this, R.drawable.image_menu_news);
-        drawableTmp.setBounds(0, 0, 40, 40);
-        drawableTmp.setTint(Color.BLACK);
-        verticalImageSpan = new VerticalImageSpan(drawableTmp);
-        ssb.setSpan(verticalImageSpan, 5, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView_menu_news.setText(ssb);
-
         TextView textViewAppUpdate = binding.textViewAppUpdate;
         textTmp = "  모바일펜스 앱 업데이트 필요한 장치가 있습니다. 확인하기";
         ssb = new SpannableStringBuilder(textTmp);
-        drawableTmp = ContextCompat.getDrawable(this, R.drawable.layerlist_ic_app_update);
+        Drawable drawableTmp = ContextCompat.getDrawable(this, R.drawable.layerlist_ic_app_update);
         drawableTmp.setBounds(0, 0, 40, 40);
-        verticalImageSpan = new VerticalImageSpan(drawableTmp);
+        VerticalImageSpan verticalImageSpan = new VerticalImageSpan(drawableTmp);
         ssb.setSpan(verticalImageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
@@ -1151,21 +1171,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include1.item1Layout.setVisibility(View.GONE);
                 break;
             case R.id.buttonMenu:                                                 // 메뉴 화면
+                if (binding.viewStubLayoutMenu.getVisibility() == View.GONE){
+                    binding.viewStubLayoutMenu.setVisibility(View.VISIBLE);
+                }
                 size = binding.layoutRoot.getWidth();
-//                Log.i("cis", String.valueOf("appWidth: " + appWidth));
                 if (isMenuPageOpen) {
-                    binding.layoutMenu.animate().x(-size).setDuration(500);
+                    layoutMenuBinding.layoutMenu.animate().x(-size).setDuration(500);
                     binding.layoutMenuMask.animate().alpha(0.0f).setDuration(500);
-                    binding.layoutMenuClose.setClickable(false);
+                    layoutMenuBinding.layoutMenuClose.setClickable(false);
                     isMenuPageOpen = false;
                 } else {
-                    binding.layoutMenu.setTranslationX(-(float) size);
-                    binding.layoutMenu.setVisibility(View.VISIBLE);
-                    binding.layoutMenu.animate().x(0).setDuration(500);
+                    if (layoutMenuBinding.layoutMenu.getVisibility() == View.GONE){
+                        layoutMenuBinding.layoutMenu.setVisibility(View.VISIBLE);
+                    }
+                    layoutMenuBinding.layoutMenu.setTranslationX(-(float) size);
+                    layoutMenuBinding.layoutMenu.setVisibility(View.VISIBLE);
+                    layoutMenuBinding.layoutMenu.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            layoutMenuBinding.layoutMenu.animate().x(0).setDuration(500);
+                        }
+                    });
                     binding.layoutMenuMask.animate().alpha(0.5f).setDuration(500);
-                    binding.layoutMenuClose.setClickable(true);
+                    layoutMenuBinding.layoutMenuClose.setClickable(true);
                     isMenuPageOpen = true;
-//                    Log.i("cis", String.valueOf("getWidth: " + binding.layoutMenu.getWidth()));
                 }
                 break;
             case R.id.layout_menu_close:                                             // 메뉴 화면 닫기 (검은색 부분)
@@ -1354,24 +1383,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                binding.layoutNotification.setVisibility(View.VISIBLE);
                 break;
             case R.id.textViewDeviceStatus:                                         // 기기상태 텍스트뷰
+                if (binding.viewStubDeviceStatus.getVisibility() == View.GONE){
+                    binding.viewStubDeviceStatus.setVisibility(View.VISIBLE);
+                }
                 if (isDeviceStatusOpen) {
                     binding.layoutMain.setVisibility(View.VISIBLE);
-                    binding.includeDeviceStatus.layoutDeviceStatus.setVisibility(View.GONE);
+                    deviceStatusBinding.layoutDeviceStatus.setVisibility(View.GONE);
                     isDeviceStatusOpen = false;
                 } else {
                     binding.layoutMain.setVisibility(View.GONE);
-                    binding.includeDeviceStatus.layoutDeviceStatus.setVisibility(View.VISIBLE);
+                    deviceStatusBinding.layoutDeviceStatus.setVisibility(View.VISIBLE);
                     isDeviceStatusOpen = true;
                 }
                 break;
             case R.id.textView_menu_family:                                         // 메뉴화면 안의 패밀리 텍스트뷰
-                size = binding.layoutMenu.getWidth();
-                if (isMenuPageOpen) {
-                    binding.layoutMenu.animate().x(-size).setDuration(500);
-                    binding.layoutMenuMask.animate().alpha(0.0f).setDuration(500);
-                    binding.layoutMenuClose.setClickable(false);
-                    isMenuPageOpen = false;
-                }
+//                size = layoutMenuBinding.layoutMenu.getWidth();
+                onClick(binding.buttonMenu);
+//                if (isMenuPageOpen) {
+//                    layoutMenuBinding.layoutMenu.animate().x(-size).setDuration(500);
+//                    binding.layoutMenuMask.animate().alpha(0.0f).setDuration(500);
+//                    layoutMenuBinding.layoutMenuClose.setClickable(false);
+//                    isMenuPageOpen = false;
+//                }
         }
     }
 
@@ -1409,7 +1442,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {  // bottomNavigationView 의 버튼들
         switch (item.getItemId()) {
             case R.id.tab1_home:
-                onClick(binding.textViewMenuFamily);
+                onClick(binding.buttonMenu);
                 return true;
             case R.id.tab2_menu:
                 onClick(binding.buttonMenu);

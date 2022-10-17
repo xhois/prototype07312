@@ -2,132 +2,241 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_search"
+    android:id="@+id/layout_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="50dp"
-    android:background="@drawable/back_item2"
-    android:orientation="vertical"
+    android:clickable="true"
+    android:orientation="horizontal"
     android:visibility="gone">
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="궁금하신 사용방법이나 기능을 검색해 보세요." />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:text="예) 위치, 무력화방지, 모든앱차단"
-        android:textSize="12sp" />
-
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/back_item3"
-        android:orientation="horizontal">
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:background="@color/gray2"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center|left"
-            android:background="@drawable/custom_button6"
-            android:minHeight="48dp"
-            android:paddingTop="5dp"
-            app:srcCompat="@drawable/ic_baseline_search_24"
-            app:tint="@color/gray3"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#A9C070"
+            android:orientation="vertical">
 
-        <EditText
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="35dp"
+                android:text="안녕하세요. xhois1 님!"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="4dp"
+                android:text="xhois1@gmail.com"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_logout"
+                android:layout_width="150dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_button5"
+                android:text="로그아웃"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="italic|bold"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_menu_family"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/back_item7_menu_textview"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="패밀리 (2)"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_menu_smartDevice"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/back_item7_menu_textview"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="스마트기기 (1)"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView_menu_setting"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/back_item7_menu_textview"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="설정"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/menuPayment"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/back_item7_menu_textview"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView_menu_Payment"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="결제 내역  "
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layerlist_custom_tablayout_frame"
+                android:backgroundTint="@color/textColor"
+                android:padding="5dp"
+                android:text="평가판 이용 중"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_menu_baseOfKnowledge"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/back_item7_menu_textview"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="지식 베이스"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView_menu_help"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/back_item7_menu_textview"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="도움말"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView_menu_support"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/back_item7_menu_textview"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="사용자 지원"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView_menu_customerCenter"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/back_item7_menu_textview"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="고객센터 02-2135-6877"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView_menu_evaluation"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/back_item7_menu_textview"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="평가/리뷰하기"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView_menu_notice"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/back_item7_menu_textview"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="공지사항"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView_menu_news"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/back_item7_menu_textview"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="최신소식"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@null"
-            android:ems="10"
-            android:inputType="textPersonName"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:layout_marginTop="1dp"
+            android:background="@color/white" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/pagerIndicator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="4dp"
-            app:srcCompat="@drawable/bg_indicator_inactive" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="4dp"
-            app:srcCompat="@drawable/bg_indicator_inactive" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="4dp"
-            app:srcCompat="@drawable/bg_indicator_inactive" />
-
-    </LinearLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager_search"
+        android:id="@+id/layout_menu_close"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp">
+        android:background="@null"
+        android:orientation="vertical">
 
-    </androidx.viewpager2.widget.ViewPager2>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/layerlist_search_cancel"
-        android:clickable="true"
-        android:gravity="right|center_vertical"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_search_cancel"
+        <ImageButton
+            android:id="@+id/imageButton_menu_close"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@drawable/custom_button7"
-            android:text="취소"
-            android:textColor="@color/gray3"
-            tools:ignore="TouchTargetSizeCheck" />
-
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:background="@null"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:srcCompat="@drawable/ic_baseline_close_24"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
+
 </LinearLayout>

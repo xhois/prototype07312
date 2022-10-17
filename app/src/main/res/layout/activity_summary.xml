@@ -5,7 +5,7 @@
     android:id="@+id/layoutSumActivities"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
+    android:background="@null"
     android:orientation="vertical">
 
 
@@ -58,6 +58,7 @@
         <LinearLayout
             android:layout_width="200dp"
             android:layout_height="match_parent"
+            android:background="@null"
             android:orientation="horizontal">
 
             <TextView
@@ -65,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@null"
                 android:gravity="center"
                 android:text="활동 요약"
                 android:textColor="@color/black" />
@@ -90,6 +92,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-0.1dp"
+        android:background="@null"
         android:elevation="-10dp"
         android:minWidth="0dp"
         android:minHeight="0dp">
@@ -107,6 +110,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="@null"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:text="스마트기기 이용현황"
