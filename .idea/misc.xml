@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/back_boarder_only.xml" value="0.2165" />
         <entry key="app/src/main/res/drawable/back_item1.xml" value="0.292" />
         <entry key="app/src/main/res/drawable/back_item2.xml" value="0.343" />
         <entry key="app/src/main/res/drawable/back_item3.xml" value="0.343" />
@@ -102,7 +103,7 @@
         <entry key="app/src/main/res/drawable/switch_track_on.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/switch_track_selector.xml" value="0.2775" />
         <entry key="app/src/main/res/layout-v31/activity_main.xml" value="0.3224417426545086" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.37798072044647385" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.31837606837606836" />
         <entry key="app/src/main/res/layout/activity_summary.xml" value="0.4421364985163205" />
         <entry key="app/src/main/res/layout/activity_tutorial.xml" value="0.4050632911392405" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.3224417426545086" />
@@ -137,6 +138,7 @@
         <entry key="app/src/main/res/layout/spinner_item4.xml" value="0.6388888888888888" />
         <entry key="app/src/main/res/layout/spinner_item5.xml" value="0.48518518518518516" />
         <entry key="app/src/main/res/layout/viewstub_layout_menu.xml" value="0.4064814814814815" />
+        <entry key="app/src/main/res/layout/viewstub_layout_payment.xml" value="0.31837606837606836" />
         <entry key="app/src/main/res/layout/viewstub_layout_search.xml" value="0.31837606837606836" />
         <entry key="app/src/main/res/layout/viewstub_layout_setting2.xml" value="0.375" />
         <entry key="app/src/main/res/menu/menu_bottom.xml" value="0.5074074074074074" />

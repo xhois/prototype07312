@@ -63,6 +63,7 @@ import app.softpower.prototype07312.databinding.IncludeLayoutNotiBinding;
 import app.softpower.prototype07312.databinding.IncludeLayoutSetRulesBinding;
 import app.softpower.prototype07312.databinding.IncludeLayoutSettingBinding;
 import app.softpower.prototype07312.databinding.ViewstubLayoutMenuBinding;
+import app.softpower.prototype07312.databinding.ViewstubLayoutPaymentBinding;
 import app.softpower.prototype07312.databinding.ViewstubLayoutSearchBinding;
 import app.softpower.prototype07312.databinding.ViewstubLayoutSetting2Binding;
 
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ViewstubLayoutMenuBinding layoutMenuBinding;
     private IncludeDeviceStatusBinding deviceStatusBinding;
     private ViewstubLayoutSetting2Binding layoutSetting2Binding;
+    private ViewstubLayoutPaymentBinding layoutPaymentBinding;
     private ViewPager2 viewPageSetup;
 
     ColorStateList def;
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isAppendChild = false;
     boolean isDeviceStatusOpen = false;
     boolean isSetting2PageOpen = false;
+    boolean isPaymentPageOpen = false;
     static int appWidth;
     static int appHeight;
     static float appDensity;
@@ -960,6 +963,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 textViewCustomerSupport.setMovementMethod(LinkMovementMethod.getInstance());
             }
         });
+
+        binding.viewStubLayoutPayment.setOnInflateListener(new ViewStub.OnInflateListener() {
+            @Override
+            public void onInflate(ViewStub stub, View inflated) {
+                layoutPaymentBinding = ViewstubLayoutPaymentBinding.bind(inflated);
+
+
+            }
+        });
     }
 
     private void checkForFirstRun() {
@@ -1454,13 +1466,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (binding.viewStubLayoutSetting2.getVisibility() == View.GONE) {
                     binding.viewStubLayoutSetting2.setVisibility(View.VISIBLE);
                 }
-                onClick(binding.buttonMenu);
+                onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(0));
                 binding.layoutMain.setVisibility(View.GONE);
-                if (binding.viewStubDeviceStatus.getVisibility() != View.GONE) {
-                    deviceStatusBinding.layoutDeviceStatus.setVisibility(View.GONE);
-                }
                 layoutSetting2Binding.layoutSetting2.setVisibility(View.VISIBLE);
                 isSetting2PageOpen = true;
+                break;
+
+            case R.id.menuPayment:                                    // 메뉴화면 속의 결제 리니어레이아웃
+                if (binding.viewStubLayoutPayment.getVisibility() == View.GONE) {
+                    binding.viewStubLayoutPayment.setVisibility(View.VISIBLE);
+                }
+                onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(0));
+                binding.layoutMain.setVisibility(View.GONE);
+                layoutPaymentBinding.layoutPayment.setVisibility(View.VISIBLE);
+                isPaymentPageOpen = true;
                 break;
         }
     }
@@ -1496,6 +1515,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(0));
             return;
         }
+        if (isPaymentPageOpen) {
+            onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(0));
+            return;
+        }
 
         super.onBackPressed();
     }
@@ -1512,9 +1535,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 if (isSetting2PageOpen) {
                     layoutSetting2Binding.layoutSetting2.setVisibility(View.GONE);
-                    binding.layoutMain.setVisibility(View.VISIBLE);
                     isSetting2PageOpen = false;
                 }
+                if (isPaymentPageOpen) {
+                    layoutPaymentBinding.layoutPayment.setVisibility(View.GONE);
+                    isSetting2PageOpen = false;
+                }
+                binding.layoutMain.setVisibility(View.VISIBLE);
                 binding.mainScrollView.post(new Runnable() {
                     @Override
                     public void run() {
