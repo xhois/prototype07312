@@ -368,6 +368,16 @@
         <item>설정 &gt; 앱 개별 사용시간 사용여부</item>
         <item>설정 &gt; 부모 전화번호</item>
     </string-array>
+    <string-array name="country">
+        <item>South Korea</item>
+        <item>United State America</item>
+        <item>Japan</item>
+    </string-array>
+    <string-array name="time">
+        <item>Asia/Seoul - Korea Standard Time (GMT+9)</item>
+        <item>America/New York - Eastern Standard Time (GMT-5)</item>
+        <item>Asia/Tokyo - Japan Standard Time (GMT+9)</item>
+    </string-array>
 </resources>
 
 

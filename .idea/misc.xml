@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/back_item1.xml" value="0.292" />
         <entry key="app/src/main/res/drawable/back_item2.xml" value="0.343" />
         <entry key="app/src/main/res/drawable/back_item3.xml" value="0.343" />
         <entry key="app/src/main/res/drawable/back_item3_no_storke.xml" value="0.2825" />
@@ -37,6 +38,7 @@
         <entry key="app/src/main/res/drawable/custom_button9.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/custom_imageView.xml" value="0.281" />
         <entry key="app/src/main/res/drawable/edit_text_design.xml" value="0.273" />
+        <entry key="app/src/main/res/drawable/gradient_spinner.xml" value="0.219" />
         <entry key="app/src/main/res/drawable/ic_addition_child.xml" value="0.273" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.303" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.281" />
@@ -84,20 +86,23 @@
         <entry key="app/src/main/res/drawable/layerlist_custom_textview_r15.xml" value="0.3155" />
         <entry key="app/src/main/res/drawable/layerlist_custom_textview_r5.xml" value="0.3355" />
         <entry key="app/src/main/res/drawable/layerlist_ic_app_update.xml" value="0.2775" />
+        <entry key="app/src/main/res/drawable/layerlist_ic_support.xml" value="0.292" />
         <entry key="app/src/main/res/drawable/layerlist_imageView.xml" value="0.281" />
         <entry key="app/src/main/res/drawable/layerlist_imageview.xml" value="0.281" />
         <entry key="app/src/main/res/drawable/layerlist_safe_mode.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/layerlist_search_cancel.xml" value="0.343" />
         <entry key="app/src/main/res/drawable/layerlist_usage_time.xml" value="0.281" />
+        <entry key="app/src/main/res/drawable/layerlist_usage_time_bottom.xml" value="0.226" />
         <entry key="app/src/main/res/drawable/layerlist_usage_time_image.xml" value="0.281" />
         <entry key="app/src/main/res/drawable/layerlist_usage_time_line_image.xml" value="0.281" />
+        <entry key="app/src/main/res/drawable/layerlist_usage_time_line_image_middle.xml" value="0.226" />
         <entry key="app/src/main/res/drawable/menu_selector_color.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/switch_track_off.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/switch_track_on.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/switch_track_selector.xml" value="0.2775" />
         <entry key="app/src/main/res/layout-v31/activity_main.xml" value="0.3224417426545086" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.355877616747182" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.37798072044647385" />
         <entry key="app/src/main/res/layout/activity_summary.xml" value="0.4421364985163205" />
         <entry key="app/src/main/res/layout/activity_tutorial.xml" value="0.4050632911392405" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.3224417426545086" />
@@ -133,6 +138,7 @@
         <entry key="app/src/main/res/layout/spinner_item5.xml" value="0.48518518518518516" />
         <entry key="app/src/main/res/layout/viewstub_layout_menu.xml" value="0.4064814814814815" />
         <entry key="app/src/main/res/layout/viewstub_layout_search.xml" value="0.31837606837606836" />
+        <entry key="app/src/main/res/layout/viewstub_layout_setting2.xml" value="0.375" />
         <entry key="app/src/main/res/menu/menu_bottom.xml" value="0.5074074074074074" />
       </map>
     </option>

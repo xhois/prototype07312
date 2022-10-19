@@ -21,6 +21,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -63,6 +64,7 @@ import app.softpower.prototype07312.databinding.IncludeLayoutSetRulesBinding;
 import app.softpower.prototype07312.databinding.IncludeLayoutSettingBinding;
 import app.softpower.prototype07312.databinding.ViewstubLayoutMenuBinding;
 import app.softpower.prototype07312.databinding.ViewstubLayoutSearchBinding;
+import app.softpower.prototype07312.databinding.ViewstubLayoutSetting2Binding;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationBarView.OnItemSelectedListener {
 
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private IncludeLayoutAppendChildBinding layoutAppendChildBinding;
     private ViewstubLayoutMenuBinding layoutMenuBinding;
     private IncludeDeviceStatusBinding deviceStatusBinding;
+    private ViewstubLayoutSetting2Binding layoutSetting2Binding;
     private ViewPager2 viewPageSetup;
 
     ColorStateList def;
@@ -85,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isAvatarChecked = false;
     boolean isAppendChild = false;
     boolean isDeviceStatusOpen = false;
+    boolean isSetting2PageOpen = false;
     static int appWidth;
     static int appHeight;
     static float appDensity;
@@ -216,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
             }
         });
-        
+
         binding.viewStubLayoutSetRules.setOnInflateListener(new ViewStub.OnInflateListener() {
             @Override
             public void onInflate(ViewStub stub, View inflated) {
@@ -230,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 layoutSetRulesBinding.buttonBackToSummary.setOnClickListener(MainActivity.this);
 
                 LinearLayout.LayoutParams p = (LinearLayout.LayoutParams) layoutSetRulesBinding.layoutSetRules.getLayoutParams();
-                p.setMargins(DpToPx(10), DpToPx(5), DpToPx(10),0);
+                p.setMargins(DpToPx(10), DpToPx(5), DpToPx(10), 0);
                 layoutSetRulesBinding.layoutSetRules.setLayoutParams(p);
 
                 Spinner spinnerUser2_rule = layoutSetRulesBinding.includeApp.spinnerUser2;
@@ -917,19 +921,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 deviceStatusBinding = IncludeDeviceStatusBinding.bind(inflated);
             }
         });
-//        setInit(); // 검색화면 ViewPager2
-        // 뷰페이저2 사용 순서
-        // xml layout 에 ViewPager2 등록
-        // 각각의 페이지용 layout xml 작성
-        // FragmentStateAdapter class 만들고
-        // 생성자 만들고, 오버라이드(createFragment, getItemId, getItemCount)
-        // onCreate 에서 초기화
-        // FragmentStateAdapter 인스턴스 생성
-        // viewPager2.setAdapter(fragmentStateAdapter); ViewPager2 에 FragmentStateAdapter 인스턴스를 어댑터로 설정
-        // 이러면 끝인데, 기타 여러가지 설정들을 해준다. (스크롤 방향, 페이지 갯수, 처음 보여질 페이지, 옆 페이지 보이게 등등)
-        // viewPager2.registerOnPageChangeCallback 리스너 등록하면서
-        // 메소드 오버라이드(onPageScrolled, onPageSelected, onPageScrollStateChanged
-        // 끝
+
+        binding.viewStubLayoutSetting2.setOnInflateListener(new ViewStub.OnInflateListener() {
+            @Override
+            public void onInflate(ViewStub stub, View inflated) {
+                layoutSetting2Binding = ViewstubLayoutSetting2Binding.bind(inflated);
+
+                Spinner spinnerUser1 = layoutSetting2Binding.spinner1;
+                String[] itemsSpinnerUser1 = getResources().getStringArray(R.array.country);
+                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(
+                        getBaseContext(), R.layout.spinner_item, itemsSpinnerUser1);
+                adapter1.setDropDownViewResource(R.layout.spinner_item);
+                spinnerUser1.setAdapter(adapter1);
+
+                Spinner spinnerUser2 = layoutSetting2Binding.spinner2;
+                String[] itemsSpinnerUser2 = getResources().getStringArray(R.array.time);
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
+                        getBaseContext(), R.layout.spinner_item, itemsSpinnerUser2);
+                adapter2.setDropDownViewResource(R.layout.spinner_item);
+                spinnerUser2.setAdapter(adapter2);
+
+                TextView textViewCustomerSupport = layoutSetting2Binding.textView1;
+                String textTmp = "****** [변경]";
+                SpannableStringBuilder ssb = new SpannableStringBuilder(textTmp);
+                ClickableSpan clickableSpan1 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        showAlertDialog("변경 클릭됨");
+                    }
+
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setColor(getColor(R.color.textColor));
+                    }
+                };
+                ssb.setSpan(clickableSpan1, 7, 11, 0);
+                textViewCustomerSupport.setText(ssb);
+                textViewCustomerSupport.setMovementMethod(LinkMovementMethod.getInstance());
+            }
+        });
     }
 
     private void checkForFirstRun() {
@@ -1008,10 +1038,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this, R.layout.spinner_item2, itemsSpinnerUser2_2);
         adapter2_2.setDropDownViewResource(R.layout.spinner_item2);
         spinnerUser2_2.setAdapter(adapter2_2);
-
-
-
-        
 
 
         ///////////////////////////spinner
@@ -1119,8 +1145,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ssb.setSpan(new StyleSpan(Typeface.BOLD), 1, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
         textViewSafeMode.setText(ssb);
         textViewSafeMode.setMovementMethod(LinkMovementMethod.getInstance());
-        
 
+        TextView textViewCustomerSupport = binding.textViewCustomerSupport;
+        textTmp = " 고객지원 : 02-2135-6877 (또는 채팅 상담)";
+        ssb = new SpannableStringBuilder(textTmp);
+        ClickableSpan clickableSpan3 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                showAlertDialog("채팅 상담 클릭됨");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setColor(getColor(R.color.textColor));
+            }
+        };
+        ssb.setSpan(clickableSpan3, 25, 30, 0);
+        ssb.setSpan(new StyleSpan(Typeface.BOLD), 25, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // 스타일
+        ssb.setSpan(new RelativeSizeSpan(0.8f), 22, 24, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);  // 사이즈
+        textViewCustomerSupport.setText(ssb);
+        textViewCustomerSupport.setMovementMethod(LinkMovementMethod.getInstance());
 
         ///////////////////////SpannableStringBuilder
     }
@@ -1171,7 +1215,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.include1.item1Layout.setVisibility(View.GONE);
                 break;
             case R.id.buttonMenu:                                                 // 메뉴 화면
-                if (binding.viewStubLayoutMenu.getVisibility() == View.GONE){
+                if (binding.viewStubLayoutMenu.getVisibility() == View.GONE) {
                     binding.viewStubLayoutMenu.setVisibility(View.VISIBLE);
                 }
                 size = binding.layoutRoot.getWidth();
@@ -1181,7 +1225,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     layoutMenuBinding.layoutMenuClose.setClickable(false);
                     isMenuPageOpen = false;
                 } else {
-                    if (layoutMenuBinding.layoutMenu.getVisibility() == View.GONE){
+                    if (layoutMenuBinding.layoutMenu.getVisibility() == View.GONE) {
                         layoutMenuBinding.layoutMenu.setVisibility(View.VISIBLE);
                     }
                     layoutMenuBinding.layoutMenu.setTranslationX(-(float) size);
@@ -1239,7 +1283,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
                 break;
             case R.id.button_child_add:                                                       // 자녀 추가 버튼
-                if (binding.viewStubLayoutAppendChild.getVisibility() == View.GONE){
+                if (binding.viewStubLayoutAppendChild.getVisibility() == View.GONE) {
                     binding.viewStubLayoutAppendChild.setVisibility(View.VISIBLE);
                 }
                 if (isAppendChild) {
@@ -1250,11 +1294,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     isAppendChild = false;
 
                 } else {
-                    if (layoutAppendChildBinding.layoutAppendChild.getVisibility() == View.GONE){
+                    if (layoutAppendChildBinding.layoutAppendChild.getVisibility() == View.GONE) {
                         layoutAppendChildBinding.layoutAppendChild.setVisibility(View.VISIBLE);
                         ConstraintLayout.LayoutParams p = (ConstraintLayout.LayoutParams) layoutAppendChildBinding.layoutAppendChild.getLayoutParams();
                         int d = DpToPx(10);
-                        p.setMargins(d,d,d,d);
+                        p.setMargins(d, d, d, d);
                         layoutAppendChildBinding.layoutAppendChild.setLayoutParams(p);
                     }
                     layoutAppendChildBinding.textView23.setText("  자녀 추가");
@@ -1371,7 +1415,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button_setting_rull2:                                         // 규칙설정 버튼
                 binding.include1.layoutSumActivities.setVisibility(View.GONE);
-                if (binding.viewStubLayoutSetRules.getVisibility() == View.GONE){
+                if (binding.viewStubLayoutSetRules.getVisibility() == View.GONE) {
                     binding.viewStubLayoutSetRules.setVisibility(View.VISIBLE);
                 }
                 layoutSetRulesBinding.layoutSetRules.setVisibility(View.VISIBLE);
@@ -1383,7 +1427,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                binding.layoutNotification.setVisibility(View.VISIBLE);
                 break;
             case R.id.textViewDeviceStatus:                                         // 기기상태 텍스트뷰
-                if (binding.viewStubDeviceStatus.getVisibility() == View.GONE){
+                if (binding.viewStubDeviceStatus.getVisibility() == View.GONE) {
                     binding.viewStubDeviceStatus.setVisibility(View.VISIBLE);
                 }
                 if (isDeviceStatusOpen) {
@@ -1392,19 +1436,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     isDeviceStatusOpen = false;
                 } else {
                     binding.layoutMain.setVisibility(View.GONE);
+                    if (binding.viewStubLayoutSetting2.getVisibility() != View.GONE) {
+                        layoutSetting2Binding.layoutSetting2.setVisibility(View.GONE);
+                    }
                     deviceStatusBinding.layoutDeviceStatus.setVisibility(View.VISIBLE);
                     isDeviceStatusOpen = true;
                 }
                 break;
-            case R.id.textView_menu_family:                                         // 메뉴화면 안의 패밀리 텍스트뷰
-//                size = layoutMenuBinding.layoutMenu.getWidth();
+            case R.id.textView_menu_family:                                         // 메뉴화면 속의 패밀리 텍스트뷰
+                onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(0));
+                break;
+            case R.id.textView_menu_smartDevice:                                    // 메뉴화면 속의 스마트기기 텍스트뷰
+                onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(0));
+                onClick(binding.textViewDeviceStatus);
+                break;
+            case R.id.textView_menu_setting:                                    // 메뉴화면 속의 설정 텍스트뷰
+                if (binding.viewStubLayoutSetting2.getVisibility() == View.GONE) {
+                    binding.viewStubLayoutSetting2.setVisibility(View.VISIBLE);
+                }
                 onClick(binding.buttonMenu);
-//                if (isMenuPageOpen) {
-//                    layoutMenuBinding.layoutMenu.animate().x(-size).setDuration(500);
-//                    binding.layoutMenuMask.animate().alpha(0.0f).setDuration(500);
-//                    layoutMenuBinding.layoutMenuClose.setClickable(false);
-//                    isMenuPageOpen = false;
-//                }
+                binding.layoutMain.setVisibility(View.GONE);
+                if (binding.viewStubDeviceStatus.getVisibility() != View.GONE) {
+                    deviceStatusBinding.layoutDeviceStatus.setVisibility(View.GONE);
+                }
+                layoutSetting2Binding.layoutSetting2.setVisibility(View.VISIBLE);
+                isSetting2PageOpen = true;
+                break;
         }
     }
 
@@ -1432,6 +1489,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (isDeviceStatusOpen) {
             onClick(binding.textViewDeviceStatus);
+            onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(0));
+            return;
+        }
+        if (isSetting2PageOpen) {
+            onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(0));
             return;
         }
 
@@ -1442,7 +1504,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {  // bottomNavigationView 의 버튼들
         switch (item.getItemId()) {
             case R.id.tab1_home:
-                onClick(binding.buttonMenu);
+                if (isMenuPageOpen) {
+                    onClick(binding.buttonMenu);
+                }
+                if (isDeviceStatusOpen) {
+                    onClick(binding.textViewDeviceStatus);
+                }
+                if (isSetting2PageOpen) {
+                    layoutSetting2Binding.layoutSetting2.setVisibility(View.GONE);
+                    binding.layoutMain.setVisibility(View.VISIBLE);
+                    isSetting2PageOpen = false;
+                }
+                binding.mainScrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.mainScrollView.scrollTo(0, 0);
+                    }
+                });
                 return true;
             case R.id.tab2_menu:
                 onClick(binding.buttonMenu);
@@ -1531,7 +1609,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     isNotiPageOpen = false;
 
                 } else {
-                    if (layoutNotiBinding.layoutNoti.getVisibility() == View.GONE){
+                    if (layoutNotiBinding.layoutNoti.getVisibility() == View.GONE) {
                         layoutNotiBinding.layoutNoti.setVisibility(View.VISIBLE);
                         // 알림 화면
                         int settingViewHeight = appHeight - DpToPx(20);
