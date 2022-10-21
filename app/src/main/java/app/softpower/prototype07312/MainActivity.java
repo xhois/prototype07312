@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +33,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -44,6 +47,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -68,6 +72,7 @@ import app.softpower.prototype07312.databinding.ViewstubLayoutSearchBinding;
 import app.softpower.prototype07312.databinding.ViewstubLayoutSetting2Binding;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationBarView.OnItemSelectedListener {
+    public static Context mContext;
 
     private ActivityMainBinding binding;
     private ViewstubLayoutSearchBinding layoutSearchBinding;
@@ -92,13 +97,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isDeviceStatusOpen = false;
     boolean isSetting2PageOpen = false;
     boolean isPaymentPageOpen = false;
-    static int appWidth;
-    static int appHeight;
-    static float appDensity;
+    private static int appWidth;
+    private static int appHeight;
+    private static float appDensity;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mContext = this;
         checkForFirstRun();
 
         super.onCreate(savedInstanceState);
@@ -977,7 +983,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void checkForFirstRun() {
         SharedPreferences pref = getSharedPreferences("checkFirst", Activity.MODE_PRIVATE);
         boolean checkFirst = pref.getBoolean("checkFirst", true);
-        if (checkFirst) {
+        if (true) {
             // 앱 최초 실행시 하고 싶은 작업
             SharedPreferences.Editor editor = pref.edit();
             editor.putBoolean("checkFirst", false);
@@ -1481,6 +1487,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 layoutPaymentBinding.layoutPayment.setVisibility(View.VISIBLE);
                 isPaymentPageOpen = true;
                 break;
+
+            case R.id.textView_menu_baseOfKnowledge:                 // 메뉴화면 속의 지식베이스 텍스트뷰
+                onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(1));
+                showAlertDialog("지식 베이스 클릭됨");
+                break;
+
+            case R.id.textView_menu_help:                 // 메뉴화면 속의 도움말 텍스트뷰
+                onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(1));
+                showAlertDialog("도움말 클릭됨");
+                break;
+
+            case R.id.textView_menu_support:                 // 메뉴화면 속의 사용자지원 텍스트뷰
+                onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(1));
+                showAlertDialog("사용자지원 클릭됨");
+                break;
+
+            case R.id.textView_menu_customerCenter:                 // 메뉴화면 속의 고객센터 텍스트뷰
+                onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(1));
+                showAlertDialog("고객센터 클릭됨");
+                break;
+
+            case R.id.textView_menu_evaluation:                 // 메뉴화면 속의 평가/리뷰하기 텍스트뷰
+                onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(1));
+                showAlertDialog("평가/리뷰하기 클릭됨");
+                break;
+
+            case R.id.textView_menu_notice:                 // 메뉴화면 속의 공지사항 텍스트뷰
+                onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(1));
+                showAlertDialog("공지사항 클릭됨");
+                break;
+
+            case R.id.textView_menu_news:                 // 메뉴화면 속의 최신소식 텍스트뷰
+                onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(1));
+                showAlertDialog("최신소식 클릭됨");
+                break;
         }
     }
 
@@ -1520,7 +1561,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        super.onBackPressed();
+        Dialog dialog01;
+        dialog01 = new Dialog(MainActivity.this);
+        dialog01.setContentView(R.layout.custom_dialog_exit);
+        dialog01.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams params = dialog01.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        dialog01.getWindow().setAttributes(params);
+
+        dialog01.show();
+        Button agree = dialog01.findViewById(R.id.exit_agree);
+        agree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveTaskToBack(true);
+                finishAndRemoveTask();
+                System.exit(0);
+            }
+        });
+        Button disagree = dialog01.findViewById(R.id.exit_disagree);
+        disagree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog01.dismiss();
+            }
+        });
+
+//        super.onBackPressed();
     }
 
     @Override
@@ -1730,7 +1799,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    class FragPagerAdapter extends FragmentStateAdapter {  // 뷰페이저2에서는 FragmentStateAdapter 를 사용한다.
+    private class FragPagerAdapter extends FragmentStateAdapter {  // 뷰페이저2에서는 FragmentStateAdapter 를 사용한다.
 
         private final int mSetItemCount = 3;  // 프래그먼트 갯수 지정
 

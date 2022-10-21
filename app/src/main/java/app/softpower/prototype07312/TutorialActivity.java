@@ -1,6 +1,9 @@
 package app.softpower.prototype07312;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -67,6 +71,7 @@ public class TutorialActivity extends AppCompatActivity {
                     WindowManager.LayoutParams params = dialog01.getWindow().getAttributes();
                     params.width = WindowManager.LayoutParams.MATCH_PARENT;
                     params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
                     dialog01.getWindow().setAttributes(params);
 
                     dialog01.show();
@@ -75,6 +80,9 @@ public class TutorialActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             finish();
+
+                            Intent intent = new Intent(TutorialActivity.this, AuthorityActivity.class);
+                            startActivity(intent);
 
                         }
                     });
@@ -125,6 +133,42 @@ public class TutorialActivity extends AppCompatActivity {
 
         binding.indicator.attachTo(viewPageSetup);
     }
+
+    @Override
+    public void onBackPressed() {
+
+        Dialog dialog01;
+        dialog01 = new Dialog(TutorialActivity.this);
+        dialog01.setContentView(R.layout.custom_dialog_exit);
+        dialog01.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams params = dialog01.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        dialog01.getWindow().setAttributes(params);
+
+        dialog01.show();
+        Button agree = dialog01.findViewById(R.id.exit_agree);
+        agree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveTaskToBack(true);
+                ((MainActivity)MainActivity.mContext).finish();
+                finishAndRemoveTask();
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
+        });
+        Button disagree = dialog01.findViewById(R.id.exit_disagree);
+        disagree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog01.dismiss();
+            }
+        });
+
+//        super.onBackPressed();
+    }
+
 
 
     class FragPagerAdapter extends FragmentStateAdapter {  // 뷰페이저2에서는 FragmentStateAdapter 를 사용한다.

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="개인정보 수집 안내"
+        android:text="확인해 주세요"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -24,39 +24,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:text="모바일펜스 앱은 아래와 같은 민감한 정보를 수집하고 서버로 전송합니다. 수집된 데이터는 자녀관리 목적으로 가공되어 부모에게만 제공되며 제3자에게 마케팅 목적을 포함한 어떤 용도로도 제공되지 않습니다."
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingTop="20dp"
-        android:paddingEnd="20dp"
-        android:text="• 기기의 전화번호, 고유ID, 맥어드레스 : 자녀의 기기 정보 관리 목적" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:text="• 기기의 위치 : 자녀의 실시간 위치를 파악하여 부모에게 제공 목적" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:text="• 기기에 설치된 앱 목록 : 자녀 기기에 설치된 앱을 제어하기 위한 목적" />
-
-    <TextView
-        android:id="@+id/textView51"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingTop="20dp"
-        android:paddingEnd="20dp"
-        android:text="서비스 이용을 위해서는 위 정보 수집에 동의가 필요합니다. 이에 동의하시면 아래 동의 버튼을 눌러주세요." />
+        android:text="모바일펜스 앱을 종료하시겠습니까?" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,7 +34,7 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/disagree"
+            android:id="@+id/exit_disagree"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_gravity="end"
@@ -76,13 +44,13 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/agree"
+            android:id="@+id/exit_agree"
             android:layout_width="70dp"
             android:layout_height="40dp"
             android:layout_gravity="end"
             android:layout_marginEnd="20dp"
             android:background="@drawable/custom_button2"
-            android:text="동 의"
+            android:text="종 료"
             android:textColor="@color/white"
             tools:ignore="TouchTargetSizeCheck" />
 
