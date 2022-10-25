@@ -20,6 +20,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import app.softpower.prototype07312.databinding.ActivityTutorialBinding;
+import app.softpower.prototype07312.databinding.CustomDialogIntro2Binding;
 import app.softpower.prototype07312.databinding.CustomDialogIntroBinding;
 
 public class TutorialActivity extends AppCompatActivity {
@@ -73,16 +74,46 @@ public class TutorialActivity extends AppCompatActivity {
                     params.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
                     dialog01.getWindow().setAttributes(params);
+                    dialog01.setCancelable(false);
 
                     dialog01.show();
                     Button agree = dialog01.findViewById(R.id.agree);
                     agree.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            finish();
+                            dialog01.dismiss();
 
-                            Intent intent = new Intent(TutorialActivity.this, AuthorityActivity.class);
-                            startActivity(intent);
+                            Dialog dialog02;
+                            dialog02 = new Dialog(TutorialActivity.this);
+                            dialog02.setContentView(R.layout.custom_dialog_intro2);
+                            dialog02.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                            WindowManager.LayoutParams params = dialog02.getWindow().getAttributes();
+                            params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                            params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+                            dialog02.getWindow().setAttributes(params);
+                            dialog02.setCancelable(false);
+
+                            dialog02.show();
+                            Button agree2 = dialog02.findViewById(R.id.agree2);
+                            agree2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog02.dismiss();
+
+                                    finish();
+
+                                    Intent intent = new Intent(TutorialActivity.this, AuthorityActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                            Button disagree2 = dialog02.findViewById(R.id.disagree2);
+                            disagree2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog02.dismiss();
+                                }
+                            });
 
                         }
                     });
@@ -97,7 +128,6 @@ public class TutorialActivity extends AppCompatActivity {
             }
         });
     }
-
 
 
     private void setInit() {  // 뷰페이저2 실행 메서드
@@ -153,7 +183,7 @@ public class TutorialActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 moveTaskToBack(true);
-                ((MainActivity)MainActivity.mContext).finish();
+                ((MainActivity) MainActivity.mContext).finish();
                 finishAndRemoveTask();
                 android.os.Process.killProcess(android.os.Process.myPid());
             }
@@ -168,7 +198,6 @@ public class TutorialActivity extends AppCompatActivity {
 
 //        super.onBackPressed();
     }
-
 
 
     class FragPagerAdapter extends FragmentStateAdapter {  // 뷰페이저2에서는 FragmentStateAdapter 를 사용한다.
