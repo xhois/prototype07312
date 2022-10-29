@@ -7,29 +7,40 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.accessibilityservice.AccessibilityServiceInfo;
+import android.app.AlertDialog;
+import android.app.AppOpsManager;
 import android.app.Dialog;
 import android.app.admin.DeviceAdminReceiver;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.EventLogTags;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 import app.softpower.prototype07312.databinding.ActivityAuthorityBinding;
 import app.softpower.prototype07312.databinding.ActivityTutorialBinding;
 
-public class AuthorityActivity extends AppCompatActivity implements View.OnClickListener{
+public class AuthorityActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityAuthorityBinding binding;
 
@@ -41,8 +52,10 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
     private final static String LOG_TAG = "cis";
     DevicePolicyManager tDevicePolicyManager;
     ComponentName tDevicePolicyAdmin;
-    protected static final int REQUEST_ENABLE = 1;
-    protected static final int SET_PASSWORD = 2;
+    
+    Dialog dialog2_7;
+    Dialog dialog3_7;
+    boolean isShowDialog3_7 = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,25 +77,25 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        if (v == binding.buttonCreateAcount){
+        if (v == binding.buttonCreateAcount) {
             binding.layoutLogin.setVisibility(View.GONE);
             binding.layoutCreate.setVisibility(View.VISIBLE);
             isCreateAccountPageOpen = true;
             return;
         }
-        if (v == binding.buttonLogin){
+        if (v == binding.buttonLogin) {
             binding.layoutLogin.setVisibility(View.GONE);
             binding.layoutWho.setVisibility(View.VISIBLE);
             isWhoPageOpen = true;
             return;
         }
-        if (v == binding.buttonCancel){
+        if (v == binding.buttonCancel) {
             binding.layoutCreate.setVisibility(View.GONE);
             binding.layoutLogin.setVisibility(View.VISIBLE);
             isCreateAccountPageOpen = false;
             return;
         }
-        if (v == binding.buttonCreate){
+        if (v == binding.buttonCreate) {
             Dialog dialog01;
             dialog01 = new Dialog(AuthorityActivity.this);
             dialog01.setContentView(R.layout.custom_dialog_confirm_account);
@@ -137,7 +150,7 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
             return;
         }
 
-        if (v == binding.buttonParent){
+        if (v == binding.buttonParent) {
             Dialog dialog01;
             dialog01 = new Dialog(AuthorityActivity.this);
             dialog01.setContentView(R.layout.custom_dialog_confirm_account2);
@@ -218,22 +231,161 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
 
     }
 
+    //기기관리자(BIND_DEVICE_ADMIN) 권한
     ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == RESULT_OK) {
-//                        Log.e(LOG_TAG, "result : " + result);
+                        dialog2_7 = new Dialog(AuthorityActivity.this);
+                        dialog2_7.setContentView(R.layout.custom_dialog_authority_image);
+                        dialog2_7.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        WindowManager.LayoutParams params = dialog2_7.getWindow().getAttributes();
+                        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                        dialog2_7.getWindow().setAttributes(params);
+                        dialog2_7.setCancelable(false);
+
+                        dialog2_7.show();
+                        Button agree = dialog2_7.findViewById(R.id.agree);
+                        agree.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                boolean permissionOk = hasPermissionToReadNetworkHistory();
+                                if (permissionOk) {
+                                    dialog2_7.dismiss();
+                                    showDialog3_7();
+                                }
+                            }
+                        });
+
+                        Button disagree = dialog2_7.findViewById(R.id.disagree);
+                        disagree.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog2_7.dismiss();
+                            }
+                        });
 
                     }
                 }
             });
+    private boolean hasPermissionToReadNetworkHistory() {
+        final AppOpsManager appOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
+        int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, android.os.Process.myUid(), getPackageName());
+        if (mode == AppOpsManager.MODE_ALLOWED) {
+            return true;
+        }
+        appOps.startWatchingMode(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                getApplicationContext().getPackageName(),
+                new AppOpsManager.OnOpChangedListener() {
+                    @Override
+                    public void onOpChanged(String op, String packageName) {
+                        int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                                android.os.Process.myUid(), getPackageName());
+                        if (mode != AppOpsManager.MODE_ALLOWED) {
+                            return;
+                        }
+                        appOps.stopWatchingMode(this);
+                        Intent intent = new Intent(AuthorityActivity.this, AuthorityActivity.class);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        getApplicationContext().startActivity(intent);
+                        isShowDialog3_7 = true;
+//                        dialog2_7.dismiss();
+//                        showDialog3_7();
+                    }
+                });
+        requestReadNetworkHistoryAccess();
+
+        return false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isShowDialog3_7) {
+            isShowDialog3_7 = false;
+            dialog2_7.dismiss();
+            showDialog3_7();
+        }
+    }
+
+    private void requestReadNetworkHistoryAccess() {
+        Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS, Uri.parse("package:" + getPackageName()));
+        startActivity(intent);
+    }
+
+    private void showDialog3_7() {
+        Log.e("cis", "오냐?");
+        dialog3_7 = new Dialog(AuthorityActivity.this);
+        dialog3_7.setContentView(R.layout.custom_dialog_authority_image);
+        dialog3_7.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams params = dialog3_7.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dialog3_7.getWindow().setAttributes(params);
+        dialog3_7.setCancelable(false);
+        ImageView imageView = dialog3_7.findViewById(R.id.imageView);
+        imageView.setImageResource(R.drawable.image_authority_3_7);
+        TextView title = dialog3_7.findViewById(R.id.textViewTitle);
+        title.setText("단계 3/7) 모니터링 기능 강화");
+        TextView contents = dialog3_7.findViewById(R.id.textViewContents);
+        contents.setText("웹사이트 모니터링, 유해차단을 위해 \"접근성\" 권한이 필요합니다. " +
+                "아래 \"설정으로 이동\"을 누르고 [설치된 서비스] → 모바일펜스]" +
+                " 로 이동하여 권한을 허용해주세요. 혹 권한을 켰는데 인식을 못하는 경우 권한을 한번 껐다가 다시 켜면 정상적으로 활성화됩니다.");
+
+        dialog3_7.show();
+        Button agree = dialog3_7.findViewById(R.id.agree);
+        agree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!checkAccessibilityPermissions()) {
+                    setAccessibilityPermissions();
+                }
+            }
+        });
+
+        Button disagree = dialog3_7.findViewById(R.id.disagree);
+        disagree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog3_7.dismiss();
+            }
+        });
+    }
+
+    // 접근성 권한이 있는지 없는지 확인하는 부분
+    // 있으면 true, 없으면 false
+    public boolean checkAccessibilityPermissions() {
+        AccessibilityManager accessibilityManager = (AccessibilityManager) getSystemService(Context.ACCESSIBILITY_SERVICE);
+
+        // getEnabledAccessibilityServiceList 는 현재 접근성 권한을 가진 앱 리스트를 가져오게 된다
+        List<AccessibilityServiceInfo> list = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.DEFAULT);
+
+        for (int i = 0; i < list.size(); i++) {
+            AccessibilityServiceInfo info = list.get(i);
+
+            // 접근성 권한을 가진 앱의 패키지 네임과 패키지 네임이 같으면 현재 앱이 접근성 권한을 가지고 있다고 판담함
+            if (info.getResolveInfo().serviceInfo.packageName.equals(getApplication().getPackageName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 접근성 설정화면으로 넘겨주는 부분
+    public void setAccessibilityPermissions() {
+
+    }
+
+
 
 
 
     @Override
     public void onBackPressed() {
-        if (isCreateAccountPageOpen){
+        if (isCreateAccountPageOpen) {
             onClick(binding.buttonCancel);
             return;
         }
@@ -260,62 +412,68 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
 
         @Override
         public void onDisabled(@NonNull Context context, @NonNull Intent intent) {
-//            super.onDisabled(context, intent);
+            super.onDisabled(context, intent);
             Toast.makeText(context, "Device Admin Disabled", Toast.LENGTH_SHORT).show();
         }
 
         @Override
-        public void onEnabled(Context context, Intent intent){
+        public void onEnabled(Context context, Intent intent) {
+            super.onEnabled(context, intent);
             Toast.makeText(context, "Device Admin is now enabled", Toast.LENGTH_SHORT).show();
         }
 
         @Override
-        public CharSequence onDisableRequested(Context context, Intent intent){
-            CharSequence disableRequestedSeq = "Requesting to disable Device Admin";
+        public CharSequence onDisableRequested(Context context, Intent intent) {
+            CharSequence disableRequestedSeq = "기기관리자 해제 시 해제 사실이 관리자(부모님)께 즉시 통보됩니다. 진행을 원하시면 동의 버튼을 누리세요.";
             return disableRequestedSeq;
         }
 
         @Override
-        public void onPasswordChanged(Context context, Intent intent){
-            Toast.makeText(context, "Device password is now changed", Toast.LENGTH_SHORT).show();
-            DevicePolicyManager localDPM = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-            ComponentName localComponent = new ComponentName(context, MyDevicePolicyReceiver.class);
-            localDPM.setPasswordExpirationTimeout(localComponent, 0L);
+        public void onPasswordChanged(Context context, Intent intent) {
+            super.onPasswordChanged(context, intent);
+//            Toast.makeText(context, "Device password is now changed", Toast.LENGTH_SHORT).show();
+//            DevicePolicyManager localDPM = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+//            ComponentName localComponent = new ComponentName(context, MyDevicePolicyReceiver.class);
+//            localDPM.setPasswordExpirationTimeout(localComponent, 0L);
         }
 
         @Override
-        public void onPasswordExpiring(Context context, Intent intent){
+        public void onPasswordExpiring(Context context, Intent intent) {
+            super.onPasswordExpiring(context, intent);
             // This would require API 11 an above
-            Toast.makeText(context, "Device password is going to expire, please change to a new password", Toast.LENGTH_SHORT).show();
-            DevicePolicyManager localDPM = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-            ComponentName localComponent = new ComponentName(context, MyDevicePolicyReceiver.class);
-            long expr = localDPM.getPasswordExpiration(localComponent);
-            long delta = expr - System.currentTimeMillis();
-            boolean expired = delta < 0L;
-            if (expired) {
-                localDPM.setPasswordExpirationTimeout(localComponent, 10000L);
-                Intent passwordChangeIntent = new Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD);
-                passwordChangeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(passwordChangeIntent);
-            }
+//            Toast.makeText(context, "Device password is going to expire, please change to a new password", Toast.LENGTH_SHORT).show();
+//            DevicePolicyManager localDPM = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+//            ComponentName localComponent = new ComponentName(context, MyDevicePolicyReceiver.class);
+//            long expr = localDPM.getPasswordExpiration(localComponent);
+//            long delta = expr - System.currentTimeMillis();
+//            boolean expired = delta < 0L;
+//            if (expired) {
+//                localDPM.setPasswordExpirationTimeout(localComponent, 10000L);
+//                Intent passwordChangeIntent = new Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD);
+//                passwordChangeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                context.startActivity(passwordChangeIntent);
+//            }
         }
 
         @Override
         public void onPasswordFailed(Context context, Intent intent) {
-            Toast.makeText(context, "Password failed", Toast.LENGTH_SHORT).show();
+            super.onPasswordFailed(context, intent);
+//            Toast.makeText(context, "Password failed", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onPasswordSucceeded(Context context, Intent intent) {
-            Toast.makeText(context, "Access Granted", Toast.LENGTH_SHORT).show();
+            super.onPasswordSucceeded(context, intent);
+//            Toast.makeText(context, "Access Granted", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.i(LOG_TAG, "MyDevicePolicyReceiver Received: " + intent.getAction());
-            super.onReceive(context,intent);
+            super.onReceive(context, intent);
         }
     }
+
+
 }
 
 
