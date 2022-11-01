@@ -55,6 +55,7 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
     
     Dialog dialog2_7;
     Dialog dialog3_7;
+    Dialog dialog4_7;
     boolean isShowDialog3_7 = false;
 
     @Override
@@ -288,7 +289,6 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
                         }
                         appOps.stopWatchingMode(this);
                         Intent intent = new Intent(AuthorityActivity.this, AuthorityActivity.class);
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
                         getApplicationContext().startActivity(intent);
                         isShowDialog3_7 = true;
@@ -296,7 +296,9 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
 //                        showDialog3_7();
                     }
                 });
-        requestReadNetworkHistoryAccess();
+
+        Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS, Uri.parse("package:" + getPackageName()));
+        startActivity(intent);
 
         return false;
     }
@@ -308,16 +310,23 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
             isShowDialog3_7 = false;
             dialog2_7.dismiss();
             showDialog3_7();
+            return;
+        }
+        try {
+            Intent i = getIntent();
+            String key = i.getStringExtra("key");
+            if (key.equals("ok3_7")) {
+                dialog3_7.dismiss();
+                showDialog4_7();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+//            Log.e("cis", "onResume Exception: "+e.toString());
         }
     }
 
-    private void requestReadNetworkHistoryAccess() {
-        Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS, Uri.parse("package:" + getPackageName()));
-        startActivity(intent);
-    }
-
     private void showDialog3_7() {
-        Log.e("cis", "오냐?");
+//        Log.e("cis", "오냐?");
         dialog3_7 = new Dialog(AuthorityActivity.this);
         dialog3_7.setContentView(R.layout.custom_dialog_authority_image);
         dialog3_7.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -355,33 +364,75 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
+    private void showDialog4_7() {
+        dialog4_7 = new Dialog(AuthorityActivity.this);
+        dialog4_7.setContentView(R.layout.custom_dialog_authority);
+        dialog4_7.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams params = dialog4_7.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dialog4_7.getWindow().setAttributes(params);
+        dialog4_7.setCancelable(false);
+        TextView title = dialog4_7.findViewById(R.id.textViewTitle);
+        title.setText("단계 4/7) 안드로이드 권한 요청");
+        TextView contents = dialog4_7.findViewById(R.id.textViewContents);
+        contents.setText("사용을 제한할 앱 위에 차단 화면을 띄울 수 있도록 \"다른 앱 위에 표시되는 앱\" 권한이 필요합니다.");
+
+        dialog4_7.show();
+        Button agree = dialog4_7.findViewById(R.id.agree);
+        agree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog4_7.dismiss();
+            }
+        });
+
+        Button disagree = dialog4_7.findViewById(R.id.disagree);
+        disagree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog4_7.dismiss();
+                finish();
+            }
+        });
+    }
+
     // 접근성 권한이 있는지 없는지 확인하는 부분
     // 있으면 true, 없으면 false
     public boolean checkAccessibilityPermissions() {
-        AccessibilityManager accessibilityManager = (AccessibilityManager) getSystemService(Context.ACCESSIBILITY_SERVICE);
+        AccessibilityManager accessibilityManager = (AccessibilityManager) getApplicationContext().getSystemService(Context.ACCESSIBILITY_SERVICE);
 
-        // getEnabledAccessibilityServiceList 는 현재 접근성 권한을 가진 앱 리스트를 가져오게 된다
-        List<AccessibilityServiceInfo> list = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.DEFAULT);
+        return accessibilityManager.isEnabled();
 
-        for (int i = 0; i < list.size(); i++) {
-            AccessibilityServiceInfo info = list.get(i);
-
-            // 접근성 권한을 가진 앱의 패키지 네임과 패키지 네임이 같으면 현재 앱이 접근성 권한을 가지고 있다고 판담함
-            if (info.getResolveInfo().serviceInfo.packageName.equals(getApplication().getPackageName())) {
-                return true;
-            }
-        }
-        return false;
+//        // getEnabledAccessibilityServiceList 는 현재 접근성 권한을 가진 앱 리스트를 가져오게 된다
+//        List<AccessibilityServiceInfo> list = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.DEFAULT);
+//
+//        for (int i = 0; i < list.size(); i++) {
+//            AccessibilityServiceInfo info = list.get(i);
+//
+//            // 접근성 권한을 가진 앱의 패키지 네임과 패키지 네임이 같으면 현재 앱이 접근성 권한을 가지고 있다고 판담함
+//            if (info.getResolveInfo().serviceInfo.packageName.equals(getApplication().getPackageName())) {
+//                return true;
+//            }
+//        }
+//        return false;
     }
 
     // 접근성 설정화면으로 넘겨주는 부분
     public void setAccessibilityPermissions() {
-
+        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+        startActivity(intent);
+//        return;
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
 
-
-
+        if (intent != null){
+            setIntent(intent);
+        }
+    }
 
     @Override
     public void onBackPressed() {
