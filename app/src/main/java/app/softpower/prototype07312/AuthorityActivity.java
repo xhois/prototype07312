@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.AppOpsManagerCompat;
 
 import android.Manifest;
 import android.accessibilityservice.AccessibilityServiceInfo;
@@ -271,6 +272,7 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
                     }
                 }
             });
+
     private boolean hasPermissionToReadNetworkHistory() {
         final AppOpsManager appOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
         int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, android.os.Process.myUid(), getPackageName());
@@ -326,7 +328,6 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void showDialog3_7() {
-//        Log.e("cis", "오냐?");
         dialog3_7 = new Dialog(AuthorityActivity.this);
         dialog3_7.setContentView(R.layout.custom_dialog_authority_image);
         dialog3_7.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -422,7 +423,6 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
     public void setAccessibilityPermissions() {
         Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
         startActivity(intent);
-//        return;
     }
 
     @Override

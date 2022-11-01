@@ -1,8 +1,10 @@
 package app.softpower.prototype07312;
 
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
@@ -66,9 +68,14 @@ public class AccessibilityService extends android.accessibilityservice.Accessibi
 
         setServiceInfo(info);
 
-        AccessibilityManager accessibilityManager = (AccessibilityManager)getApplicationContext().getSystemService(Context.ACCESSIBILITY_SERVICE);
-        boolean isEnabled = accessibilityManager.isEnabled();
-        if (isEnabled) {
+        SharedPreferences pref = getSharedPreferences("firstPermissionAccessibility", Activity.MODE_PRIVATE);
+        boolean firstPermissionAccessibility = pref.getBoolean("firstPermissionAccessibility", true);
+
+        if (firstPermissionAccessibility) {
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("firstPermissionAccessibility", false);
+            editor.commit();
+
             Intent intent = new Intent(this, AuthorityActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("key", "ok3_7");
