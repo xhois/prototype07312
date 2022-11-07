@@ -564,6 +564,7 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+
     @Override
     public void onBackPressed() {
         if (isCreateAccountPageOpen) {
