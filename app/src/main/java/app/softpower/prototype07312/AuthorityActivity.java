@@ -9,12 +9,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.AppOpsManagerCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.view.accessibility.AccessibilityManagerCompat;
 
 import android.Manifest;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.AlertDialog;
 import android.app.AppOpsManager;
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.app.admin.DeviceAdminReceiver;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
@@ -26,6 +29,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.service.notification.NotificationListenerService;
 import android.util.EventLogTags;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +41,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.Set;
 
 import app.softpower.prototype07312.databinding.ActivityAuthorityBinding;
 import app.softpower.prototype07312.databinding.ActivityTutorialBinding;
@@ -53,11 +58,17 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
     private final static String LOG_TAG = "cis";
     DevicePolicyManager tDevicePolicyManager;
     ComponentName tDevicePolicyAdmin;
-    
+
     Dialog dialog2_7;
     Dialog dialog3_7;
     Dialog dialog4_7;
+    Dialog dialog5_7;
+    Dialog dialog6_7;
     boolean isShowDialog3_7 = false;
+    boolean isShowDialog5_7 = false;
+    boolean isShowDialog6_7 = false;
+
+    private PermissionSupport permission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,7 +244,7 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-    //기기관리자(BIND_DEVICE_ADMIN) 권한
+    // 기기관리자(BIND_DEVICE_ADMIN) 권한
     ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -253,8 +264,7 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
                         agree.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                boolean permissionOk = hasPermissionToReadNetworkHistory();
-                                if (permissionOk) {
+                                if (hasPermissionToReadNetworkHistory()) {
                                     dialog2_7.dismiss();
                                     showDialog3_7();
                                 }
@@ -291,7 +301,7 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
                         }
                         appOps.stopWatchingMode(this);
                         Intent intent = new Intent(AuthorityActivity.this, AuthorityActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         getApplicationContext().startActivity(intent);
                         isShowDialog3_7 = true;
 //                        dialog2_7.dismiss();
@@ -300,6 +310,37 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
                 });
 
         Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS, Uri.parse("package:" + getPackageName()));
+        startActivity(intent);
+
+        return false;
+    }
+
+    private boolean hasPermissionToSystemAlertWindow() {
+        final AppOpsManager appOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
+        int mode = appOps.checkOpNoThrow(AppOpsManager.permissionToOp("android.permission.SYSTEM_ALERT_WINDOW"), android.os.Process.myUid(), getPackageName());
+        if (mode == AppOpsManager.MODE_ALLOWED) {
+            return true;
+        }
+        appOps.startWatchingMode(AppOpsManager.permissionToOp("android.permission.SYSTEM_ALERT_WINDOW"),
+                getApplicationContext().getPackageName(),
+                new AppOpsManager.OnOpChangedListener() {
+                    @Override
+                    public void onOpChanged(String op, String packageName) {
+                        int mode = appOps.checkOpNoThrow(AppOpsManager.permissionToOp("android.permission.SYSTEM_ALERT_WINDOW"),
+                                android.os.Process.myUid(), getPackageName());
+                        if (mode != AppOpsManager.MODE_ALLOWED) {
+                            return;
+                        }
+                        appOps.stopWatchingMode(this);
+                        Intent intent = new Intent(AuthorityActivity.this, AuthorityActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        getApplicationContext().startActivity(intent);
+                        isShowDialog5_7 = true;
+//                        Log.e("cis", "ok");
+                    }
+                });
+
+        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
         startActivity(intent);
 
         return false;
@@ -314,6 +355,13 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
             showDialog3_7();
             return;
         }
+        if (isShowDialog5_7) {
+            isShowDialog5_7 = false;
+            dialog4_7.dismiss();
+            showDialog5_7();
+            return;
+        }
+
         try {
             Intent i = getIntent();
             String key = i.getStringExtra("key");
@@ -321,7 +369,11 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
                 dialog3_7.dismiss();
                 showDialog4_7();
             }
-        } catch (Exception e){
+            if (key.equals("ok5_7")) {
+                dialog5_7.dismiss();
+                showDialog6_7();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
 //            Log.e("cis", "onResume Exception: "+e.toString());
         }
@@ -350,9 +402,7 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
         agree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!checkAccessibilityPermissions()) {
-                    setAccessibilityPermissions();
-                }
+                setAccessibilityPermissions();
             }
         });
 
@@ -384,7 +434,10 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
         agree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog4_7.dismiss();
+                if (hasPermissionToSystemAlertWindow()) {
+                    dialog4_7.dismiss();
+                    showDialog5_7();
+                }
             }
         });
 
@@ -393,43 +446,120 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 dialog4_7.dismiss();
+            }
+        });
+    }
+
+    private void showDialog5_7() {
+        dialog5_7 = new Dialog(AuthorityActivity.this);
+        dialog5_7.setContentView(R.layout.custom_dialog_authority);
+        dialog5_7.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams params = dialog5_7.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dialog5_7.getWindow().setAttributes(params);
+        dialog5_7.setCancelable(false);
+        TextView title = dialog5_7.findViewById(R.id.textViewTitle);
+        title.setText("단계 5/7) 안드로이드 권한 요청");
+        TextView contents = dialog5_7.findViewById(R.id.textViewContents);
+        contents.setText("아이가 전화를 받지 않을 때 기기의 무음 상태를 해제하고 벨소리를 최대로 높이는 기능을 제공하고 있습니다. 이를 위해서 \"알림 접근 허용\"권한이 필요합니다.");
+
+        dialog5_7.show();
+        Button agree = dialog5_7.findViewById(R.id.agree);
+        agree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNotificationListenerPermissions();
+            }
+        });
+
+        Button disagree = dialog5_7.findViewById(R.id.disagree);
+        disagree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog5_7.dismiss();
                 finish();
             }
         });
     }
 
-    // 접근성 권한이 있는지 없는지 확인하는 부분
-    // 있으면 true, 없으면 false
-    public boolean checkAccessibilityPermissions() {
-        AccessibilityManager accessibilityManager = (AccessibilityManager) getApplicationContext().getSystemService(Context.ACCESSIBILITY_SERVICE);
+    private void showDialog6_7() {
+        dialog6_7 = new Dialog(AuthorityActivity.this);
+        dialog6_7.setContentView(R.layout.custom_dialog_authority);
+        dialog6_7.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams params = dialog6_7.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dialog6_7.getWindow().setAttributes(params);
+        dialog6_7.setCancelable(false);
+        TextView title = dialog6_7.findViewById(R.id.textViewTitle);
+        title.setText("단계 6/7) 안드로이드 권한 요청");
+        TextView contents = dialog6_7.findViewById(R.id.textViewContents);
+        contents.setText("연락처, 전화, 내 신체 활동 정보, 기기 위치, 사진 및 미디어");
 
-        return accessibilityManager.isEnabled();
+        dialog6_7.show();
+        Button agree = dialog6_7.findViewById(R.id.agree);
+        agree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Log.e("cis", "6/7 권한요청하자.");
 
-//        // getEnabledAccessibilityServiceList 는 현재 접근성 권한을 가진 앱 리스트를 가져오게 된다
-//        List<AccessibilityServiceInfo> list = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.DEFAULT);
-//
-//        for (int i = 0; i < list.size(); i++) {
-//            AccessibilityServiceInfo info = list.get(i);
-//
-//            // 접근성 권한을 가진 앱의 패키지 네임과 패키지 네임이 같으면 현재 앱이 접근성 권한을 가지고 있다고 판담함
-//            if (info.getResolveInfo().serviceInfo.packageName.equals(getApplication().getPackageName())) {
-//                return true;
-//            }
-//        }
-//        return false;
+                permission = new PermissionSupport(AuthorityActivity.this, getApplicationContext());  // 클래스 객체 생성
+
+                if (!permission.checkPermission()){  // 권한 체크한 후에 리턴이 false 일 경우 권한 요청을 해준다.
+                    permission.requestPermission();
+                }
+            }
+        });
+
+        Button disagree = dialog6_7.findViewById(R.id.disagree);
+        disagree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog6_7.dismiss();
+                finish();
+            }
+        });
     }
 
-    // 접근성 설정화면으로 넘겨주는 부분
-    public void setAccessibilityPermissions() {
-        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-        startActivity(intent);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {  // Request Permission 에 대한 결과 값을 받는다.
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (!permission.permissionResult(requestCode, permissions, grantResults)){
+            permission.requestPermission();
+        }
+
+    }
+
+    public void setAccessibilityPermissions() {                   // 접근성 권한
+        AccessibilityManager accessibilityManager = (AccessibilityManager) getApplicationContext().getSystemService(Context.ACCESSIBILITY_SERVICE);
+        List<AccessibilityServiceInfo> list = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.DEFAULT);
+        if (list.contains(getPackageName())){
+            dialog3_7.dismiss();
+            showDialog4_7();
+        } else {
+            Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+            startActivity(intent);
+        }
+    }
+
+    public void setNotificationListenerPermissions() {                   // 알림접근허용 권한
+        Set<String> sets = NotificationManagerCompat.getEnabledListenerPackages(getApplicationContext());
+        if (sets != null && sets.contains(getPackageName())) {
+            dialog5_7.dismiss();
+            showDialog6_7();
+        } else {
+            Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+            startActivity(intent);
+        }
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
 
-        if (intent != null){
+        if (intent != null) {
             setIntent(intent);
         }
     }
