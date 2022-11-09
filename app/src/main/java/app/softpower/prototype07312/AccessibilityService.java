@@ -74,7 +74,7 @@ public class AccessibilityService extends android.accessibilityservice.Accessibi
         if (firstPermissionAccessibility) {
             SharedPreferences.Editor editor = pref.edit();
             editor.putBoolean("firstPermissionAccessibility", false);
-            editor.commit();
+            editor.apply();
 
             Intent intent = new Intent(this, AuthorityActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -82,6 +82,8 @@ public class AccessibilityService extends android.accessibilityservice.Accessibi
             startActivity(intent);
         }
     }
+
+
 
     @Override
     public void onInterrupt() {

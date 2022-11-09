@@ -64,9 +64,10 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
     Dialog dialog4_7;
     Dialog dialog5_7;
     Dialog dialog6_7;
+    Dialog dialog7_7;
     boolean isShowDialog3_7 = false;
     boolean isShowDialog5_7 = false;
-    boolean isShowDialog6_7 = false;
+
 
     private PermissionSupport permission;
 
@@ -502,10 +503,7 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
         agree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Log.e("cis", "6/7 권한요청하자.");
-
                 permission = new PermissionSupport(AuthorityActivity.this, getApplicationContext());  // 클래스 객체 생성
-
                 if (!permission.checkPermission()){  // 권한 체크한 후에 리턴이 false 일 경우 권한 요청을 해준다.
                     permission.requestPermission();
                 }
@@ -522,20 +520,90 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
+    private void showDialog7_7() {
+        dialog7_7 = new Dialog(AuthorityActivity.this);
+        dialog7_7.setContentView(R.layout.custom_dialog_authority);
+        dialog7_7.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams params = dialog7_7.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dialog7_7.getWindow().setAttributes(params);
+        dialog7_7.setCancelable(false);
+        TextView title = dialog7_7.findViewById(R.id.textViewTitle);
+        title.setText("단계 7/7) 장치 연결");
+        TextView contents = dialog7_7.findViewById(R.id.textViewContents);
+        contents.setText("이 장치를 [xxxxx] 의 기기로 연결합니다.\n" +
+                "맞습니까?\n\n" +
+                "이 장치가 자녀의 기기이면 부모 프로필(경찰 이미지)에 절대 연결하지 마십시오. 연결할 사용자가 정확한지 다시 한번 확인하세요.");
+        dialog7_7.show();
+        Button agree = dialog7_7.findViewById(R.id.agree);
+        agree.setText("확인");
+        agree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog7_7.dismiss();
+            }
+        });
+
+        Button disagree = dialog7_7.findViewById(R.id.disagree);
+        disagree.setText("취소");
+        disagree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog7_7.dismiss();
+            }
+        });
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {  // Request Permission 에 대한 결과 값을 받는다.
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (!permission.permissionResult(requestCode, permissions, grantResults)){
             permission.requestPermission();
+            return;
         }
-
+        showDialog7_7();
     }
 
     public void setAccessibilityPermissions() {                   // 접근성 권한
+//        AccessibilityManager accessibilityManager = (AccessibilityManager) getApplicationContext().getSystemService(Context.ACCESSIBILITY_SERVICE);
+//        List<AccessibilityServiceInfo> list = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.DEFAULT);
+//        Log.e("cis", "list: "+list.toString());
+//        Log.e("cis", "getPackageName(): "+getPackageName());
+//        if (list.contains(getPackageName())){
+//            dialog3_7.dismiss();
+//            showDialog4_7();
+//        } else {
+//            Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+//            startActivity(intent);
+//        }
+        //----------------------------------------------------------------------------------------------
+//        AccessibilityManager accessibilityManager = (AccessibilityManager) getSystemService(Context.ACCESSIBILITY_SERVICE);
+//        List<AccessibilityServiceInfo> list = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.DEFAULT);
+//        Log.e("cis", "list: "+list.toString());
+//
+//        boolean ok = false;
+//        for (int i = 0; i<list.size(); i++){
+//            AccessibilityServiceInfo info = list.get(i);
+//            Log.e("cis", "info: "+info.getResolveInfo().serviceInfo.packageName);
+//            Log.e("cis", "getPackageName: "+getApplication().getPackageName());
+//            if (info.getResolveInfo().serviceInfo.packageName.equals(getApplication().getPackageName())) {
+//                ok = true;
+//                break;
+//            }
+//        }
+//        if (ok) {
+//            dialog3_7.dismiss();;
+//            showDialog4_7();
+//        } else {
+//            Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+//            startActivity(intent);
+//        }
+        //-------------------------------------------------------------------------
+
         AccessibilityManager accessibilityManager = (AccessibilityManager) getApplicationContext().getSystemService(Context.ACCESSIBILITY_SERVICE);
-        List<AccessibilityServiceInfo> list = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.DEFAULT);
-        if (list.contains(getPackageName())){
+        if (accessibilityManager.isEnabled()){
             dialog3_7.dismiss();
             showDialog4_7();
         } else {
@@ -563,7 +631,6 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
             setIntent(intent);
         }
     }
-
 
     @Override
     public void onBackPressed() {
