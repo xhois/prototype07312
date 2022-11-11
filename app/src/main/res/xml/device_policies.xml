@@ -11,6 +11,5 @@
         <disable-keyguard-features/>
 <!--        <encrypted-storage/>-->
 <!--        <set-global-proxy/>-->
-
     </uses-policies>
 </device-admin>

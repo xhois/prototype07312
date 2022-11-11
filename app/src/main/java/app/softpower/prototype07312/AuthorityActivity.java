@@ -367,16 +367,29 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
             Intent i = getIntent();
             String key = i.getStringExtra("key");
             if (key.equals("ok3_7")) {
+                getIntent().removeExtra("key");
                 dialog3_7.dismiss();
                 showDialog4_7();
+                return;
             }
             if (key.equals("ok5_7")) {
+                getIntent().removeExtra("key");
                 dialog5_7.dismiss();
                 showDialog6_7();
+                return;
             }
         } catch (Exception e) {
             e.printStackTrace();
 //            Log.e("cis", "onResume Exception: "+e.toString());
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        if (intent != null) {
+            setIntent(intent);
         }
     }
 
@@ -503,9 +516,12 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
         agree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog6_7.dismiss();
                 permission = new PermissionSupport(AuthorityActivity.this, getApplicationContext());  // 클래스 객체 생성
                 if (!permission.checkPermission()){  // 권한 체크한 후에 리턴이 false 일 경우 권한 요청을 해준다.
                     permission.requestPermission();
+                } else {
+                    showDialog7_7();
                 }
             }
         });
@@ -515,7 +531,6 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 dialog6_7.dismiss();
-                finish();
             }
         });
     }
@@ -542,6 +557,7 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 dialog7_7.dismiss();
+                finish();
             }
         });
 
@@ -561,7 +577,6 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
 
         if (!permission.permissionResult(requestCode, permissions, grantResults)){
             permission.requestPermission();
-            return;
         }
         showDialog7_7();
     }
@@ -623,14 +638,7 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
 
-        if (intent != null) {
-            setIntent(intent);
-        }
-    }
 
     @Override
     public void onBackPressed() {
