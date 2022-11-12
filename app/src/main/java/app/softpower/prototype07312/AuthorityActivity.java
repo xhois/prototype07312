@@ -14,6 +14,7 @@ import androidx.core.view.accessibility.AccessibilityManagerCompat;
 
 import android.Manifest;
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AppOpsManager;
 import android.app.Dialog;
@@ -23,6 +24,7 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -492,7 +494,6 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 dialog5_7.dismiss();
-                finish();
             }
         });
     }
@@ -622,6 +623,11 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
             dialog3_7.dismiss();
             showDialog4_7();
         } else {
+            SharedPreferences pref = getSharedPreferences("firstPermissionAccessibility", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("firstPermissionAccessibility", true);
+            editor.apply();
+
             Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
             startActivity(intent);
         }
@@ -633,6 +639,11 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
             dialog5_7.dismiss();
             showDialog6_7();
         } else {
+            SharedPreferences pref = getSharedPreferences("firstPermissionNotificationListenerService", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("firstPermissionNotificationListenerService", true);
+            editor.apply();
+
             Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
             startActivity(intent);
         }

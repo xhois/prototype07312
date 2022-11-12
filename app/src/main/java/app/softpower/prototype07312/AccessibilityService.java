@@ -59,7 +59,7 @@ public class AccessibilityService extends android.accessibilityservice.Accessibi
 
     // 접근성 권한을 가지고, 연결이 되면 호출되는 함수
     public void onServiceConnected() {
-//        Log.e("cis", "왔나?");
+        Log.e("cis", "onServiceConnected 호출됨");
         AccessibilityServiceInfo info = new AccessibilityServiceInfo();
 
         info.eventTypes = AccessibilityEvent.TYPES_ALL_MASK; // 전체 이벤트 가져오기
@@ -83,6 +83,15 @@ public class AccessibilityService extends android.accessibilityservice.Accessibi
         }
     }
 
+    public void onServiceDisconnected() {
+        Log.e("cis", "onServiceDisconnected 호출됨");
+        SharedPreferences pref = getSharedPreferences("firstPermissionAccessibility", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("firstPermissionAccessibility", true);
+        editor.apply();
+    }
+
+
 
 
     @Override
@@ -91,4 +100,9 @@ public class AccessibilityService extends android.accessibilityservice.Accessibi
         Log.e(TAG, "OnInterrupt");
     }
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        Log.e("cis", "onUnbind 호출됨");
+        return super.onUnbind(intent);
+    }
 }
