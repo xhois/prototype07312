@@ -83,17 +83,6 @@ public class AccessibilityService extends android.accessibilityservice.Accessibi
         }
     }
 
-    public void onServiceDisconnected() {
-        Log.e("cis", "onServiceDisconnected 호출됨");
-        SharedPreferences pref = getSharedPreferences("firstPermissionAccessibility", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean("firstPermissionAccessibility", true);
-        editor.apply();
-    }
-
-
-
-
     @Override
     public void onInterrupt() {
         // TODO Auto-generated method stub

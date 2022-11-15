@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -183,7 +184,11 @@ public class TutorialActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 moveTaskToBack(true);
-                ((MainActivity) MainActivity.mContext).finish();
+                try {
+                    ((MainActivity) MainActivity.mContext).finish();
+                } catch (Exception e){
+                    Log.e("cis", "((MainActivity) MainActivity.mContext).finish(): "+e.toString());
+                }
                 finishAndRemoveTask();
                 android.os.Process.killProcess(android.os.Process.myPid());
             }

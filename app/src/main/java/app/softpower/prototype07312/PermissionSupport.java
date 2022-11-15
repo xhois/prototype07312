@@ -4,8 +4,11 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -13,12 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@RequiresApi(api = Build.VERSION_CODES.Q)
 public class PermissionSupport {
 
-    private Context context;
-    private Activity activity;
+    private final Context context;
+    private final Activity activity;
 
-    private String[] permissions = {                                                                // Manifest 에 권한을 작성 후 요청할 권한을 배열로 저장
+    protected final String[] permissions = {                                                                // Manifest 에 권한을 작성 후 요청할 권한을 배열로 저장
             Manifest.permission.READ_CONTACTS,
             Manifest.permission.CALL_PHONE,
             Manifest.permission.ACTIVITY_RECOGNITION,
