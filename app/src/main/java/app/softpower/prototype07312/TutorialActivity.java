@@ -130,7 +130,6 @@ public class TutorialActivity extends AppCompatActivity {
         });
     }
 
-
     private void setInit() {  // 뷰페이저2 실행 메서드
         viewPageSetup = binding.viewPagerTutorial;  // 여기서 뷰페이저를 참조한다.
         TutorialActivity.FragPagerAdapter SetupPagerAdapter = new TutorialActivity.FragPagerAdapter(this); // 프래그먼트에서는 getActivity 로 참조하고, 액티비티에서는 this 를 사용한다.
