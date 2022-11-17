@@ -242,6 +242,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 layoutSetRulesBinding.item42.setOnClickListener(MainActivity.this);
                 layoutSetRulesBinding.item52.setOnClickListener(MainActivity.this);
                 layoutSetRulesBinding.buttonBackToSummary.setOnClickListener(MainActivity.this);
+                layoutSetRulesBinding.includeUsageTime.buttonModifyWeeklySchedule.setOnClickListener(MainActivity.this);
 
                 LinearLayout.LayoutParams p = (LinearLayout.LayoutParams) layoutSetRulesBinding.layoutSetRules.getLayoutParams();
                 p.setMargins(DpToPx(10), DpToPx(5), DpToPx(10), 0);
@@ -1439,6 +1440,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 layoutSetRulesBinding.layoutSetRules.setVisibility(View.VISIBLE);
 //                binding.layoutNotification.setVisibility(View.GONE);
+                break;
+            case R.id.buttonModifyWeeklySchedule:                                   // 규칙설정 -> 사용시간 -> 주간일정수정 버튼
+                Intent intent = new Intent(this, WeeklyScheduleModificatin_2.class);
+                startActivity(intent);
                 break;
             case R.id.button_back_to_summary:                                       // 활동요약으로 돌아가기
                 layoutSetRulesBinding.layoutSetRules.setVisibility(View.GONE);

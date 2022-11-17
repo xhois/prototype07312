@@ -15,6 +15,7 @@ import androidx.core.view.accessibility.AccessibilityManagerCompat;
 
 import android.Manifest;
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AppOpsManager;
@@ -54,6 +55,7 @@ import app.softpower.prototype07312.databinding.ActivityAuthorityBinding;
 import app.softpower.prototype07312.databinding.ActivityTutorialBinding;
 
 public class AuthorityActivity extends AppCompatActivity implements View.OnClickListener {
+    public static Context mContext;
 
     private ActivityAuthorityBinding binding;
 
@@ -95,6 +97,7 @@ public class AuthorityActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mContext = this;
         super.onCreate(savedInstanceState);
         binding = ActivityAuthorityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

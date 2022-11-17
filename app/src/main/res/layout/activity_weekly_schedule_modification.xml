@@ -1,0 +1,1148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".WeeklyScheduleModification">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="월요일" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="화요일" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="수요일" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="목요일" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="금요일" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="토요일" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="일요일" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="00:00~00:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="00:30~01:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="01:00~01:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="01:30~02:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="02:00~02:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="02:30~03:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="03:00~03:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="03:30~04:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="04:00~04:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="04:30~05:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="05:00~05:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="05:30~06:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="06:00~06:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="06:30~07:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="07:00~07:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="07:30~08:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="08:00~08:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="08:30~09:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="09:00~09:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="09:30~10:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="10:00~10:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="10:30~11:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="11:00~11:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="11:30~12:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="12:00~12:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="12:30~13:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="13:00~13:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="13:30~14:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="14:00~14:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="14:30~15:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="15:00~15:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="15:30~16:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="16:00~16:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="16:30~17:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="17:00~17:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="17:30~18:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="18:00~18:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="18:30~19:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="19:00~19:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="19:30~20:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="20:00~20:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="20:30~21:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="21:00~21:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="21:30~22:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="22:00~22:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="22:30~23:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="23:00~23:30" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView_WeeklyScheduleModification"
+                android:text="23:30~24:00" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+            <View
+                style="@style/View_WeeklyScheduleModification" />
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>

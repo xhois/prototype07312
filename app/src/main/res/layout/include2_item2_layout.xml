@@ -73,7 +73,7 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton"
+            android:id="@+id/buttonModifyWeeklySchedule"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginTop="8dp"
@@ -97,7 +97,7 @@
             android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
+            app:layout_constraintTop_toBottomOf="@+id/buttonModifyWeeklySchedule"
             app:srcCompat="@drawable/image_restrict_time" />
 
         <TextView

@@ -16,6 +16,7 @@ import android.view.accessibility.AccessibilityManager;
 import java.util.List;
 
 public class MyNotificationListenerService extends NotificationListenerService {
+
     @Override
     public void onCreate() {
         Log.e("cis", "MyNotificationListenerService.onCreate() 호출됨");
@@ -31,12 +32,11 @@ public class MyNotificationListenerService extends NotificationListenerService {
         SharedPreferences pref = getSharedPreferences("firstPermissionNotificationListenerService", Activity.MODE_PRIVATE);
         boolean firstPermissionNotificationListenerService = pref.getBoolean("firstPermissionNotificationListenerService", true);
 
-        if ((MainActivity) MainActivity.mContext != null) {
+        if ((AuthorityActivity) AuthorityActivity.mContext != null) {
             if (firstPermissionNotificationListenerService) {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putBoolean("firstPermissionNotificationListenerService", false);
                 editor.apply();
-
 
                 Intent intent = new Intent(this, AuthorityActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -50,7 +50,7 @@ public class MyNotificationListenerService extends NotificationListenerService {
     @Override
     public void onListenerDisconnected() {
         super.onListenerDisconnected();
-//        Log.e("cis", "MyNotificationListener.onListenerDisconnected() 호출됨");
+        Log.e("cis", "MyNotificationListener.onListenerDisconnected() 호출됨!!!!!!!");
 
 
     }
