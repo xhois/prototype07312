@@ -1442,7 +1442,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                binding.layoutNotification.setVisibility(View.GONE);
                 break;
             case R.id.buttonModifyWeeklySchedule:                                   // 규칙설정 -> 사용시간 -> 주간일정수정 버튼
-                Intent intent = new Intent(this, WeeklyScheduleModificatin_2.class);
+                Intent intent = new Intent(this, WeeklyScheduleModification.class);
                 startActivity(intent);
                 break;
             case R.id.button_back_to_summary:                                       // 활동요약으로 돌아가기
