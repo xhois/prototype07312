@@ -55,6 +55,8 @@
                 android:autoSizeMinTextSize="1sp"
                 android:text="일요일" />
 
+
+
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
