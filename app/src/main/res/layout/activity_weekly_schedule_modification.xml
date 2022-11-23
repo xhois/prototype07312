@@ -88,31 +88,24 @@
                 android:text="00:00~00:30" />
 
             <View
-                android:id="@+id/view001"
                 style="@style/View_WeeklyScheduleModification"
                 android:background="?attr/colorError"/>
             <View
-                android:id="@+id/view002"
                 style="@style/View_WeeklyScheduleModification"
                 android:background="?attr/colorError"/>
             <View
-                android:id="@+id/view003"
                 style="@style/View_WeeklyScheduleModification"
                 android:background="?attr/colorError"/>
             <View
-                android:id="@+id/view004"
                 style="@style/View_WeeklyScheduleModification"
                 android:background="?attr/colorError"/>
             <View
-                android:id="@+id/view005"
                 style="@style/View_WeeklyScheduleModification"
                 android:background="?attr/colorError"/>
             <View
-                android:id="@+id/view006"
                 style="@style/View_WeeklyScheduleModification"
                 android:background="?attr/colorError"/>
             <View
-                android:id="@+id/view007"
                 style="@style/View_WeeklyScheduleModification"
                 android:background="?attr/colorError"/>
 
