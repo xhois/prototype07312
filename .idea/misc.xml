@@ -108,7 +108,7 @@
         <entry key="app/src/main/res/layout/activity_summary.xml" value="0.4421364985163205" />
         <entry key="app/src/main/res/layout/activity_tutorial.xml" value="0.4050632911392405" />
         <entry key="app/src/main/res/layout/activity_weekly_schedule_modificatin2.xml" value="0.22685185185185186" />
-        <entry key="app/src/main/res/layout/activity_weekly_schedule_modification.xml" value="0.5367088607594936" />
+        <entry key="app/src/main/res/layout/activity_weekly_schedule_modification.xml" value="0.46296296296296297" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.3224417426545086" />
         <entry key="app/src/main/res/layout/content_weekly_schedule_modificatin2.xml" value="0.3527777777777778" />
         <entry key="app/src/main/res/layout/custom_dialog_authority.xml" value="0.31837606837606836" />
@@ -119,6 +119,7 @@
         <entry key="app/src/main/res/layout/custom_dialog_intro.xml" value="0.46296296296296297" />
         <entry key="app/src/main/res/layout/custom_dialog_intro2.xml" value="0.4787037037037037" />
         <entry key="app/src/main/res/layout/custom_dialog_user_change.xml" value="0.5282669138090825" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.3527777777777778" />
         <entry key="app/src/main/res/layout/fragment_search1.xml" value="0.5148711169861203" />
         <entry key="app/src/main/res/layout/fragment_search2.xml" value="0.5373575348248206" />
         <entry key="app/src/main/res/layout/fragment_search3.xml" value="0.5373575348248206" />
@@ -151,6 +152,7 @@
         <entry key="app/src/main/res/layout/viewstub_layout_payment.xml" value="0.31837606837606836" />
         <entry key="app/src/main/res/layout/viewstub_layout_search.xml" value="0.31837606837606836" />
         <entry key="app/src/main/res/layout/viewstub_layout_setting2.xml" value="0.375" />
+        <entry key="app/src/main/res/menu/appbar_action.xml" value="0.3527777777777778" />
         <entry key="app/src/main/res/menu/menu_bottom.xml" value="0.5074074074074074" />
         <entry key="app/src/main/res/xml/accessibility_service_config.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/xml/device_policies.xml" value="0.2462962962962963" />

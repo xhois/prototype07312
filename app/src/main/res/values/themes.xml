@@ -15,12 +15,4 @@
         <item name="android:windowBackground">@android:color/white</item>
     </style>
 
-    <style name="Theme.Prototype07312.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.Prototype07312.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.Prototype07312.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
