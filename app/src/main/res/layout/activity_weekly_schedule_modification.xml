@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     android:orientation="vertical"
     tools:context=".WeeklyScheduleModification">
 
@@ -17,10 +19,11 @@
         android:tooltipText="title" />
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray4"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@color/gray4">
 
         <TableRow
             android:layout_width="match_parent"
@@ -73,7 +76,6 @@
                 android:text="일요일" />
 
 
-
         </TableRow>
 
         <TableRow
@@ -89,25 +91,31 @@
 
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
 
 
         </TableRow>
@@ -125,25 +133,31 @@
 
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
         </TableRow>
 
         <TableRow
@@ -159,25 +173,31 @@
 
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
         </TableRow>
 
         <TableRow
@@ -193,25 +213,31 @@
 
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
         </TableRow>
 
         <TableRow
@@ -227,25 +253,31 @@
 
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
         </TableRow>
 
         <TableRow
@@ -261,25 +293,31 @@
 
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
+
             <View
                 style="@style/View_WeeklyScheduleModification"
-                android:background="?attr/colorError"/>
+                android:background="@color/red" />
         </TableRow>
 
         <TableRow

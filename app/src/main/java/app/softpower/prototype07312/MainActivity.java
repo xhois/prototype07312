@@ -985,7 +985,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void checkForFirstRun() {
         SharedPreferences pref = getSharedPreferences("checkFirst", Activity.MODE_PRIVATE);
         boolean checkFirst = pref.getBoolean("checkFirst", true);
-        if (true) {
+        if (checkFirst) {
             // 앱 최초 실행시 하고 싶은 작업
             SharedPreferences.Editor editor = pref.edit();
             editor.putBoolean("checkFirst", false);
