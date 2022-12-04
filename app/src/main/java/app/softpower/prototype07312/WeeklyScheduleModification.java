@@ -102,6 +102,7 @@ public class WeeklyScheduleModification extends AppCompatActivity implements Vie
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            newColor = 0;
             for (int i = 0; i < viewList.size(); i++) {
                 View vv = viewList.get(i);
                 boolean chk = chkTouchInside(vv, (int) event.getRawX(), (int) event.getRawY());
@@ -120,6 +121,7 @@ public class WeeklyScheduleModification extends AppCompatActivity implements Vie
                 }
             }
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            if (newColor == 0) return false;
             for (int i = 0; i < viewList.size(); i++) {
                 View vv = viewList.get(i);
                 boolean chk = chkTouchInside(vv, (int) event.getRawX(), (int) event.getRawY());

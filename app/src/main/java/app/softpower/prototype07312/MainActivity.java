@@ -44,10 +44,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -60,7 +67,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import app.softpower.prototype07312.databinding.ActivityMainBinding;
 import app.softpower.prototype07312.databinding.IncludeDeviceStatusBinding;
@@ -102,6 +113,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static int appWidth;
     private static int appHeight;
     private static float appDensity;
+
+    private final ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    initWeeklySchedule();
+                }
+            });
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -243,6 +262,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 layoutSetRulesBinding.item52.setOnClickListener(MainActivity.this);
                 layoutSetRulesBinding.buttonBackToSummary.setOnClickListener(MainActivity.this);
                 layoutSetRulesBinding.includeUsageTime.buttonModifyWeeklySchedule.setOnClickListener(MainActivity.this);
+
+                initWeeklySchedule();
 
                 LinearLayout.LayoutParams p = (LinearLayout.LayoutParams) layoutSetRulesBinding.layoutSetRules.getLayoutParams();
                 p.setMargins(DpToPx(10), DpToPx(5), DpToPx(10), 0);
@@ -982,6 +1003,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    private void initWeeklySchedule(){
+        SharedPreferences pref = getSharedPreferences("weeklySchedule", Activity.MODE_PRIVATE);
+        Set<String> mySet = new HashSet<String>(Arrays.asList(getResources().getStringArray(R.array.weeklySchedule)));
+        Set<String> weeklySchedule = pref.getStringSet("weeklySchedule", mySet);
+
+        boolean[] booleans = new boolean[336];
+        Arrays.fill(booleans, false);
+
+        for (String value : weeklySchedule){
+            int i = Integer.parseInt(value);
+            booleans[i] = true;
+        }
+
+        List<View> viewList = new ArrayList<View>();
+        LinearLayout tl = layoutSetRulesBinding.includeUsageTime.include.linearLayoutViewList;
+
+        for (int i = 0; i < tl.getChildCount(); i++) {
+            LinearLayout tr = (LinearLayout) tl.getChildAt(i);
+            for (int j = 0; j < tr.getChildCount(); j++) {
+                if (!(tr.getChildAt(j) instanceof com.google.android.material.divider.MaterialDivider)) {
+                    viewList.add(tr.getChildAt(j));
+                }
+            }
+        }
+        int j = 0;
+        for (int i = 0; i < booleans.length; i++) {
+            if (i != 0) j= j + 48;
+            if (j > 335) j = j - 335;
+            View vv = viewList.get(j);
+            Log.e("cis j: ", String.valueOf(j));
+            if (booleans[i]) {
+                vv.setBackground(AppCompatResources.getDrawable(this, R.drawable.weekly_red));
+            } else {
+                vv.setBackground(AppCompatResources.getDrawable(this, R.drawable.weekly_white));
+            }
+        }
+    }
+
     private void checkForFirstRun() {
         SharedPreferences pref = getSharedPreferences("checkFirst", Activity.MODE_PRIVATE);
         boolean checkFirst = pref.getBoolean("checkFirst", true);
@@ -1442,8 +1501,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                binding.layoutNotification.setVisibility(View.GONE);
                 break;
             case R.id.buttonModifyWeeklySchedule:                                   // 규칙설정 -> 사용시간 -> 주간일정수정 버튼
+//                Intent intent = new Intent(this, WeeklyScheduleModification.class);
+//                startActivity(intent);
+
+
+
                 Intent intent = new Intent(this, WeeklyScheduleModification.class);
-                startActivity(intent);
+                launcher.launch(intent);
+
                 break;
             case R.id.button_back_to_summary:                                       // 활동요약으로 돌아가기
                 layoutSetRulesBinding.layoutSetRules.setVisibility(View.GONE);

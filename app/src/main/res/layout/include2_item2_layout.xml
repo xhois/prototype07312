@@ -88,28 +88,28 @@
             app:layout_constraintTop_toBottomOf="@+id/textView8"
             tools:ignore="TouchTargetSizeCheck" />
 
-        <ImageView
-            android:id="@+id/imageView14"
+        <include
+            android:id="@+id/include"
+            layout="@layout/weekly_schedule_out"
             android:layout_width="0dp"
-            android:layout_height="325dp"
-            android:layout_marginStart="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonModifyWeeklySchedule"
-            app:srcCompat="@drawable/image_restrict_time" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonModifyWeeklySchedule" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="10dp"
             android:text="⚑ 제한 시간대인데 앱이 차단되지 않나요? 알아보기"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+            app:layout_constraintTop_toBottomOf="@+id/include" />
 
         <View
             android:layout_width="0dp"

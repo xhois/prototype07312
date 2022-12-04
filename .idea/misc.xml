@@ -102,6 +102,8 @@
         <entry key="app/src/main/res/drawable/switch_track_off.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/switch_track_on.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/switch_track_selector.xml" value="0.2775" />
+        <entry key="app/src/main/res/drawable/weekly_red.xml" value="0.2455" />
+        <entry key="app/src/main/res/drawable/weekly_white.xml" value="0.2455" />
         <entry key="app/src/main/res/layout-v31/activity_main.xml" value="0.3224417426545086" />
         <entry key="app/src/main/res/layout/activity_authority.xml" value="0.31837606837606836" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.31837606837606836" />
@@ -152,6 +154,7 @@
         <entry key="app/src/main/res/layout/viewstub_layout_payment.xml" value="0.31837606837606836" />
         <entry key="app/src/main/res/layout/viewstub_layout_search.xml" value="0.31837606837606836" />
         <entry key="app/src/main/res/layout/viewstub_layout_setting2.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/weekly_schedule_out.xml" value="0.5371308016877637" />
         <entry key="app/src/main/res/menu/appbar_action.xml" value="0.3527777777777778" />
         <entry key="app/src/main/res/menu/menu_bottom.xml" value="0.5074074074074074" />
         <entry key="app/src/main/res/xml/accessibility_service_config.xml" value="0.2916666666666667" />
