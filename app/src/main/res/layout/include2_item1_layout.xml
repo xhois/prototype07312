@@ -73,10 +73,12 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/convert_spinner_arrow3"
-
         android:contentDescription="오락/소셜 앱만 보기 (14)"
+        android:dropDownWidth="200dp"
         android:gravity="center_vertical"
-        android:popupBackground="@drawable/convert_spinner_arrow3"
+
+        android:overlapAnchor="false"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:ignore="TouchTargetSizeCheck" />

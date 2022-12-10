@@ -30,6 +30,7 @@ import android.text.style.StyleSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -37,7 +38,11 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CheckedTextView;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -270,10 +275,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 layoutSetRulesBinding.layoutSetRules.setLayoutParams(p);
 
                 Spinner spinnerUser2_rule = layoutSetRulesBinding.includeApp.spinnerUser2;
-                String[] itemsSpinnerUser2_rule = {" 오락/소셜 앱만 보기 (14)", " 전체보기 (20)"};
-                ArrayAdapter<String> adapter2_rule = new ArrayAdapter<String>(
-                        getBaseContext(), R.layout.spinner_item5, itemsSpinnerUser2_rule);
-                adapter2_rule.setDropDownViewResource(R.layout.spinner_item5);
+                String[] itemsSpinnerUser2_rule = {" 장치 기본앱 모두 (75)", " 사용자 설치 앱 모두(29)", " 게임 앱만 보기 (6)", " 오락/소설 앱만 보기(16)", "항상 허용 설정 앱 (5)", "허가시간대 항상허용 (1)", "차단 설정 앱(4)"};
+//                ArrayAdapter<String> adapter2_rule = new ArrayAdapter<String>(
+//                        getBaseContext(), R.layout.spinner_item5, itemsSpinnerUser2_rule);
+
+                SpinnerAdapter adapter2_rule = new SpinnerAdapter(itemsSpinnerUser2_rule, getBaseContext());
+
+//                adapter2_rule.setDropDownViewResource(R.layout.spinner_item5_dropdown);
                 spinnerUser2_rule.setAdapter(adapter2_rule);
 
                 Spinner spinnerLocationSpan = layoutSetRulesBinding.includeLocation.spinnerUser3;
@@ -1338,7 +1346,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonNotiClose:                                                // 알림 화면 닫기 (닫기 버튼)
                 onNavigationItemSelected(binding.bottomNavigationView.getMenu().getItem(4));
                 break;
-            case R.id.spinner_user:                                                // 관리 대상 변경
+            case R.id.spinner_user:                                                   // 관리 대상 변경
                 Dialog dialog01;
                 dialog01 = new Dialog(MainActivity.this);
                 dialog01.setContentView(R.layout.custom_dialog_user_change);
@@ -1870,6 +1878,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    void showAlertDialog(String str) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("AlertDialog");
+        builder.setMessage(str);
+        Log.i("cis", "여기오나?");
+        Log.i("cis", str);
+        builder.show();
+    }
+
+    private static int DpToPx(int dp) {
+        return Math.round((float) dp * appDensity);
+    }
+
     private class FragPagerAdapter extends FragmentStateAdapter {  // 뷰페이저2에서는 FragmentStateAdapter 를 사용한다.
 
         private final int mSetItemCount = 3;  // 프래그먼트 갯수 지정
@@ -1913,17 +1934,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    void showAlertDialog(String str) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("AlertDialog");
-        builder.setMessage(str);
-        Log.i("cis", "여기오나?");
-        Log.i("cis", str);
-        builder.show();
-    }
+    private class SpinnerAdapter extends BaseAdapter{
+        String list[];
+        Context context;
 
-    private static int DpToPx(int dp) {
-        return Math.round((float) dp * appDensity);
+        public SpinnerAdapter(String[] list, Context context) {
+            this.list = list;
+            this.context = context;
+        }
+
+        @Override
+        public int getCount() {
+            return list.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return list[position];
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null){
+                convertView = LayoutInflater.from(context).inflate(R.layout.spinner_item5_dropdown, null);
+            }
+            CheckedTextView tv = (CheckedTextView) convertView.findViewById(R.id.checkedTextView);
+            tv.setText(list[position]);
+            tv.setChecked(true);
+
+            return convertView;
+        }
     }
 
 }
