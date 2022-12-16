@@ -269,6 +269,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 layoutSetRulesBinding.includeUsageTime.buttonModifyWeeklySchedule.setOnClickListener(MainActivity.this);
 
                 initWeeklySchedule();
+                AppInfoUtil appInfoUtil = new AppInfoUtil();
+                appInfoUtil.getAppList(getApplicationContext());
 
                 LinearLayout.LayoutParams p = (LinearLayout.LayoutParams) layoutSetRulesBinding.layoutSetRules.getLayoutParams();
                 p.setMargins(DpToPx(10), DpToPx(5), DpToPx(10), 0);
