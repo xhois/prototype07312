@@ -277,13 +277,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 layoutSetRulesBinding.layoutSetRules.setLayoutParams(p);
 
                 Spinner spinnerUser2_rule = layoutSetRulesBinding.includeApp.spinnerUser2;
-                String[] itemsSpinnerUser2_rule = {" 장치 기본앱 모두 (75)", " 사용자 설치 앱 모두(29)", " 게임 앱만 보기 (6)", " 오락/소설 앱만 보기(16)", "항상 허용 설정 앱 (5)", "허가시간대 항상허용 (1)", "차단 설정 앱(4)"};
-//                ArrayAdapter<String> adapter2_rule = new ArrayAdapter<String>(
-//                        getBaseContext(), R.layout.spinner_item5, itemsSpinnerUser2_rule);
-
-                SpinnerAdapter adapter2_rule = new SpinnerAdapter(itemsSpinnerUser2_rule, getBaseContext());
-
-//                adapter2_rule.setDropDownViewResource(R.layout.spinner_item5_dropdown);
+                String[] itemsSpinnerUser2_rule = {" 장치 기본앱 모두 (75)", " 사용자 설치 앱 모두(29)", " 게임 앱만 보기 (6)", " 오락/소설 앱만 보기(16)", " 항상 허용 설정 앱 (5)", " 허가시간대 항상허용 (1)", " 차단 설정 앱(4)"};
+                ArrayAdapter<String> adapter2_rule = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item5, itemsSpinnerUser2_rule);
+                adapter2_rule.setDropDownViewResource(R.layout.spinner_item5_dropdown);
                 spinnerUser2_rule.setAdapter(adapter2_rule);
 
                 Spinner spinnerLocationSpan = layoutSetRulesBinding.includeLocation.spinnerUser3;
@@ -1935,42 +1931,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return mSetItemCount;
         }
     }
-
-    private class SpinnerAdapter extends BaseAdapter{
-        String list[];
-        Context context;
-
-        public SpinnerAdapter(String[] list, Context context) {
-            this.list = list;
-            this.context = context;
-        }
-
-        @Override
-        public int getCount() {
-            return list.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return list[position];
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null){
-                convertView = LayoutInflater.from(context).inflate(R.layout.spinner_item5_dropdown, null);
-            }
-            CheckedTextView tv = (CheckedTextView) convertView.findViewById(R.id.checkedTextView);
-            tv.setText(list[position]);
-            tv.setChecked(true);
-
-            return convertView;
-        }
-    }
-
 }
